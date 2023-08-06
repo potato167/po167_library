@@ -1,6 +1,11 @@
 ---
 data:
-  libraryCategories: []
+  libraryCategories:
+  - name: math
+    pages:
+    - icon: ':warning:'
+      path: math/combination.hpp
+      title: math/combination.hpp
   verificationCategories:
   - name: test/math
     pages:
