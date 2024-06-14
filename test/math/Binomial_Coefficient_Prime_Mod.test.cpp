@@ -1,16 +1,18 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod"
 
-#include "../../math/combination.hpp"
+#include "../../math/Binomial.hpp"
 #include <bits/stdc++.h>
-using namespace std;
+#include <atcoder/modint>
 
 int main(){
-	int T,m;
-	cin>>T>>m;
-	po167::combination table(min(m,10000000)-1,m);
-	while (T--){
-		int n,k;
-		cin>>n>>k;
-		cout<<table.Comb(n,k)<<"\n";
-	}
+    int T, m;
+    std::cin >> T >> m;
+    using mint = atcoder::dynamic_modint<1>;
+    mint::set_mod(m);
+    po167::Binomial<mint> table(std::min(m, 10000000));
+    while (T--){
+        int n, k;
+        std::cin >> n >> k;
+        std::cout << table.C(n, k).val() << "\n";
+    }
 }
