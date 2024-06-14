@@ -1,12 +1,19 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: math/Binomial.hpp
+    title: math/Binomial.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
-  attributes: {}
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod
+    links:
+    - https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod
   bundledCode: "#line 1 \"test/math/Binomial_Coefficient_Prime_Mod.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\"\n\
     \n#line 2 \"math/Binomial.hpp\"\n\n#include<vector>\n#include<assert.h>\n\nnamespace\
@@ -42,23 +49,24 @@ data:
     \ (a + e < b || c + e < d) return 0;\n        if (a > c || b > d) return 0;\n\
     \        a += e;\n        c += e;\n        return C(c + d - a - b, c - a) - C(c\
     \ + d - a - b, c - b + 1); \n    }\n};\n}\n#line 4 \"test/math/Binomial_Coefficient_Prime_Mod.test.cpp\"\
-    \n#include <bits/stdc++.h>\n#include <atcoder/modint>\n\nint main(){\n    int\
+    \n#include <bits/stdc++.h>\n#include <atcoder/modint>\n\n\nint main(){\n    int\
     \ T, m;\n    std::cin >> T >> m;\n    using mint = atcoder::dynamic_modint<1>;\n\
-    \    mint::set_mod(m);\n    po167::Binomial<mint> table(std::min(m, 10000000));\n\
-    \    while (T--){\n        int n, k;\n        std::cin >> n >> k;\n        std::cout\
-    \ << table.C(n, k).val() << \"\\n\";\n    }\n}\n"
+    \    mint::set_mod(m);\n    po167::Binomial<mint> table(std::min(m, 10000000)\
+    \ - 1);\n    while (T--){\n        int n, k;\n        std::cin >> n >> k;\n  \
+    \      std::cout << table.C(n, k).val() << \"\\n\";\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\"\
     \n\n#include \"../../math/Binomial.hpp\"\n#include <bits/stdc++.h>\n#include <atcoder/modint>\n\
-    \nint main(){\n    int T, m;\n    std::cin >> T >> m;\n    using mint = atcoder::dynamic_modint<1>;\n\
-    \    mint::set_mod(m);\n    po167::Binomial<mint> table(std::min(m, 10000000));\n\
-    \    while (T--){\n        int n, k;\n        std::cin >> n >> k;\n        std::cout\
-    \ << table.C(n, k).val() << \"\\n\";\n    }\n}"
-  dependsOn: []
+    \n\nint main(){\n    int T, m;\n    std::cin >> T >> m;\n    using mint = atcoder::dynamic_modint<1>;\n\
+    \    mint::set_mod(m);\n    po167::Binomial<mint> table(std::min(m, 10000000)\
+    \ - 1);\n    while (T--){\n        int n, k;\n        std::cin >> n >> k;\n  \
+    \      std::cout << table.C(n, k).val() << \"\\n\";\n    }\n}"
+  dependsOn:
+  - math/Binomial.hpp
   isVerificationFile: true
   path: test/math/Binomial_Coefficient_Prime_Mod.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-06-15 03:34:17+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/Binomial_Coefficient_Prime_Mod.test.cpp
 layout: document
