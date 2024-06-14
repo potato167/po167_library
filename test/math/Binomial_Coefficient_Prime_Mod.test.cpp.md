@@ -1,9 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':x:'
-    path: math/Binomial.hpp
-    title: math/Binomial.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -56,12 +53,11 @@ data:
     \    mint::set_mod(m);\n    po167::Binomial<mint> table(std::min(m, 10000000));\n\
     \    while (T--){\n        int n, k;\n        std::cin >> n >> k;\n        std::cout\
     \ << table.C(n, k).val() << \"\\n\";\n    }\n}"
-  dependsOn:
-  - math/Binomial.hpp
+  dependsOn: []
   isVerificationFile: true
   path: test/math/Binomial_Coefficient_Prime_Mod.test.cpp
   requiredBy: []
-  timestamp: '2024-06-15 02:47:36+09:00'
+  timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/math/Binomial_Coefficient_Prime_Mod.test.cpp
