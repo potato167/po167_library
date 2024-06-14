@@ -9,7 +9,7 @@ int main(){
     std::cin >> T >> m;
     using mint = atcoder::dynamic_modint<1>;
     mint::set_mod(m);
-    po167::Binomial<mint> table(std::min(m, 10000000));
+    po167::Binomial<mint> table(std::min(m, 10000000) - 1);
     while (T--){
         int n, k;
         std::cin >> n >> k;
