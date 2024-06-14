@@ -12,15 +12,16 @@ data:
     links:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/math/sampleproblem.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
-    \n\n#include<bits/stdc++.h>\nint main(){\n\tint a,b;\n\tstd::cin>>a>>b;\n\tstd::cout<<a+b<<\"\
-    \\n\";\n}\n"
+    \n\n#include<bits/stdc++.h>\nint main(){\n    int a,b;\n    std::cin>>a>>b;\n\
+    \    std::cout<<a+b<<\"\\n\";\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include<bits/stdc++.h>\n\
-    int main(){\n\tint a,b;\n\tstd::cin>>a>>b;\n\tstd::cout<<a+b<<\"\\n\";\n}\n"
+    int main(){\n    int a,b;\n    std::cin>>a>>b;\n    std::cout<<a+b<<\"\\n\";\n\
+    }\n"
   dependsOn: []
   isVerificationFile: true
   path: test/math/sampleproblem.test.cpp
   requiredBy: []
-  timestamp: '2023-08-06 17:13:14+09:00'
+  timestamp: '2024-06-15 02:47:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/sampleproblem.test.cpp

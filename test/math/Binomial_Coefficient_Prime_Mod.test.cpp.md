@@ -1,48 +1,68 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: math/combination.hpp
-    title: math/combination.hpp
+  - icon: ':x:'
+    path: math/Binomial.hpp
+    title: math/Binomial.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod
-    links:
-    - https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"test/math/Binomial_Coefficient_Prime_Mod.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\"\n\
-    \n#line 2 \"math/combination.hpp\"\n\n#include<vector>\n#include<assert.h>\n\n\
-    namespace po167{\nstruct combination{\n\tint upper;\n\tint MOD;\n\tstd::vector<long\
-    \ long> fact;\n\tstd::vector<long long> rev;\n\tstd::vector<long long> fact_rev;\n\
-    \tcombination(int max,long long mod):upper(max),MOD(mod),fact(max+1),rev(max+1),fact_rev(max+1){\n\
-    \t\tfor(long long i=0;i<=max;i++){\n\t\t\tif(i<2){\n\t\t\t\tfact[i]=1;\n\t\t\t\
-    \tfact_rev[i]=1;\n\t\t\t\trev[i]=1;\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfact[i]=(fact[i-1]*i)%mod;\n\
-    \t\t\trev[i]=mod-((mod/i)*rev[mod%i])%mod;\n\t\t\tfact_rev[i]=(fact_rev[i-1]*rev[i])%mod;\n\
-    \t\t}\n\t}\n\tlong long Comb(int x,int y){\n\t\tassert(upper>=x);\n\t\tif (x<y||y<0||x<0)\
-    \ return 0;\n\t\treturn (((fact_rev[y]*fact_rev[x-y])%MOD)*fact[x])%MOD;\n\t}\n\
-    \tlong long P(int x,int y){\n\t\tassert(upper>=x);\n\t\tif (x<y||y<0||x<0) return\
-    \ 0;\n\t\treturn (fact_rev[x-y]*fact[x])%MOD;\n\t}\n};\n}\nusing po167::combination;\n\
-    #line 4 \"test/math/Binomial_Coefficient_Prime_Mod.test.cpp\"\n#include <bits/stdc++.h>\n\
-    using namespace std;\n\nint main(){\n\tint T,m;\n\tcin>>T>>m;\n\tpo167::combination\
-    \ table(min(m,10000000)-1,m);\n\twhile (T--){\n\t\tint n,k;\n\t\tcin>>n>>k;\n\t\
-    \tcout<<table.Comb(n,k)<<\"\\n\";\n\t}\n}\n"
+    \n#line 2 \"math/Binomial.hpp\"\n\n#include<vector>\n#include<assert.h>\n\nnamespace\
+    \ po167{\ntemplate<class T>\nstruct Binomial{\n    std::vector<T> fact_vec, fact_inv_vec;\n\
+    \    void extend(int m = -1){\n        int n = fact_vec.size();\n        if (m\
+    \ == -1) m = n * 2;\n        if (n >= m) return;\n        fact_vec.resize(m);\n\
+    \        fact_inv_vec.resize(m);\n        for (int i = n; i < m; i++){\n     \
+    \       fact_vec[i] = fact_vec[i - 1] * T(i);\n        }\n        fact_inv_vec[m\
+    \ - 1] = T(1) / fact_vec[m - 1];\n        for (int i = m - 1; i > n; i--){\n \
+    \           fact_inv_vec[i - 1] = fact_inv_vec[i] * T(i);\n        }\n    }\n\
+    \    Binomial(int MAX = 2){\n        fact_vec.resize(1, T(1));\n        fact_inv_vec.resize(1,\
+    \ T(1));\n        extend(MAX + 1);\n    }\n\n    T fact(int i){\n        if (i\
+    \ < 0) return 0;\n        while (int(fact_vec.size()) <= i) extend();\n      \
+    \  return fact_vec[i];\n    }\n    T invfact(int i){\n        if (i < 0) return\
+    \ 0;\n        while (int(fact_inv_vec.size()) <= i) extend();\n        return\
+    \ fact_inv_vec[i];\n    }\n    T C(int a, int b){\n        if (a < b || b < 0)\
+    \ return 0;\n        return fact(a) * invfact(b) * invfact(a - b);\n    }\n  \
+    \  T invC(int a, int b){\n        if (a < b || b < 0) return 0;\n        return\
+    \ fact(b) * fact(a - b) *invfact(a);\n    }\n    T P(int a, int b){\n        if\
+    \ (a < b || b < 0) return 0;\n        return fact(a) * invfact(a - b);\n    }\n\
+    \    T inv(int a){\n        if (a < 0) return inv(-a) * T(-1);\n        if (a\
+    \ == 0) return 1;\n        return fact(a - 1) * invfact(a);\n    }\n    T Catalan(int\
+    \ n){\n        if (n < 0) return 0;\n        return fact(2 * n) * invfact(n +\
+    \ 1) * invfact(n);\n    }\n    T narayana(int n, int k){\n        if (n <= 0 ||\
+    \ n < k || k < 1) return 0;\n        return C(n, k) *  C(n, k - 1) * inv(n);\n\
+    \    }\n    T Catalan_pow(int n,int d){\n        if (n < 0 || d < 0) return 0;\n\
+    \        if (d == 0){\n            if (n == 0) return 1;\n            return 0;\n\
+    \        }\n        return T(d) * inv(d + n) * C(2 * n + d - 1, n);\n    }\n \
+    \   // retrun [x^a] 1/(1-x)^b\n    T ruiseki(int a,int b){\n        if (a < 0\
+    \ || b < 0) return 0;\n        if (a == 0){\n            return 1;\n        }\n\
+    \        return C(a + b - 1, b - 1);\n    }\n    // (a, b) -> (c, d)\n    // always\
+    \ x + e >= y\n    T mirror(int a, int b, int c, int d, int e = 0){\n        if\
+    \ (a + e < b || c + e < d) return 0;\n        if (a > c || b > d) return 0;\n\
+    \        a += e;\n        c += e;\n        return C(c + d - a - b, c - a) - C(c\
+    \ + d - a - b, c - b + 1); \n    }\n};\n}\n#line 4 \"test/math/Binomial_Coefficient_Prime_Mod.test.cpp\"\
+    \n#include <bits/stdc++.h>\n#include <atcoder/modint>\n\nint main(){\n    int\
+    \ T, m;\n    std::cin >> T >> m;\n    using mint = atcoder::dynamic_modint<1>;\n\
+    \    mint::set_mod(m);\n    po167::Binomial<mint> table(std::min(m, 10000000));\n\
+    \    while (T--){\n        int n, k;\n        std::cin >> n >> k;\n        std::cout\
+    \ << table.C(n, k).val() << \"\\n\";\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\"\
-    \n\n#include \"../../math/combination.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\n\nint main(){\n\tint T,m;\n\tcin>>T>>m;\n\tpo167::combination table(min(m,10000000)-1,m);\n\
-    \twhile (T--){\n\t\tint n,k;\n\t\tcin>>n>>k;\n\t\tcout<<table.Comb(n,k)<<\"\\\
-    n\";\n\t}\n}"
+    \n\n#include \"../../math/Binomial.hpp\"\n#include <bits/stdc++.h>\n#include <atcoder/modint>\n\
+    \nint main(){\n    int T, m;\n    std::cin >> T >> m;\n    using mint = atcoder::dynamic_modint<1>;\n\
+    \    mint::set_mod(m);\n    po167::Binomial<mint> table(std::min(m, 10000000));\n\
+    \    while (T--){\n        int n, k;\n        std::cin >> n >> k;\n        std::cout\
+    \ << table.C(n, k).val() << \"\\n\";\n    }\n}"
   dependsOn:
-  - math/combination.hpp
+  - math/Binomial.hpp
   isVerificationFile: true
   path: test/math/Binomial_Coefficient_Prime_Mod.test.cpp
   requiredBy: []
-  timestamp: '2023-08-06 17:57:48+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-06-15 02:47:36+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/math/Binomial_Coefficient_Prime_Mod.test.cpp
 layout: document
