@@ -2,25 +2,37 @@ name: verify
 
 on: push
 
-permissions: write-all
-
 jobs:
-  verify:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
+      with:
+        path: main
+        fetch-depth: 0
 
     - name: Set up Python
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.9
 
     - name: Install dependencies
       run: pip3 install -U online-judge-verify-helper
 
+    - name: Clone ac-library
+      uses: actions/checkout@v3
+      with:
+          repository: atcoder/ac-library
+          path: ac-library
+          sparse-checkout: atcoder
+          
+
     - name: Run tests
+      working-directory: main
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
-        DROPBOX_TOKEN: ${{ secrets.DROPBOX_TOKEN }}
+        CPLUS_INCLUDE_PATH: ${{ github.workspace }}/ac-library
         GH_PAT: ${{ secrets.GH_PAT }}
-      run: oj-verify all
+      run: oj-verify all --jobs 2 --timeout 3600
