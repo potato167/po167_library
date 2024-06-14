@@ -4,6 +4,7 @@
 #include <bits/stdc++.h>
 #include <atcoder/modint>
 
+
 int main(){
     int T, m;
     std::cin >> T >> m;
