@@ -1,0 +1,3 @@
+[[languages.cpp.environments]]
+CXX = "/usr/local/bin/g++"
+CXXFLAGS = ["-std=c++17", "-Wall", "-O2", "-I .", "-D_GLIBCXX_DEBUG"]
