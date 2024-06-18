@@ -1,11 +1,51 @@
 ---
 data:
   libraryCategories:
+  - name: fps
+    pages:
+    - icon: ':warning:'
+      path: fps/FPS_Power_Projection.hpp
+      title: fps/FPS_Power_Projection.hpp
+    - icon: ':warning:'
+      path: fps/FPS_cyclic_convolution.hpp
+      title: fps/FPS_cyclic_convolution.hpp
+    - icon: ':warning:'
+      path: fps/FPS_differetial.hpp
+      title: fps/FPS_differetial.hpp
+    - icon: ':warning:'
+      path: fps/FPS_exp.hpp
+      title: fps/FPS_exp.hpp
+    - icon: ':warning:'
+      path: fps/FPS_extend.hpp
+      title: fps/FPS_extend.hpp
+    - icon: ':warning:'
+      path: fps/FPS_integral.hpp
+      title: fps/FPS_integral.hpp
+    - icon: ':warning:'
+      path: fps/FPS_inv.hpp
+      title: fps/FPS_inv.hpp
+    - icon: ':warning:'
+      path: fps/FPS_inverse.hpp
+      title: fps/FPS_inverse.hpp
+    - icon: ':warning:'
+      path: fps/FPS_log.hpp
+      title: fps/FPS_log.hpp
+    - icon: ':warning:'
+      path: fps/FPS_pick_even_odd.hpp
+      title: fps/FPS_pick_even_odd.hpp
+    - icon: ':warning:'
+      path: fps/FSP_add.hpp
+      title: fps/FSP_add.hpp
   - name: math
     pages:
     - icon: ':heavy_check_mark:'
       path: math/Binomial.hpp
       title: "\u4E8C\u9805\u4FC2\u6570\u95A2\u9023"
+  - name: test/fps
+    pages:
+    - icon: ':warning:'
+      path: test/fps/exp.hpp
+      title: test/fps/exp.hpp
   verificationCategories:
   - name: test/math
     pages:
