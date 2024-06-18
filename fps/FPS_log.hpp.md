@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: fps/FPS_differetial.hpp
     title: fps/FPS_differetial.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: fps/FPS_integral.hpp
     title: fps/FPS_integral.hpp
   _extendedRequiredBy:

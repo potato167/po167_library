@@ -4,16 +4,16 @@ data:
   - icon: ':warning:'
     path: fps/FPS_Power_Projection.hpp
     title: fps/FPS_Power_Projection.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: fps/FPS_cyclic_convolution.hpp
     title: fps/FPS_cyclic_convolution.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: fps/FPS_differetial.hpp
     title: fps/FPS_differetial.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: fps/FPS_exp.hpp
     title: fps/FPS_exp.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: fps/FPS_integral.hpp
     title: fps/FPS_integral.hpp
   - icon: ':warning:'

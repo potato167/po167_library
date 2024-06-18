@@ -1,27 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: fps/FPS_cyclic_convolution.hpp
     title: fps/FPS_cyclic_convolution.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: fps/FPS_differetial.hpp
     title: fps/FPS_differetial.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: fps/FPS_exp.hpp
     title: fps/FPS_exp.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: fps/FPS_integral.hpp
     title: fps/FPS_integral.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/exp_of_formal_power_series
     links:
     - https://judge.yosupo.jp/problem/exp_of_formal_power_series
-  bundledCode: "#line 1 \"test/fps/exp.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/exp_of_formal_power_series\"\
+  bundledCode: "#line 1 \"test/fps/exp.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/exp_of_formal_power_series\"\
     \n#include <vector>\n#include <iostream>\n#line 3 \"fps/FPS_exp.hpp\"\n#include\
     \ <atcoder/convolution>\n#line 4 \"fps/FPS_cyclic_convolution.hpp\"\n\nnamespace\
     \ po167{\n// |f| = |g| = 2 ^ n\ntemplate<class T>\nstd::vector<T> FPS_cyclic_convolution(std::vector<T>\
@@ -51,8 +53,8 @@ data:
     \ ? f[i] : 0) - A[i];\n        // g_hat = g (1 - g + f)\n        // g += B = g\
     \ * A\n        g.resize(2 * s);\n        B = FPS_cyclic_convolution(A, g);\n \
     \       for (int i = s; i < s * 2; i++) g[i] = B[i];\n        s *= 2;\n    }\n\
-    \    g.resize(len);\n    return g;\n}\n}\n#line 5 \"test/fps/exp.cpp\"\n#include\
-    \ <atcoder/modint>\nint main(){\n    int N;\n    std::cin >> N;\n    std::vector<atcoder::modint998244353>\
+    \    g.resize(len);\n    return g;\n}\n}\n#line 5 \"test/fps/exp.test.cpp\"\n\
+    #include <atcoder/modint>\nint main(){\n    int N;\n    std::cin >> N;\n    std::vector<atcoder::modint998244353>\
     \ A(N);\n    for (int i = 0; i < N; i++){\n        int a;\n        std::cin >>\
     \ a;\n        A[i] = a;\n    }\n    auto B = po167::FPS_exp(A);\n    for (int\
     \ i = 0; i < N; i++){\n        std::cout << B[i].val() << (i == N - 1 ? \"\\n\"\
@@ -69,16 +71,16 @@ data:
   - fps/FPS_cyclic_convolution.hpp
   - fps/FPS_differetial.hpp
   - fps/FPS_integral.hpp
-  isVerificationFile: false
-  path: test/fps/exp.cpp
+  isVerificationFile: true
+  path: test/fps/exp.test.cpp
   requiredBy: []
-  timestamp: '2024-06-19 00:54:13+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2024-06-19 00:57:44+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/fps/exp.cpp
+documentation_of: test/fps/exp.test.cpp
 layout: document
 redirect_from:
-- /library/test/fps/exp.cpp
-- /library/test/fps/exp.cpp.html
-title: test/fps/exp.cpp
+- /verify/test/fps/exp.test.cpp
+- /verify/test/fps/exp.test.cpp.html
+title: test/fps/exp.test.cpp
 ---
