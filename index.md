@@ -4,6 +4,9 @@ data:
   - name: fps
     pages:
     - icon: ':warning:'
+      path: fps/FPS_Boston_Mori.hpp
+      title: fps/FPS_Boston_Mori.hpp
+    - icon: ':warning:'
       path: fps/FPS_Power_Projection.hpp
       title: fps/FPS_Power_Projection.hpp
     - icon: ':heavy_check_mark:'

@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: fps/FPS_Boston_Mori.hpp
+    title: fps/FPS_Boston_Mori.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -26,7 +29,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: fps/FPS_extend.hpp
-  requiredBy: []
+  requiredBy:
+  - fps/FPS_Boston_Mori.hpp
   timestamp: '2024-06-19 00:51:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

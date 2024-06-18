@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: fps/FPS_Boston_Mori.hpp
+    title: fps/FPS_Boston_Mori.hpp
+  - icon: ':warning:'
     path: fps/FPS_Power_Projection.hpp
     title: fps/FPS_Power_Projection.hpp
   - icon: ':warning:'
@@ -44,6 +47,7 @@ data:
   path: fps/FPS_pick_even_odd.hpp
   requiredBy:
   - fps/FPS_Power_Projection.hpp
+  - fps/FPS_Boston_Mori.hpp
   - fps/FPS_inverse.hpp
   timestamp: '2024-06-19 00:51:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
