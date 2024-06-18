@@ -1,8 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/exp_of_formal_power_series"
+
+#include "../../fps/FPS_exp.hpp"
+
 #include <vector>
 #include <iostream>
-#include "../../fps/FPS_exp.hpp"
 #include <atcoder/modint>
+
 int main(){
     int N;
     std::cin >> N;
