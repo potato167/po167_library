@@ -4,7 +4,7 @@
 #include "../fps/FPS_cyclic_convolution.hpp"
 #include "../fps/FPS_differetial.hpp"
 #include "../fps/FPS_integral.hpp"
-
+#include "FPS_inv.hpp"
 
 namespace po167{
 template<class T>
