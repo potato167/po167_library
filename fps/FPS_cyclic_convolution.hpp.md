@@ -2,19 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: fps/FPS_exp.hpp
     title: fps/FPS_exp.hpp
   - icon: ':warning:'
     path: fps/FPS_inverse.hpp
     title: fps/FPS_inverse.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/exp.test.cpp
     title: test/fps/exp.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"fps/FPS_cyclic_convolution.hpp\"\n#include <vector>\n#include\
@@ -37,7 +37,7 @@ data:
   - fps/FPS_exp.hpp
   - fps/FPS_inverse.hpp
   timestamp: '2024-06-19 00:51:37+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/exp.test.cpp
 documentation_of: fps/FPS_cyclic_convolution.hpp

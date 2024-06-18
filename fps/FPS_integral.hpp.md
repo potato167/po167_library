@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: fps/FPS_exp.hpp
     title: fps/FPS_exp.hpp
   - icon: ':warning:'
@@ -12,12 +12,12 @@ data:
     path: fps/FPS_log.hpp
     title: fps/FPS_log.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/exp.test.cpp
     title: test/fps/exp.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"fps/FPS_integral.hpp\"\n#include <vector>\n\nnamespace po167{\n\
@@ -44,7 +44,7 @@ data:
   - fps/FPS_log.hpp
   - fps/FPS_inverse.hpp
   timestamp: '2024-06-19 00:51:37+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/exp.test.cpp
 documentation_of: fps/FPS_integral.hpp

@@ -6,22 +6,22 @@ data:
     - icon: ':warning:'
       path: fps/FPS_Power_Projection.hpp
       title: fps/FPS_Power_Projection.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/FPS_cyclic_convolution.hpp
       title: fps/FPS_cyclic_convolution.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/FPS_differetial.hpp
       title: fps/FPS_differetial.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/FPS_exp.hpp
       title: fps/FPS_exp.hpp
     - icon: ':warning:'
       path: fps/FPS_extend.hpp
       title: fps/FPS_extend.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/FPS_integral.hpp
       title: fps/FPS_integral.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: fps/FPS_inv.hpp
       title: fps/FPS_inv.hpp
     - icon: ':warning:'
@@ -44,7 +44,7 @@ data:
   verificationCategories:
   - name: test/fps
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/fps/exp.test.cpp
       title: test/fps/exp.test.cpp
   - name: test/math
