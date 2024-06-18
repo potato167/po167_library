@@ -12,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/fps/exp.test.cpp
     title: test/fps/exp.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/fps/inv.test.cpp
+    title: test/fps/inv.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -62,6 +65,7 @@ data:
   timestamp: '2024-06-19 00:51:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/fps/inv.test.cpp
   - test/fps/exp.test.cpp
 documentation_of: fps/FPS_inv.hpp
 layout: document

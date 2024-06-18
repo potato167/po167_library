@@ -27,9 +27,9 @@ data:
     links:
     - https://judge.yosupo.jp/problem/exp_of_formal_power_series
   bundledCode: "#line 1 \"test/fps/exp.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/exp_of_formal_power_series\"\
-    \n#include <vector>\n#include <iostream>\n#line 3 \"fps/FPS_exp.hpp\"\n#include\
-    \ <atcoder/convolution>\n#line 4 \"fps/FPS_cyclic_convolution.hpp\"\n\nnamespace\
-    \ po167{\n// |f| = |g| = 2 ^ n\ntemplate<class T>\nstd::vector<T> FPS_cyclic_convolution(std::vector<T>\
+    \n\n#line 2 \"fps/FPS_exp.hpp\"\n#include <vector>\n#include <atcoder/convolution>\n\
+    #line 4 \"fps/FPS_cyclic_convolution.hpp\"\n\nnamespace po167{\n// |f| = |g| =\
+    \ 2 ^ n\ntemplate<class T>\nstd::vector<T> FPS_cyclic_convolution(std::vector<T>\
     \ f, std::vector<T> g){\n    atcoder::internal::butterfly(f);\n    atcoder::internal::butterfly(g);\n\
     \    for (int i = 0; i < (int)f.size(); i++) f[i] *= g[i];\n    atcoder::internal::butterfly_inv(f);\n\
     \    T iz = (T)(1) / (T)(f.size());\n    for (int i = 0; i < (int)f.size(); i++)\
@@ -73,19 +73,20 @@ data:
     \ < (int)f.size() ? f[i] : 0) - A[i];\n        // g_hat = g (1 - g + f)\n    \
     \    // g += B = g * A\n        g.resize(2 * s);\n        B = FPS_cyclic_convolution(A,\
     \ g);\n        for (int i = s; i < s * 2; i++) g[i] = B[i];\n        s *= 2;\n\
-    \    }\n    g.resize(len);\n    return g;\n}\n}\n#line 5 \"test/fps/exp.test.cpp\"\
-    \n#include <atcoder/modint>\nint main(){\n    int N;\n    std::cin >> N;\n   \
-    \ std::vector<atcoder::modint998244353> A(N);\n    for (int i = 0; i < N; i++){\n\
-    \        int a;\n        std::cin >> a;\n        A[i] = a;\n    }\n    auto B\
-    \ = po167::FPS_exp(A);\n    for (int i = 0; i < N; i++){\n        std::cout <<\
-    \ B[i].val() << (i == N - 1 ? \"\\n\" : \" \");\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/exp_of_formal_power_series\"\
-    \n#include <vector>\n#include <iostream>\n#include \"../../fps/FPS_exp.hpp\"\n\
-    #include <atcoder/modint>\nint main(){\n    int N;\n    std::cin >> N;\n    std::vector<atcoder::modint998244353>\
+    \    }\n    g.resize(len);\n    return g;\n}\n}\n#line 4 \"test/fps/exp.test.cpp\"\
+    \n\n#line 6 \"test/fps/exp.test.cpp\"\n#include <iostream>\n#include <atcoder/modint>\n\
+    \nint main(){\n    int N;\n    std::cin >> N;\n    std::vector<atcoder::modint998244353>\
     \ A(N);\n    for (int i = 0; i < N; i++){\n        int a;\n        std::cin >>\
     \ a;\n        A[i] = a;\n    }\n    auto B = po167::FPS_exp(A);\n    for (int\
     \ i = 0; i < N; i++){\n        std::cout << B[i].val() << (i == N - 1 ? \"\\n\"\
-    \ : \" \");\n    }\n}"
+    \ : \" \");\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/exp_of_formal_power_series\"\
+    \n\n#include \"../../fps/FPS_exp.hpp\"\n\n#include <vector>\n#include <iostream>\n\
+    #include <atcoder/modint>\n\nint main(){\n    int N;\n    std::cin >> N;\n   \
+    \ std::vector<atcoder::modint998244353> A(N);\n    for (int i = 0; i < N; i++){\n\
+    \        int a;\n        std::cin >> a;\n        A[i] = a;\n    }\n    auto B\
+    \ = po167::FPS_exp(A);\n    for (int i = 0; i < N; i++){\n        std::cout <<\
+    \ B[i].val() << (i == N - 1 ? \"\\n\" : \" \");\n    }\n}"
   dependsOn:
   - fps/FPS_exp.hpp
   - fps/FPS_cyclic_convolution.hpp
@@ -95,7 +96,7 @@ data:
   isVerificationFile: true
   path: test/fps/exp.test.cpp
   requiredBy: []
-  timestamp: '2024-06-19 01:01:33+09:00'
+  timestamp: '2024-06-19 01:08:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fps/exp.test.cpp

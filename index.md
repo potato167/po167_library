@@ -47,6 +47,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/fps/exp.test.cpp
       title: test/fps/exp.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/fps/inv.test.cpp
+      title: test/fps/inv.test.cpp
   - name: test/math
     pages:
     - icon: ':heavy_check_mark:'
