@@ -16,12 +16,12 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
     links:
     - https://judge.yosupo.jp/problem/exp_of_formal_power_series
-  bundledCode: "#line 1 \"test/fps/exp.hpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/exp_of_formal_power_series\"\
+  bundledCode: "#line 1 \"test/fps/exp.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/exp_of_formal_power_series\"\
     \n#include <vector>\n#include <iostream>\n#line 3 \"fps/FPS_exp.hpp\"\n#include\
     \ <atcoder/convolution>\n#line 4 \"fps/FPS_cyclic_convolution.hpp\"\n\nnamespace\
     \ po167{\n// |f| = |g| = 2 ^ n\ntemplate<class T>\nstd::vector<T> FPS_cyclic_convolution(std::vector<T>\
@@ -51,7 +51,7 @@ data:
     \ ? f[i] : 0) - A[i];\n        // g_hat = g (1 - g + f)\n        // g += B = g\
     \ * A\n        g.resize(2 * s);\n        B = FPS_cyclic_convolution(A, g);\n \
     \       for (int i = s; i < s * 2; i++) g[i] = B[i];\n        s *= 2;\n    }\n\
-    \    g.resize(len);\n    return g;\n}\n}\n#line 5 \"test/fps/exp.hpp\"\n#include\
+    \    g.resize(len);\n    return g;\n}\n}\n#line 5 \"test/fps/exp.cpp\"\n#include\
     \ <atcoder/modint>\nint main(){\n    int N;\n    std::cin >> N;\n    std::vector<atcoder::modint998244353>\
     \ A(N);\n    for (int i = 0; i < N; i++){\n        int a;\n        std::cin >>\
     \ a;\n        A[i] = a;\n    }\n    auto B = po167::FPS_exp(A);\n    for (int\
@@ -70,15 +70,15 @@ data:
   - fps/FPS_differetial.hpp
   - fps/FPS_integral.hpp
   isVerificationFile: false
-  path: test/fps/exp.hpp
+  path: test/fps/exp.cpp
   requiredBy: []
-  timestamp: '2024-06-19 00:51:37+09:00'
+  timestamp: '2024-06-19 00:54:13+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: test/fps/exp.hpp
+documentation_of: test/fps/exp.cpp
 layout: document
 redirect_from:
-- /library/test/fps/exp.hpp
-- /library/test/fps/exp.hpp.html
-title: test/fps/exp.hpp
+- /library/test/fps/exp.cpp
+- /library/test/fps/exp.cpp.html
+title: test/fps/exp.cpp
 ---

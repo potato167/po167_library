@@ -44,8 +44,8 @@ data:
   - name: test/fps
     pages:
     - icon: ':warning:'
-      path: test/fps/exp.hpp
-      title: test/fps/exp.hpp
+      path: test/fps/exp.cpp
+      title: test/fps/exp.cpp
   verificationCategories:
   - name: test/math
     pages:

@@ -12,8 +12,8 @@ data:
     path: fps/FPS_log.hpp
     title: fps/FPS_log.hpp
   - icon: ':warning:'
-    path: test/fps/exp.hpp
-    title: test/fps/exp.hpp
+    path: test/fps/exp.cpp
+    title: test/fps/exp.cpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -40,7 +40,7 @@ data:
   isVerificationFile: false
   path: fps/FPS_integral.hpp
   requiredBy:
-  - test/fps/exp.hpp
+  - test/fps/exp.cpp
   - fps/FPS_exp.hpp
   - fps/FPS_log.hpp
   - fps/FPS_inverse.hpp

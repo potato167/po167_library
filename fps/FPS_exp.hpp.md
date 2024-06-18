@@ -15,8 +15,8 @@ data:
     path: fps/FPS_inverse.hpp
     title: fps/FPS_inverse.hpp
   - icon: ':warning:'
-    path: test/fps/exp.hpp
-    title: test/fps/exp.hpp
+    path: test/fps/exp.cpp
+    title: test/fps/exp.cpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -75,7 +75,7 @@ data:
   isVerificationFile: false
   path: fps/FPS_exp.hpp
   requiredBy:
-  - test/fps/exp.hpp
+  - test/fps/exp.cpp
   - fps/FPS_inverse.hpp
   timestamp: '2024-06-19 00:51:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
