@@ -24,13 +24,12 @@ data:
     \ / (2 * z));\n    auto cp = v;\n    atcoder::internal::butterfly_inv(cp);\n \
     \   T tmp = (T)(1) / (T)(z);\n    for (int i = 0; i < z; i++){\n        cp[i]\
     \ *= tmp;\n        tmp *= e;\n    }\n    atcoder::internal::butterfly(cp);\n \
-    \   for (int i = 0; i < z; i++) v.push_back(cp[i]);\n};\n}\n#line 1 \"fps/FPS_pick_even_odd.hpp\"\
-    \n#pragma\n#line 3 \"fps/FPS_pick_even_odd.hpp\"\n\nnamespace po167{\n// s.t |v|\
-    \ = 2 ^ s (no assert)\ntemplate<class T>\nvoid FPS_pick_even_odd(std::vector<T>\
-    \ &v, int odd){\n    int z = v.size() / 2;\n    T half = (T)(1) / (T)(2);\n  \
-    \  if (odd == 0){\n        for (int i = 0; i < z; i++){\n            v[i] = (v[i\
-    \ * 2] + v[i * 2 + 1]) * half;\n        }\n        v.resize(z);\n    } else {\n\
-    \        T e = (T(atcoder::internal::primitive_root_constexpr(T::mod()))).pow(T::mod()\
+    \   for (int i = 0; i < z; i++) v.push_back(cp[i]);\n};\n}\n#line 3 \"fps/FPS_pick_even_odd.hpp\"\
+    \n\nnamespace po167{\n// s.t |v| = 2 ^ s (no assert)\ntemplate<class T>\nvoid\
+    \ FPS_pick_even_odd(std::vector<T> &v, int odd){\n    int z = v.size() / 2;\n\
+    \    T half = (T)(1) / (T)(2);\n    if (odd == 0){\n        for (int i = 0; i\
+    \ < z; i++){\n            v[i] = (v[i * 2] + v[i * 2 + 1]) * half;\n        }\n\
+    \        v.resize(z);\n    } else {\n        T e = (T(atcoder::internal::primitive_root_constexpr(T::mod()))).pow(T::mod()\
     \ / (2 * z));\n        T ie = T(1) / e;\n        std::vector<T> es = {half};\n\
     \        while ((int)es.size() != z){\n            std::vector<T> n_es((int)es.size()\
     \ * 2);\n            for (int i = 0; i < (int)es.size(); i++){\n             \
@@ -94,7 +93,7 @@ data:
   isVerificationFile: false
   path: fps/FPS_Boston_Mori.hpp
   requiredBy: []
-  timestamp: '2024-06-19 11:00:16+09:00'
+  timestamp: '2024-06-19 15:49:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/linear_kth.test.cpp

@@ -84,9 +84,8 @@ data:
     \ {};\n    if (len == 1) return {T(0)};\n    assert(!f.empty() && f[0] == 1);\n\
     \    std::vector<T> res = atcoder::convolution(FPS_differential(f), FPS_inv(f,\
     \ len));\n    res.resize(len - 1);\n    return FPS_integral(res);\n}\n}\n#line\
-    \ 4 \"fps/FPS_Power_Projection.hpp\"\n\n#line 1 \"fps/FPS_pick_even_odd.hpp\"\n\
-    #pragma\n#line 3 \"fps/FPS_pick_even_odd.hpp\"\n\nnamespace po167{\n// s.t |v|\
-    \ = 2 ^ s (no assert)\ntemplate<class T>\nvoid FPS_pick_even_odd(std::vector<T>\
+    \ 4 \"fps/FPS_Power_Projection.hpp\"\n\n#line 3 \"fps/FPS_pick_even_odd.hpp\"\n\
+    \nnamespace po167{\n// s.t |v| = 2 ^ s (no assert)\ntemplate<class T>\nvoid FPS_pick_even_odd(std::vector<T>\
     \ &v, int odd){\n    int z = v.size() / 2;\n    T half = (T)(1) / (T)(2);\n  \
     \  if (odd == 0){\n        for (int i = 0; i < z; i++){\n            v[i] = (v[i\
     \ * 2] + v[i * 2 + 1]) * half;\n        }\n        v.resize(z);\n    } else {\n\
@@ -168,7 +167,7 @@ data:
   isVerificationFile: false
   path: fps/FPS_inverse.hpp
   requiredBy: []
-  timestamp: '2024-06-19 01:01:33+09:00'
+  timestamp: '2024-06-19 15:49:30+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/FPS_inverse.hpp
