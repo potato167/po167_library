@@ -10,6 +10,9 @@ data:
       path: fps/FPS_Power_Projection.hpp
       title: fps/FPS_Power_Projection.hpp
     - icon: ':heavy_check_mark:'
+      path: fps/FPS_Product_Sequence.hpp
+      title: fps/FPS_Product_Sequence.hpp
+    - icon: ':heavy_check_mark:'
       path: fps/FPS_cyclic_convolution.hpp
       title: fps/FPS_cyclic_convolution.hpp
     - icon: ':heavy_check_mark:'
@@ -56,6 +59,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/fps/linear_kth.test.cpp
       title: test/fps/linear_kth.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/fps/product_sequence.test.cpp
+      title: test/fps/product_sequence.test.cpp
   - name: test/math
     pages:
     - icon: ':heavy_check_mark:'
