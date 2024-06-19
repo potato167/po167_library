@@ -19,6 +19,9 @@ data:
       path: fps/FPS_differetial.hpp
       title: fps/FPS_differetial.hpp
     - icon: ':heavy_check_mark:'
+      path: fps/FPS_division.hpp
+      title: fps/FPS_division.hpp
+    - icon: ':heavy_check_mark:'
       path: fps/FPS_exp.hpp
       title: fps/FPS_exp.hpp
     - icon: ':heavy_check_mark:'
@@ -53,6 +56,9 @@ data:
   verificationCategories:
   - name: test/fps
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/fps/division.test.cpp
+      title: test/fps/division.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/fps/exp.test.cpp
       title: test/fps/exp.test.cpp

@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: fps/FPS_division.hpp
+    title: fps/FPS_division.hpp
+  - icon: ':heavy_check_mark:'
     path: fps/FPS_exp.hpp
     title: fps/FPS_exp.hpp
   - icon: ':warning:'
@@ -12,6 +15,9 @@ data:
     path: fps/FPS_pow.hpp
     title: fps/FPS_pow.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/fps/division.test.cpp
+    title: test/fps/division.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/fps/exp.test.cpp
     title: test/fps/exp.test.cpp
@@ -66,6 +72,7 @@ data:
   isVerificationFile: false
   path: fps/FPS_inv.hpp
   requiredBy:
+  - fps/FPS_division.hpp
   - fps/FPS_exp.hpp
   - fps/FPS_pow.hpp
   - fps/FPS_inverse.hpp
@@ -74,6 +81,7 @@ data:
   verifiedWith:
   - test/fps/inv.test.cpp
   - test/fps/pow.test.cpp
+  - test/fps/division.test.cpp
   - test/fps/exp.test.cpp
 documentation_of: fps/FPS_inv.hpp
 layout: document
