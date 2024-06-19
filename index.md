@@ -5,7 +5,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: fps/FPS_Boston_Mori.hpp
-      title: fps/FPS_Boston_Mori.hpp
+      title: "\u30DC\u30B9\u30BF\u30F3\u68EE\u6CD5"
     - icon: ':warning:'
       path: fps/FPS_Power_Projection.hpp
       title: fps/FPS_Power_Projection.hpp
@@ -52,7 +52,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: math/Binomial.hpp
-      title: math/Binomial.hpp
+      title: "\u4E8C\u9805\u4FC2\u6570\u95A2\u9023"
   verificationCategories:
   - name: test/fps
     pages:

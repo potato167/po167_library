@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: fps/FPS_Boston_Mori.hpp
-    title: fps/FPS_Boston_Mori.hpp
+    title: "\u30DC\u30B9\u30BF\u30F3\u68EE\u6CD5"
   - icon: ':heavy_check_mark:'
     path: fps/FPS_extend.hpp
     title: fps/FPS_extend.hpp

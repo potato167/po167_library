@@ -99,8 +99,30 @@ data:
   - test/fps/linear_kth.test.cpp
 documentation_of: fps/FPS_Boston_Mori.hpp
 layout: document
-redirect_from:
-- /library/fps/FPS_Boston_Mori.hpp
-- /library/fps/FPS_Boston_Mori.hpp.html
-title: fps/FPS_Boston_Mori.hpp
+title: "\u30DC\u30B9\u30BF\u30F3\u68EE\u6CD5"
 ---
+
+## ボスタン森法
+
+```cpp
+T Boston_Mori(long long k, std::vector<T> P, std::vector<T> Q)
+```
+
+$[x^{k}](P(x) / Q(x))$ を返す関数
+
+$N = \max(|P|, |Q|)$ として、 $O(N\log(N)\log(k))$
+
+$Q(x)$ の DFT から $Q(-x)$ の DFT が簡単に求まることや、偶奇の取り出し、$0$ 詰めなどの高速化を行なっている。
+
+## 線形漸化式
+
+```cpp
+T Kth_Linear(long long k, std::vector<T> a, std::vector<T> c)
+```
+
+$|a| = d, |c| = d + 1$ を満たす数列 $a, c$ を用いて、以下を満たす正整数列 $b$ の $k$ 項目を求める。
+
+- $0\leq i< d\implies b_{i} = a_{i}$
+- $k\leq i\implies 0 = \sum_{j = 0}^{d}b_{i - j}c_{j}$
+
+計算量は $O(d\log(d)\log(k))$
