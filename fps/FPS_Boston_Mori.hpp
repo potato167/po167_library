@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <atcoder/convolution>
+#include <cassert>
 #include "FPS_extend.hpp"
 #include "FPS_pick_even_odd.hpp"
 
@@ -9,19 +10,10 @@ namespace po167{
 template<class T>
 T Boston_Mori(long long k, std::vector<T> P, std::vector<T> Q){
     assert(!Q.empty() && Q[0] != 0);
-    int h = 0;
-    while ((1 << h) < (int)std::max(P.size(), Q.size())) h++;
-    int z = (1 << h);
+    int z = 0;
+    while (z < (int)std::max(P.size(), Q.size())) z *= 2;
     P.resize(z * 2, 0);
     Q.resize(z * 2, 0);
-    T e = (T(atcoder::internal::primitive_root_constexpr(T::mod()))).pow(T::mod() / (2 * z));
-    T ie = T(1) / e;
-    T half = T(1) / T(2);
-    std::vector<T> es(z, half);
-    for (int i = h - 1; i >= 0; i--){
-        for (int j = 0; j < z; j++) if (j & (1 << i)) es[j] *= ie;
-        ie *= ie;
-    }
     atcoder::internal::butterfly(P);
     atcoder::internal::butterfly(Q);
 
