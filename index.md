@@ -52,7 +52,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: math/Binomial.hpp
-      title: "\u4E8C\u9805\u4FC2\u6570\u95A2\u9023"
+      title: math/Binomial.hpp
   verificationCategories:
   - name: test/fps
     pages:
