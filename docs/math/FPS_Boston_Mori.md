@@ -1,6 +1,6 @@
 ---
 title: ボスタン森法
-documentation_of: /fps/FPS_BostonMori.hpp
+documentation_of: /fps/FPS_Boston_Mori.hpp
 ---
 
 ## ボスタン森法
