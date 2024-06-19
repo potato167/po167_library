@@ -33,12 +33,15 @@ data:
     - icon: ':warning:'
       path: fps/FPS_inverse.hpp
       title: fps/FPS_inverse.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: fps/FPS_log.hpp
       title: fps/FPS_log.hpp
     - icon: ':heavy_check_mark:'
       path: fps/FPS_pick_even_odd.hpp
       title: fps/FPS_pick_even_odd.hpp
+    - icon: ':heavy_check_mark:'
+      path: fps/FPS_pow.hpp
+      title: fps/FPS_pow.hpp
     - icon: ':warning:'
       path: fps/FSP_add.hpp
       title: fps/FSP_add.hpp
@@ -59,6 +62,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/fps/linear_kth.test.cpp
       title: test/fps/linear_kth.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/fps/pow.test.cpp
+      title: test/fps/pow.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/fps/product_sequence.test.cpp
       title: test/fps/product_sequence.test.cpp

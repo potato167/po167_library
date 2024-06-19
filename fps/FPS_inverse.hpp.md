@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: fps/FPS_inv.hpp
     title: fps/FPS_inv.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: fps/FPS_log.hpp
     title: fps/FPS_log.hpp
   - icon: ':heavy_check_mark:'

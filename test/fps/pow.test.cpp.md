@@ -8,33 +8,34 @@ data:
     path: fps/FPS_differetial.hpp
     title: fps/FPS_differetial.hpp
   - icon: ':heavy_check_mark:'
+    path: fps/FPS_exp.hpp
+    title: fps/FPS_exp.hpp
+  - icon: ':heavy_check_mark:'
     path: fps/FPS_integral.hpp
     title: fps/FPS_integral.hpp
   - icon: ':heavy_check_mark:'
     path: fps/FPS_inv.hpp
     title: fps/FPS_inv.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: fps/FPS_inverse.hpp
-    title: fps/FPS_inverse.hpp
+  - icon: ':heavy_check_mark:'
+    path: fps/FPS_log.hpp
+    title: fps/FPS_log.hpp
   - icon: ':heavy_check_mark:'
     path: fps/FPS_pow.hpp
     title: fps/FPS_pow.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/fps/exp.test.cpp
-    title: test/fps/exp.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/fps/pow.test.cpp
-    title: test/fps/pow.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"fps/FPS_exp.hpp\"\n#include <vector>\n#include <atcoder/convolution>\n\
-    #line 4 \"fps/FPS_cyclic_convolution.hpp\"\n\nnamespace po167{\n// |f| = |g| =\
-    \ 2 ^ n\ntemplate<class T>\nstd::vector<T> FPS_cyclic_convolution(std::vector<T>\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/pow_of_formal_power_series
+    links:
+    - https://judge.yosupo.jp/problem/pow_of_formal_power_series
+  bundledCode: "#line 1 \"test/fps/pow.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_formal_power_series\"\
+    \n\n#line 2 \"fps/FPS_pow.hpp\"\n\n#include <vector>\n#include <atcoder/convolution>\n\
+    \n#line 4 \"fps/FPS_cyclic_convolution.hpp\"\n\nnamespace po167{\n// |f| = |g|\
+    \ = 2 ^ n\ntemplate<class T>\nstd::vector<T> FPS_cyclic_convolution(std::vector<T>\
     \ f, std::vector<T> g){\n    atcoder::internal::butterfly(f);\n    atcoder::internal::butterfly(g);\n\
     \    for (int i = 0; i < (int)f.size(); i++) f[i] *= g[i];\n    atcoder::internal::butterfly_inv(f);\n\
     \    T iz = (T)(1) / (T)(f.size());\n    for (int i = 0; i < (int)f.size(); i++)\
@@ -78,42 +79,59 @@ data:
     \ < (int)f.size() ? f[i] : 0) - A[i];\n        // g_hat = g (1 - g + f)\n    \
     \    // g += B = g * A\n        g.resize(2 * s);\n        B = FPS_cyclic_convolution(A,\
     \ g);\n        for (int i = s; i < s * 2; i++) g[i] = B[i];\n        s *= 2;\n\
-    \    }\n    g.resize(len);\n    return g;\n}\n}\n"
-  code: "#pragma once\n#include <vector>\n#include <atcoder/convolution>\n#include\
-    \ \"../fps/FPS_cyclic_convolution.hpp\"\n#include \"../fps/FPS_differetial.hpp\"\
-    \n#include \"../fps/FPS_integral.hpp\"\n#include \"FPS_inv.hpp\"\n\nnamespace\
-    \ po167{\ntemplate<class T>\nstd::vector<T> FPS_exp(std::vector<T> f, int len\
-    \ = -1){\n    if (len == -1) len = f.size();\n    if (len == 0) return {};\n \
-    \   if (len == 1) return {T(1)};\n    assert(!f.empty() && f[0] == 0);\n    int\
-    \ s = 1;\n    // simple\n    std::vector<T> g = {T(1)};\n    while (s < len){\n\
-    \        // g' / g\n        // A * B\n        std::vector<T> A = g, B = g;\n \
-    \       A = FPS_differential(A);\n        B = FPS_inv(B, 2 * s);\n        A.resize(2\
-    \ * s);\n        A = FPS_cyclic_convolution(A, B);\n        A.pop_back();\n  \
-    \      A = FPS_integral(A);\n        for (int i = 0; i < s; i++) A[i] = 0;\n \
-    \       for (int i = s; i < s * 2; i++) A[i] = (i < (int)f.size() ? f[i] : 0)\
-    \ - A[i];\n        // g_hat = g (1 - g + f)\n        // g += B = g * A\n     \
-    \   g.resize(2 * s);\n        B = FPS_cyclic_convolution(A, g);\n        for (int\
-    \ i = s; i < s * 2; i++) g[i] = B[i];\n        s *= 2;\n    }\n    g.resize(len);\n\
-    \    return g;\n}\n}"
+    \    }\n    g.resize(len);\n    return g;\n}\n}\n#line 5 \"fps/FPS_log.hpp\"\n\
+    \nnamespace po167{\ntemplate<class T>\nstd::vector<T> FPS_log(std::vector<T> f,\
+    \ int len = -1){\n    if (len == -1) len = f.size();\n    if (len == 0) return\
+    \ {};\n    if (len == 1) return {T(0)};\n    assert(!f.empty() && f[0] == 1);\n\
+    \    std::vector<T> res = atcoder::convolution(FPS_differential(f), FPS_inv(f,\
+    \ len));\n    res.resize(len - 1);\n    return FPS_integral(res);\n}\n}\n#line\
+    \ 8 \"fps/FPS_pow.hpp\"\n\nnamespace po167{\ntemplate<class T>\nstd::vector<T>\
+    \ FPS_pow(std::vector<T> f,long long M, int len = -1){\n    if (len == -1) len\
+    \ = f.size();\n    std::vector<T> res(len, 0);\n    if (M == 0){\n        res[0]\
+    \ = 1;\n        return res;\n    }\n    for (int i = 0; i < (int)f.size(); i++){\n\
+    \        if (f[i] == 0) continue;\n        if (i > (len - 1) / M) break;\n   \
+    \     std::vector<T> g((int)f.size() - i);\n        T v = (T)(1) / (T)(f[i]);\n\
+    \        for (int j = i; j < (int)f.size(); j++){\n            g[j - i] = f[j]\
+    \ * v;\n        }\n        long long zero = i * M;\n        if (i) len -= i *\
+    \ M;\n        g = FPS_log(g, len);\n        for (T &x : g) x *= M;\n        g\
+    \ = FPS_exp(g, len);\n        v = (T)(1) / v;\n        T c = 1;\n        while\
+    \ (M){\n            if (M & 1) c = c * v;\n            v = v * v;\n          \
+    \  M >>= 1;\n        }\n        for (int i = 0; i < len; i++) res[i + zero] =\
+    \ g[i] * c;\n        return res;\n    }\n    return res;\n}\n}\n#line 4 \"test/fps/pow.test.cpp\"\
+    \n\n#line 6 \"test/fps/pow.test.cpp\"\n#include <iostream>\n#include <atcoder/modint>\n\
+    \n\nint main(){\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \    int N;\n    long long M;\n    std::cin >> N >> M;\n    std::vector<atcoder::modint998244353>\
+    \ A(N);\n    for (int i = 0; i < N; i++){\n        int a;\n        std::cin >>\
+    \ a;\n        A[i] = a;\n    }\n    auto B = po167::FPS_pow(A, M);\n    for (int\
+    \ i = 0; i < N; i++){\n        if (i) std::cout << \" \";\n        std::cout <<\
+    \ B[i].val();\n    }\n    std::cout << \"\\n\";\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_formal_power_series\"\
+    \n\n#include \"../../fps/FPS_pow.hpp\"\n\n#include <vector>\n#include <iostream>\n\
+    #include <atcoder/modint>\n\n\nint main(){\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n    int N;\n    long long M;\n    std::cin >> N >>\
+    \ M;\n    std::vector<atcoder::modint998244353> A(N);\n    for (int i = 0; i <\
+    \ N; i++){\n        int a;\n        std::cin >> a;\n        A[i] = a;\n    }\n\
+    \    auto B = po167::FPS_pow(A, M);\n    for (int i = 0; i < N; i++){\n      \
+    \  if (i) std::cout << \" \";\n        std::cout << B[i].val();\n    }\n    std::cout\
+    \ << \"\\n\";\n}"
   dependsOn:
+  - fps/FPS_pow.hpp
+  - fps/FPS_exp.hpp
   - fps/FPS_cyclic_convolution.hpp
   - fps/FPS_differetial.hpp
   - fps/FPS_integral.hpp
   - fps/FPS_inv.hpp
-  isVerificationFile: false
-  path: fps/FPS_exp.hpp
-  requiredBy:
-  - fps/FPS_pow.hpp
-  - fps/FPS_inverse.hpp
-  timestamp: '2024-06-19 01:01:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/fps/pow.test.cpp
-  - test/fps/exp.test.cpp
-documentation_of: fps/FPS_exp.hpp
+  - fps/FPS_log.hpp
+  isVerificationFile: true
+  path: test/fps/pow.test.cpp
+  requiredBy: []
+  timestamp: '2024-06-20 02:45:45+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/fps/pow.test.cpp
 layout: document
 redirect_from:
-- /library/fps/FPS_exp.hpp
-- /library/fps/FPS_exp.hpp.html
-title: fps/FPS_exp.hpp
+- /verify/test/fps/pow.test.cpp
+- /verify/test/fps/pow.test.cpp.html
+title: test/fps/pow.test.cpp
 ---

@@ -8,13 +8,19 @@ data:
   - icon: ':warning:'
     path: fps/FPS_inverse.hpp
     title: fps/FPS_inverse.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: fps/FPS_log.hpp
     title: fps/FPS_log.hpp
+  - icon: ':heavy_check_mark:'
+    path: fps/FPS_pow.hpp
+    title: fps/FPS_pow.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/fps/exp.test.cpp
     title: test/fps/exp.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/fps/pow.test.cpp
+    title: test/fps/pow.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -34,11 +40,13 @@ data:
   path: fps/FPS_differetial.hpp
   requiredBy:
   - fps/FPS_exp.hpp
+  - fps/FPS_pow.hpp
   - fps/FPS_log.hpp
   - fps/FPS_inverse.hpp
   timestamp: '2024-06-19 00:51:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/fps/pow.test.cpp
   - test/fps/exp.test.cpp
 documentation_of: fps/FPS_differetial.hpp
 layout: document

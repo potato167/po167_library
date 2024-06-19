@@ -11,10 +11,16 @@ data:
   - icon: ':warning:'
     path: fps/FPS_inverse.hpp
     title: fps/FPS_inverse.hpp
-  _extendedVerifiedWith: []
+  - icon: ':heavy_check_mark:'
+    path: fps/FPS_pow.hpp
+    title: fps/FPS_pow.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/fps/pow.test.cpp
+    title: test/fps/pow.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"fps/FPS_log.hpp\"\n#include <vector>\n#line 3 \"fps/FPS_differetial.hpp\"\
@@ -47,10 +53,12 @@ data:
   isVerificationFile: false
   path: fps/FPS_log.hpp
   requiredBy:
+  - fps/FPS_pow.hpp
   - fps/FPS_inverse.hpp
   timestamp: '2024-06-19 00:51:37+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/fps/pow.test.cpp
 documentation_of: fps/FPS_log.hpp
 layout: document
 redirect_from:
