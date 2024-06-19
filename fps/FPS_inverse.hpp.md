@@ -22,7 +22,7 @@ data:
   - icon: ':warning:'
     path: fps/FPS_log.hpp
     title: fps/FPS_log.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: fps/FPS_pick_even_odd.hpp
     title: fps/FPS_pick_even_odd.hpp
   _extendedRequiredBy: []

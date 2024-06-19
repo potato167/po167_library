@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: fps/FPS_Boston_Mori.hpp
     title: fps/FPS_Boston_Mori.hpp
   - icon: ':warning:'
@@ -12,12 +12,12 @@ data:
     path: fps/FPS_inverse.hpp
     title: fps/FPS_inverse.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/linear_kth.test.cpp
     title: test/fps/linear_kth.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"fps/FPS_pick_even_odd.hpp\"\n#pragma\n#include <vector>\n\
@@ -53,7 +53,7 @@ data:
   - fps/FPS_Boston_Mori.hpp
   - fps/FPS_inverse.hpp
   timestamp: '2024-06-19 00:51:37+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/linear_kth.test.cpp
 documentation_of: fps/FPS_pick_even_odd.hpp

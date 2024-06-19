@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: fps/FPS_Boston_Mori.hpp
     title: fps/FPS_Boston_Mori.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: fps/FPS_extend.hpp
     title: fps/FPS_extend.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: fps/FPS_pick_even_odd.hpp
     title: fps/FPS_pick_even_odd.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
@@ -44,7 +44,7 @@ data:
     \ v[i * 2 + 1]) * es[i];\n        }\n        v.resize(z);\n    }\n}\n}\n#line\
     \ 7 \"fps/FPS_Boston_Mori.hpp\"\n\nnamespace po167{\n// return [x^k] P(x) / Q(x)\n\
     template<class T>\nT Boston_Mori(long long k, std::vector<T> P, std::vector<T>\
-    \ Q){\n    assert(!Q.empty() && Q[0] != 0);\n    int z = 0;\n    while (z < (int)std::max(P.size(),\
+    \ Q){\n    assert(!Q.empty() && Q[0] != 0);\n    int z = 1;\n    while (z < (int)std::max(P.size(),\
     \ Q.size())) z *= 2;\n    P.resize(z * 2, 0);\n    Q.resize(z * 2, 0);\n    atcoder::internal::butterfly(P);\n\
     \    atcoder::internal::butterfly(Q);\n\n    // fast\n    while (k){\n       \
     \ // Q(-x)\n        std::vector<T> Q_n(z * 2);\n        for (int i = 0; i < z;\
@@ -86,8 +86,8 @@ data:
   isVerificationFile: true
   path: test/fps/linear_kth.test.cpp
   requiredBy: []
-  timestamp: '2024-06-19 10:50:00+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-06-19 11:00:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fps/linear_kth.test.cpp
 layout: document

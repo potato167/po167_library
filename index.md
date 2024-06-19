@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: fps
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/FPS_Boston_Mori.hpp
       title: fps/FPS_Boston_Mori.hpp
     - icon: ':warning:'
@@ -18,7 +18,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: fps/FPS_exp.hpp
       title: fps/FPS_exp.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/FPS_extend.hpp
       title: fps/FPS_extend.hpp
     - icon: ':heavy_check_mark:'
@@ -33,7 +33,7 @@ data:
     - icon: ':warning:'
       path: fps/FPS_log.hpp
       title: fps/FPS_log.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: fps/FPS_pick_even_odd.hpp
       title: fps/FPS_pick_even_odd.hpp
     - icon: ':warning:'
@@ -53,7 +53,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/fps/inv.test.cpp
       title: test/fps/inv.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/fps/linear_kth.test.cpp
       title: test/fps/linear_kth.test.cpp
   - name: test/math
