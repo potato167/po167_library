@@ -1,6 +1,6 @@
 ---
 title: 二項係数関連
-documentation_of: /math/Binomial.hpp
+documentation_of: //math/Binomial.hpp
 ---
 
 ## 説明
