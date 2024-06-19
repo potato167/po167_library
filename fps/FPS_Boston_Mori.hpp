@@ -10,7 +10,7 @@ namespace po167{
 template<class T>
 T Boston_Mori(long long k, std::vector<T> P, std::vector<T> Q){
     assert(!Q.empty() && Q[0] != 0);
-    int z = 0;
+    int z = 1;
     while (z < (int)std::max(P.size(), Q.size())) z *= 2;
     P.resize(z * 2, 0);
     Q.resize(z * 2, 0);
