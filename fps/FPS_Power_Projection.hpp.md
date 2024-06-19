@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: fps/FPS_pick_even_odd.hpp
     title: fps/FPS_pick_even_odd.hpp
   _extendedRequiredBy:

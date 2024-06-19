@@ -2,22 +2,26 @@
 data:
   _extendedDependsOn:
   - icon: ':x:'
+    path: fps/FPS_Boston_Mori.hpp
+    title: fps/FPS_Boston_Mori.hpp
+  - icon: ':x:'
     path: fps/FPS_extend.hpp
     title: fps/FPS_extend.hpp
   - icon: ':x:'
     path: fps/FPS_pick_even_odd.hpp
     title: fps/FPS_pick_even_odd.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/fps/linear_kth.test.cpp
-    title: test/fps/linear_kth.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: true
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"fps/FPS_Boston_Mori.hpp\"\n#include <vector>\n#include <atcoder/convolution>\n\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
+    links:
+    - https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
+  bundledCode: "#line 1 \"test/fps/linear_kth.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
+    \n\n#line 2 \"fps/FPS_Boston_Mori.hpp\"\n#include <vector>\n#include <atcoder/convolution>\n\
     #include <cassert>\n#line 4 \"fps/FPS_extend.hpp\"\n\nnamespace po167{\n// in\
     \  : DFT(v) (len(v) = z)\n// out : DFT(v) (len(v) = 2 * z)\ntemplate<class T>\n\
     void FPS_extend(std::vector<T> &v){\n    int z = v.size();\n    T e = (T(atcoder::internal::primitive_root_constexpr(T::mod()))).pow(T::mod()\
@@ -61,47 +65,34 @@ data:
     \ * c[d]\n// a.size() + 1 == c.size()\n// c[0] = - 1 ?\n// return a[k]\nT Kth_Linear(long\
     \ long k, std::vector<T> a, std::vector<T> c){\n    int d = a.size();\n    assert(d\
     \ + 1 == int(c.size()));\n    std::vector<T> P = atcoder::convolution(a, c);\n\
-    \    P.resize(d);\n    return Boston_Mori(k, P, c);\n}\n};\n"
-  code: "#pragma once\n#include <vector>\n#include <atcoder/convolution>\n#include\
-    \ <cassert>\n#include \"FPS_extend.hpp\"\n#include \"FPS_pick_even_odd.hpp\"\n\
-    \nnamespace po167{\n// return [x^k] P(x) / Q(x)\ntemplate<class T>\nT Boston_Mori(long\
-    \ long k, std::vector<T> P, std::vector<T> Q){\n    assert(!Q.empty() && Q[0]\
-    \ != 0);\n    int z = 0;\n    while (z < (int)std::max(P.size(), Q.size())) z\
-    \ *= 2;\n    P.resize(z * 2, 0);\n    Q.resize(z * 2, 0);\n    atcoder::internal::butterfly(P);\n\
-    \    atcoder::internal::butterfly(Q);\n\n    // fast\n    while (k){\n       \
-    \ // Q(-x)\n        std::vector<T> Q_n(z * 2);\n        for (int i = 0; i < z;\
-    \ i++){\n            Q_n[i * 2] = Q[i * 2 + 1];\n            Q_n[i * 2 + 1] =\
-    \ Q[i * 2];\n        }\n        for (int i = 0; i < z * 2; i++){\n           \
-    \ P[i] *= Q_n[i];\n            Q[i] *= Q_n[i];\n        }\n        FPS_pick_even_odd(P,\
-    \ k & 1);\n        FPS_pick_even_odd(Q, 0);\n        k /= 2;\n        if (k ==\
-    \ 0) break;\n        FPS_extend(P);\n        FPS_extend(Q);\n    }\n    T SP =\
-    \ 0, SQ = 0;\n    for (int i = 0; i < z; i++) SP += P[i], SQ += Q[i];\n    return\
-    \ SP / SQ;\n\n    // simple\n    /*\n    while (k){\n        auto n_Q = Q;\n \
-    \       for (int i = 0; i < int(Q.size()); i++){\n            if (i & 1) n_Q[i]\
-    \ *= -1;\n        }\n        auto n_P = atcoder::convolution(P, n_Q);\n      \
-    \  n_Q = atcoder::convolution(Q, n_Q);\n        for (int i = 0; i < int(Q.size());\
-    \ i++){\n            Q[i] = n_Q[i * 2];\n        }\n        P.clear();\n     \
-    \   for (int i = (k & 1); i < int(n_P.size()); i += 2){\n            P.push_back(n_P[i]);\n\
-    \        }\n        k >>= 1;\n    }\n    return P[0] / Q[0];\n    */\n}\n\ntemplate<class\
-    \ T>\n// 0 = a[i] * c[0] + a[i - 1] * c[1] + a[i - 2] * c[2] + ... + a[i - d]\
-    \ * c[d]\n// a.size() + 1 == c.size()\n// c[0] = - 1 ?\n// return a[k]\nT Kth_Linear(long\
-    \ long k, std::vector<T> a, std::vector<T> c){\n    int d = a.size();\n    assert(d\
-    \ + 1 == int(c.size()));\n    std::vector<T> P = atcoder::convolution(a, c);\n\
-    \    P.resize(d);\n    return Boston_Mori(k, P, c);\n}\n};"
+    \    P.resize(d);\n    return Boston_Mori(k, P, c);\n}\n};\n#line 4 \"test/fps/linear_kth.test.cpp\"\
+    \n\n#line 6 \"test/fps/linear_kth.test.cpp\"\n#include <iostream>\n\nint main(){\n\
+    \    using mint = atcoder::modint998244353;\n    int d;\n    long long k;\n  \
+    \  std::cin >> d >> k;\n    std::vector<mint> a(d), c(d + 1, -1);\n    int mem;\n\
+    \    for (int i = 0; i < d; i++) std::cin >> mem, a[i] = mem;\n    for (int i\
+    \ = 1; i <= d; i++) std::cin >> mem, c[i] = mem;\n    std::cout << po167::Kth_Linear(k,\
+    \ a, c).val() << \"\\n\";\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
+    \n\n#include \"../../fps/FPS_Boston_Mori.hpp\"\n\n#include <vector>\n#include\
+    \ <iostream>\n\nint main(){\n    using mint = atcoder::modint998244353;\n    int\
+    \ d;\n    long long k;\n    std::cin >> d >> k;\n    std::vector<mint> a(d), c(d\
+    \ + 1, -1);\n    int mem;\n    for (int i = 0; i < d; i++) std::cin >> mem, a[i]\
+    \ = mem;\n    for (int i = 1; i <= d; i++) std::cin >> mem, c[i] = mem;\n    std::cout\
+    \ << po167::Kth_Linear(k, a, c).val() << \"\\n\";\n}"
   dependsOn:
+  - fps/FPS_Boston_Mori.hpp
   - fps/FPS_extend.hpp
   - fps/FPS_pick_even_odd.hpp
-  isVerificationFile: false
-  path: fps/FPS_Boston_Mori.hpp
+  isVerificationFile: true
+  path: test/fps/linear_kth.test.cpp
   requiredBy: []
   timestamp: '2024-06-19 10:50:00+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/fps/linear_kth.test.cpp
-documentation_of: fps/FPS_Boston_Mori.hpp
+  verificationStatus: TEST_WRONG_ANSWER
+  verifiedWith: []
+documentation_of: test/fps/linear_kth.test.cpp
 layout: document
 redirect_from:
-- /library/fps/FPS_Boston_Mori.hpp
-- /library/fps/FPS_Boston_Mori.hpp.html
-title: fps/FPS_Boston_Mori.hpp
+- /verify/test/fps/linear_kth.test.cpp
+- /verify/test/fps/linear_kth.test.cpp.html
+title: test/fps/linear_kth.test.cpp
 ---

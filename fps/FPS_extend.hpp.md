@@ -2,13 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: fps/FPS_Boston_Mori.hpp
     title: fps/FPS_Boston_Mori.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/fps/linear_kth.test.cpp
+    title: test/fps/linear_kth.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"fps/FPS_extend.hpp\"\n#include <vector>\n#include <atcoder/convolution>\n\
@@ -32,8 +35,9 @@ data:
   requiredBy:
   - fps/FPS_Boston_Mori.hpp
   timestamp: '2024-06-19 00:51:37+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/fps/linear_kth.test.cpp
 documentation_of: fps/FPS_extend.hpp
 layout: document
 redirect_from:
