@@ -1,6 +1,11 @@
 ---
 data:
   libraryCategories:
+  - name: ds
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: ds/Swag.hpp
+      title: ds/Swag.hpp
   - name: fps
     pages:
     - icon: ':heavy_check_mark:'
@@ -54,6 +59,11 @@ data:
       path: math/Binomial.hpp
       title: "\u4E8C\u9805\u4FC2\u6570\u95A2\u9023"
   verificationCategories:
+  - name: test/ds
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/ds/swag.test.cpp
+      title: test/ds/swag.test.cpp
   - name: test/fps
     pages:
     - icon: ':heavy_check_mark:'
