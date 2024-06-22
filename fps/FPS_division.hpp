@@ -10,7 +10,8 @@ template<class T>
 // |res.second| <= |g| - 1
 std::pair<std::vector<T>, std::vector<T>>
 FPS_division(std::vector<T> f, std::vector<T> g){
-    assert(!f.empty() && f.back() != 0);
+    while (!f.empty() && f.back() == 0) f.pop_back();
+    assert(!f.empty());
     assert(!g.empty() && g.back() != 0);
     if (f.size() < g.size()){
         return {{}, f};
