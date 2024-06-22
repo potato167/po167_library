@@ -35,21 +35,8 @@ data:
     \    return g;\n}\n}\n#line 6 \"fps/FPS_division.hpp\"\nnamespace po167{\ntemplate<class\
     \ T>\n// f = g * res.first + res.second\n// |res.first| <= |f| - |g| + 1\n// |res.second|\
     \ <= |g| - 1\nstd::pair<std::vector<T>, std::vector<T>>\nFPS_division(std::vector<T>\
-    \ f, std::vector<T> g){\n    assert(!f.empty() && f.back() != 0);\n    assert(!g.empty()\
-    \ && g.back() != 0);\n    if (f.size() < g.size()){\n        return {{}, f};\n\
-    \    }\n    // rev(f) / rev(g) = rev(q) (mod x ^ {|f| - |g| + 1})\n    std::vector<T>\
-    \ r = f;\n    std::reverse(f.begin(), f.end());\n    std::reverse(g.begin(), g.end());\n\
-    \    int z = (int)f.size() - (int)g.size() + 1;\n    f.resize(z);\n    std::vector<T>\
-    \ q = atcoder::convolution(f, FPS_inv(g, z));\n    q.resize(z);\n    std::reverse(g.begin(),\
-    \ g.end());\n    std::reverse(q.begin(), q.end());\n    f = atcoder::convolution(q,\
-    \ g);\n    for (int i = 0; i < (int)f.size(); i++) r[i] -= f[i];\n    while (!q.empty()\
-    \ && q.back() == 0) q.pop_back();\n    while (!r.empty() && r.back() == 0) r.pop_back();\n\
-    \    return {q, r};\n}\n}\n"
-  code: "#pragma once\n#include <vector>\n#include <atcoder/convolution>\n\n#include\
-    \ \"FPS_inv.hpp\"\nnamespace po167{\ntemplate<class T>\n// f = g * res.first +\
-    \ res.second\n// |res.first| <= |f| - |g| + 1\n// |res.second| <= |g| - 1\nstd::pair<std::vector<T>,\
-    \ std::vector<T>>\nFPS_division(std::vector<T> f, std::vector<T> g){\n    assert(!f.empty()\
-    \ && f.back() != 0);\n    assert(!g.empty() && g.back() != 0);\n    if (f.size()\
+    \ f, std::vector<T> g){\n    while (!f.empty() && f.back() == 0) f.pop_back();\n\
+    \    assert(!f.empty());\n    assert(!g.empty() && g.back() != 0);\n    if (f.size()\
     \ < g.size()){\n        return {{}, f};\n    }\n    // rev(f) / rev(g) = rev(q)\
     \ (mod x ^ {|f| - |g| + 1})\n    std::vector<T> r = f;\n    std::reverse(f.begin(),\
     \ f.end());\n    std::reverse(g.begin(), g.end());\n    int z = (int)f.size()\
@@ -58,13 +45,27 @@ data:
     \   std::reverse(q.begin(), q.end());\n    f = atcoder::convolution(q, g);\n \
     \   for (int i = 0; i < (int)f.size(); i++) r[i] -= f[i];\n    while (!q.empty()\
     \ && q.back() == 0) q.pop_back();\n    while (!r.empty() && r.back() == 0) r.pop_back();\n\
+    \    return {q, r};\n}\n}\n"
+  code: "#pragma once\n#include <vector>\n#include <atcoder/convolution>\n\n#include\
+    \ \"FPS_inv.hpp\"\nnamespace po167{\ntemplate<class T>\n// f = g * res.first +\
+    \ res.second\n// |res.first| <= |f| - |g| + 1\n// |res.second| <= |g| - 1\nstd::pair<std::vector<T>,\
+    \ std::vector<T>>\nFPS_division(std::vector<T> f, std::vector<T> g){\n    while\
+    \ (!f.empty() && f.back() == 0) f.pop_back();\n    assert(!f.empty());\n    assert(!g.empty()\
+    \ && g.back() != 0);\n    if (f.size() < g.size()){\n        return {{}, f};\n\
+    \    }\n    // rev(f) / rev(g) = rev(q) (mod x ^ {|f| - |g| + 1})\n    std::vector<T>\
+    \ r = f;\n    std::reverse(f.begin(), f.end());\n    std::reverse(g.begin(), g.end());\n\
+    \    int z = (int)f.size() - (int)g.size() + 1;\n    f.resize(z);\n    std::vector<T>\
+    \ q = atcoder::convolution(f, FPS_inv(g, z));\n    q.resize(z);\n    std::reverse(g.begin(),\
+    \ g.end());\n    std::reverse(q.begin(), q.end());\n    f = atcoder::convolution(q,\
+    \ g);\n    for (int i = 0; i < (int)f.size(); i++) r[i] -= f[i];\n    while (!q.empty()\
+    \ && q.back() == 0) q.pop_back();\n    while (!r.empty() && r.back() == 0) r.pop_back();\n\
     \    return {q, r};\n}\n}"
   dependsOn:
   - fps/FPS_inv.hpp
   isVerificationFile: false
   path: fps/FPS_division.hpp
   requiredBy: []
-  timestamp: '2024-06-20 03:19:37+09:00'
+  timestamp: '2024-06-22 20:46:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/division.test.cpp

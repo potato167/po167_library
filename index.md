@@ -58,6 +58,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/Binomial.hpp
       title: "\u4E8C\u9805\u4FC2\u6570\u95A2\u9023"
+  - name: modint
+    pages:
+    - icon: ':warning:'
+      path: modint/mint61.hpp
+      title: modint/mint61.hpp
   verificationCategories:
   - name: test/ds
     pages:
