@@ -97,7 +97,7 @@ data:
     \            }\n            ie *= ie;\n            std::swap(n_es, es);\n    \
     \    }\n        for (int i = 0; i < z; i ++){\n            v[i] = (v[i * 2] -\
     \ v[i * 2 + 1]) * es[i];\n        }\n        v.resize(z);\n    }\n}\n}\n#line\
-    \ 6 \"fps/FPS_Power_Projection.hpp\"\n\nnamespace po167{\n// n = |g|\n// return\
+    \ 7 \"fps/FPS_Power_Projection.hpp\"\n\nnamespace po167{\n// n = |g|\n// return\
     \ \n// for i = 0, 1, ... , m - 1\n//     [x ^ {n - 1}] g(x) f(x) ^ i\ntemplate<class\
     \ T>\nstd::vector<T> Power_Projection(std::vector<T> g, std::vector<T> f, int\
     \ m){\n    int ind = (int)g.size() - 1;\n    int n = 1;\n    while(n < (int)g.size())\
@@ -167,7 +167,7 @@ data:
   isVerificationFile: false
   path: fps/FPS_inverse.hpp
   requiredBy: []
-  timestamp: '2024-06-19 15:49:30+09:00'
+  timestamp: '2024-06-24 02:01:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: fps/FPS_inverse.hpp

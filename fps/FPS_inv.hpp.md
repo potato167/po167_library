@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: fps/FPS_Power_Projection.hpp
+    title: fps/FPS_Power_Projection.hpp
   - icon: ':heavy_check_mark:'
     path: fps/FPS_division.hpp
     title: fps/FPS_division.hpp
@@ -72,6 +75,7 @@ data:
   isVerificationFile: false
   path: fps/FPS_inv.hpp
   requiredBy:
+  - fps/FPS_Power_Projection.hpp
   - fps/FPS_division.hpp
   - fps/FPS_exp.hpp
   - fps/FPS_pow.hpp
