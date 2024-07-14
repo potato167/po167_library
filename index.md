@@ -19,7 +19,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: fps/FPS_Boston_Mori.hpp
       title: "\u30DC\u30B9\u30BF\u30F3\u68EE\u6CD5"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: fps/FPS_Power_Projection.hpp
       title: fps/FPS_Power_Projection.hpp
     - icon: ':heavy_check_mark:'
@@ -46,7 +46,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: fps/FPS_inv.hpp
       title: fps/FPS_inv.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: fps/FPS_inverse.hpp
       title: fps/FPS_inverse.hpp
     - icon: ':heavy_check_mark:'
@@ -84,6 +84,9 @@ data:
       title: test/ds/swag.test.cpp
   - name: test/fps
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/fps/comp_inverse.test.cpp
+      title: test/fps/comp_inverse.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/fps/division.test.cpp
       title: test/fps/division.test.cpp

@@ -20,22 +20,26 @@ data:
     path: fps/FPS_inv.hpp
     title: fps/FPS_inv.hpp
   - icon: ':heavy_check_mark:'
+    path: fps/FPS_inverse.hpp
+    title: fps/FPS_inverse.hpp
+  - icon: ':heavy_check_mark:'
     path: fps/FPS_log.hpp
     title: fps/FPS_log.hpp
   - icon: ':heavy_check_mark:'
     path: fps/FPS_pick_even_odd.hpp
     title: fps/FPS_pick_even_odd.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/fps/comp_inverse.test.cpp
-    title: test/fps/comp_inverse.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"fps/FPS_inverse.hpp\"\n#include <vector>\n#line 3 \"fps/FPS_exp.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/compositional_inverse_of_formal_power_series_large
+    links:
+    - https://judge.yosupo.jp/problem/compositional_inverse_of_formal_power_series_large
+  bundledCode: "#line 1 \"test/fps/comp_inverse.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/compositional_inverse_of_formal_power_series_large\"\
+    \n\n\n#line 2 \"fps/FPS_inverse.hpp\"\n#include <vector>\n#line 3 \"fps/FPS_exp.hpp\"\
     \n#include <atcoder/convolution>\n#line 4 \"fps/FPS_cyclic_convolution.hpp\"\n\
     \nnamespace po167{\n// |f| = |g| = 2 ^ n\ntemplate<class T>\nstd::vector<T> FPS_cyclic_convolution(std::vector<T>\
     \ f, std::vector<T> g){\n    atcoder::internal::butterfly(f);\n    atcoder::internal::butterfly(g);\n\
@@ -142,23 +146,23 @@ data:
     \ - 1) * inv_num[i];\n    }\n    g = FPS_log(g);\n    for (int i = 0; i < len\
     \ - 1; i++){\n        g[i] *= (T)(-1) * inv_num[len - 1];\n    }\n    g = FPS_exp(g);\n\
     \    g.insert(g.begin(), 0);\n    T v = 1;\n    for (auto &x : g) x *= v, v *=\
-    \ c;\n    return g;\n}\n\n}\n"
-  code: "#pragma once\n#include <vector>\n#include \"../fps/FPS_exp.hpp\"\n#include\
-    \ \"../fps/FPS_log.hpp\"\n#include \"../fps/FPS_Power_Projection.hpp\"\n\nnamespace\
-    \ po167{\n// return g\n// g(f) = x\n// [x ^ 0] f  = 0\n// [x ^ 1] f != 0\ntemplate<class\
-    \ T>\nstd::vector<T> FPS_inverse(std::vector<T> f, int len = -1){\n    if (len\
-    \ == -1) len = f.size();\n    if (len == 0) return {};\n    if (len == 1) return\
-    \ {(T)(0)};\n    assert((int)f.size() >= 2);\n    assert(f[0] == 0);\n    assert(f[1]\
-    \ != 0);\n    T c = (T)(1) / f[1];\n    for (auto &x : f) x *= c;\n    std::vector<T>\
-    \ inv_num(len + 1, 1);\n    for (int i = 2; i <= len; i++){\n        inv_num[i]\
-    \ = (0 - inv_num[T::mod() % i]) * (T::mod() / i);\n    }\n    f.resize(len);\n\
-    \    std::vector<T> p(len);\n    p[0] = 1;\n    p = Power_Projection(p, f, len);\n\
-    \    std::vector<T> g(len - 1);\n    for (int i = 1; i < len; i++){\n        g[len\
-    \ - 1 - i] = p[i] * (T)(len - 1) * inv_num[i];\n    }\n    g = FPS_log(g);\n \
-    \   for (int i = 0; i < len - 1; i++){\n        g[i] *= (T)(-1) * inv_num[len\
-    \ - 1];\n    }\n    g = FPS_exp(g);\n    g.insert(g.begin(), 0);\n    T v = 1;\n\
-    \    for (auto &x : g) x *= v, v *= c;\n    return g;\n}\n\n}"
+    \ c;\n    return g;\n}\n\n}\n#line 5 \"test/fps/comp_inverse.test.cpp\"\n\n#include\
+    \ <atcoder/modint>\n#include <iostream>\n\nint main(){\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n    using mint = atcoder::modint998244353;\n    int\
+    \ n;\n    std::cin >> n;\n    std::vector<mint> a(n);\n    for (int i = 0; i <\
+    \ n; i++){\n        int mem;\n        std::cin >> mem;\n        a[i] = mem;\n\
+    \    }\n    auto b = po167::FPS_inverse(a);\n    for (int i = 0; i < n; i++){\n\
+    \        std::cout << b[i].val() << (i + 1 == n ? \"\\n\" : \" \");\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/compositional_inverse_of_formal_power_series_large\"\
+    \n\n\n#include \"../../fps/FPS_inverse.hpp\"\n\n#include <atcoder/modint>\n#include\
+    \ <iostream>\n\nint main(){\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \    using mint = atcoder::modint998244353;\n    int n;\n    std::cin >> n;\n\
+    \    std::vector<mint> a(n);\n    for (int i = 0; i < n; i++){\n        int mem;\n\
+    \        std::cin >> mem;\n        a[i] = mem;\n    }\n    auto b = po167::FPS_inverse(a);\n\
+    \    for (int i = 0; i < n; i++){\n        std::cout << b[i].val() << (i + 1 ==\
+    \ n ? \"\\n\" : \" \");\n    }\n}"
   dependsOn:
+  - fps/FPS_inverse.hpp
   - fps/FPS_exp.hpp
   - fps/FPS_cyclic_convolution.hpp
   - fps/FPS_differetial.hpp
@@ -167,17 +171,16 @@ data:
   - fps/FPS_log.hpp
   - fps/FPS_Power_Projection.hpp
   - fps/FPS_pick_even_odd.hpp
-  isVerificationFile: false
-  path: fps/FPS_inverse.hpp
+  isVerificationFile: true
+  path: test/fps/comp_inverse.test.cpp
   requiredBy: []
-  timestamp: '2024-06-24 02:01:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/fps/comp_inverse.test.cpp
-documentation_of: fps/FPS_inverse.hpp
+  timestamp: '2024-07-15 01:10:25+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/fps/comp_inverse.test.cpp
 layout: document
 redirect_from:
-- /library/fps/FPS_inverse.hpp
-- /library/fps/FPS_inverse.hpp.html
-title: fps/FPS_inverse.hpp
+- /verify/test/fps/comp_inverse.test.cpp
+- /verify/test/fps/comp_inverse.test.cpp.html
+title: test/fps/comp_inverse.test.cpp
 ---

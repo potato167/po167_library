@@ -14,13 +14,16 @@ data:
     path: fps/FPS_inv.hpp
     title: fps/FPS_inv.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: fps/FPS_inverse.hpp
     title: fps/FPS_inverse.hpp
   - icon: ':heavy_check_mark:'
     path: fps/FPS_pow.hpp
     title: fps/FPS_pow.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/fps/comp_inverse.test.cpp
+    title: test/fps/comp_inverse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/fps/exp.test.cpp
     title: test/fps/exp.test.cpp
@@ -110,6 +113,7 @@ data:
   verifiedWith:
   - test/fps/pow.test.cpp
   - test/fps/exp.test.cpp
+  - test/fps/comp_inverse.test.cpp
 documentation_of: fps/FPS_exp.hpp
 layout: document
 redirect_from:

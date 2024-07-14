@@ -8,13 +8,16 @@ data:
     path: fps/FPS_pick_even_odd.hpp
     title: fps/FPS_pick_even_odd.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: fps/FPS_inverse.hpp
     title: fps/FPS_inverse.hpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/fps/comp_inverse.test.cpp
+    title: test/fps/comp_inverse.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"fps/FPS_Power_Projection.hpp\"\n#include <vector>\n#include\
@@ -117,8 +120,9 @@ data:
   requiredBy:
   - fps/FPS_inverse.hpp
   timestamp: '2024-06-24 02:01:01+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/fps/comp_inverse.test.cpp
 documentation_of: fps/FPS_Power_Projection.hpp
 layout: document
 redirect_from:

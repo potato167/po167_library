@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: fps/FPS_Power_Projection.hpp
     title: fps/FPS_Power_Projection.hpp
   - icon: ':heavy_check_mark:'
@@ -11,13 +11,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: fps/FPS_exp.hpp
     title: fps/FPS_exp.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: fps/FPS_inverse.hpp
     title: fps/FPS_inverse.hpp
   - icon: ':heavy_check_mark:'
     path: fps/FPS_pow.hpp
     title: fps/FPS_pow.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/fps/comp_inverse.test.cpp
+    title: test/fps/comp_inverse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/fps/division.test.cpp
     title: test/fps/division.test.cpp
@@ -86,6 +89,7 @@ data:
   - test/fps/pow.test.cpp
   - test/fps/division.test.cpp
   - test/fps/exp.test.cpp
+  - test/fps/comp_inverse.test.cpp
   - test/fps/inv.test.cpp
 documentation_of: fps/FPS_inv.hpp
 layout: document
