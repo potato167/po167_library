@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: algorithm/smawk.hpp
     title: algorithm/smawk.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: algorithm/sum_max_convolution.hpp
     title: algorithm/sum_max_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: 'https:'
+    PROBLEM: https://judge.yosupo.jp/problem/min_plus_convolution_convex_arbitrary
     links:
     - https://judge.yosupo.jp/problem/min_plus_convolution_convex_arbitrary
   bundledCode: "#line 1 \"test/algorithm/sum_min_conv.test.cpp\"\n#define PROBLEM\
-    \ https://judge.yosupo.jp/problem/min_plus_convolution_convex_arbitrary\n\n#line\
-    \ 2 \"algorithm/sum_max_convolution.hpp\"\n#include <vector>\n#include <algorithm>\n\
+    \ \"https://judge.yosupo.jp/problem/min_plus_convolution_convex_arbitrary\"\n\n\
+    #line 2 \"algorithm/sum_max_convolution.hpp\"\n#include <vector>\n#include <algorithm>\n\
     #line 3 \"algorithm/smawk.hpp\"\n#include <numeric>\nnamespace po167{\n// return\
     \ argmax\n// \n// https://noshi91.github.io/Library/algorithm/smawk.cpp\ntemplate<class\
     \ S> std::vector<int> smawk(int N, int M, S select){\n    auto f = [&](auto self,\
@@ -64,8 +64,8 @@ data:
     \ : B) std::cin >> b, b *= -1;\n    auto c = po167::sum_max_convolution(A, B);\n\
     \    for (int i = 0; i < N + M - 1; i++){\n        if (i) std::cout << \" \";\n\
     \        std::cout << -c[i];\n    }\n    std::cout << \"\\n\";\n}\n"
-  code: "#define PROBLEM https://judge.yosupo.jp/problem/min_plus_convolution_convex_arbitrary\n\
-    \n#include \"../../algorithm/sum_max_convolution.hpp\"\n\n#include <iostream>\n\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/min_plus_convolution_convex_arbitrary\"\
+    \n\n#include \"../../algorithm/sum_max_convolution.hpp\"\n\n#include <iostream>\n\
     #include <vector>\n\nint main(){\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
     \    int N, M;\n    std::cin >> N >> M;\n    std::vector<int> A(N), B(M);\n  \
     \  for (auto &a : A) std::cin >> a, a *= -1;\n    for (auto &b : B) std::cin >>\
@@ -78,8 +78,8 @@ data:
   isVerificationFile: true
   path: test/algorithm/sum_min_conv.test.cpp
   requiredBy: []
-  timestamp: '2024-07-15 01:01:03+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-07-15 01:04:57+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/algorithm/sum_min_conv.test.cpp
 layout: document

@@ -2,16 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: algorithm/sum_max_convolution.hpp
     title: algorithm/sum_max_convolution.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/algorithm/sum_min_conv.test.cpp
     title: test/algorithm/sum_min_conv.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://noshi91.github.io/Library/algorithm/smawk.cpp
@@ -71,7 +71,7 @@ data:
   requiredBy:
   - algorithm/sum_max_convolution.hpp
   timestamp: '2024-07-15 01:01:03+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/algorithm/sum_min_conv.test.cpp
 documentation_of: algorithm/smawk.hpp

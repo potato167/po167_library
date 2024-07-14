@@ -3,10 +3,10 @@ data:
   libraryCategories:
   - name: algorithm
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: algorithm/smawk.hpp
       title: algorithm/smawk.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: algorithm/sum_max_convolution.hpp
       title: algorithm/sum_max_convolution.hpp
   - name: ds
@@ -74,7 +74,7 @@ data:
   verificationCategories:
   - name: test/algorithm
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/algorithm/sum_min_conv.test.cpp
       title: test/algorithm/sum_min_conv.test.cpp
   - name: test/ds
