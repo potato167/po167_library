@@ -75,18 +75,18 @@ data:
   isVerificationFile: false
   path: fps/FPS_inv.hpp
   requiredBy:
+  - fps/FPS_inverse.hpp
+  - fps/FPS_pow.hpp
   - fps/FPS_Power_Projection.hpp
   - fps/FPS_division.hpp
   - fps/FPS_exp.hpp
-  - fps/FPS_pow.hpp
-  - fps/FPS_inverse.hpp
   timestamp: '2024-06-19 00:51:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/fps/inv.test.cpp
   - test/fps/pow.test.cpp
   - test/fps/division.test.cpp
   - test/fps/exp.test.cpp
+  - test/fps/inv.test.cpp
 documentation_of: fps/FPS_inv.hpp
 layout: document
 redirect_from:

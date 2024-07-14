@@ -53,8 +53,8 @@ data:
   isVerificationFile: false
   path: fps/FPS_log.hpp
   requiredBy:
-  - fps/FPS_pow.hpp
   - fps/FPS_inverse.hpp
+  - fps/FPS_pow.hpp
   timestamp: '2024-06-19 00:51:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -1,6 +1,14 @@
 ---
 data:
   libraryCategories:
+  - name: algorithm
+    pages:
+    - icon: ':x:'
+      path: algorithm/smawk.hpp
+      title: algorithm/smawk.hpp
+    - icon: ':x:'
+      path: algorithm/sum_max_convolution.hpp
+      title: algorithm/sum_max_convolution.hpp
   - name: ds
     pages:
     - icon: ':heavy_check_mark:'
@@ -64,6 +72,11 @@ data:
       path: modint/mint61.hpp
       title: modint/mint61.hpp
   verificationCategories:
+  - name: test/algorithm
+    pages:
+    - icon: ':x:'
+      path: test/algorithm/sum_min_conv.test.cpp
+      title: test/algorithm/sum_min_conv.test.cpp
   - name: test/ds
     pages:
     - icon: ':heavy_check_mark:'
