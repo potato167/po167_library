@@ -43,7 +43,9 @@ data:
     \ x + e >= y\n    T mirror(int a, int b, int c, int d, int e = 0){\n        if\
     \ (a + e < b || c + e < d) return 0;\n        if (a > c || b > d) return 0;\n\
     \        a += e;\n        c += e;\n        return C(c + d - a - b, c - a) - C(c\
-    \ + d - a - b, c - b + 1); \n    }\n};\n}\n"
+    \ + d - a - b, c - b + 1); \n    }\n    // return sum_{i = 0, ... , a} sum_{j\
+    \ = 0, ... , b} C(a + b, a)\n    // return C(a + b + 2, a + 1) - 1;\n    T gird_sum(int\
+    \ a, int b){\n        return C(a + b + 2, a + 1) - 1;\n    }\n};\n}\n"
   code: "#pragma once\n\n#include<vector>\n#include<assert.h>\n\nnamespace po167{\n\
     template<class T>\nstruct Binomial{\n    std::vector<T> fact_vec, fact_inv_vec;\n\
     \    void extend(int m = -1){\n        int n = fact_vec.size();\n        if (m\
@@ -76,12 +78,14 @@ data:
     \ x + e >= y\n    T mirror(int a, int b, int c, int d, int e = 0){\n        if\
     \ (a + e < b || c + e < d) return 0;\n        if (a > c || b > d) return 0;\n\
     \        a += e;\n        c += e;\n        return C(c + d - a - b, c - a) - C(c\
-    \ + d - a - b, c - b + 1); \n    }\n};\n}\n"
+    \ + d - a - b, c - b + 1); \n    }\n    // return sum_{i = 0, ... , a} sum_{j\
+    \ = 0, ... , b} C(a + b, a)\n    // return C(a + b + 2, a + 1) - 1;\n    T gird_sum(int\
+    \ a, int b){\n        return C(a + b + 2, a + 1) - 1;\n    }\n};\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: math/Binomial.hpp
   requiredBy: []
-  timestamp: '2024-06-15 02:47:36+09:00'
+  timestamp: '2024-08-17 09:33:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/Binomial_Coefficient_Prime_Mod.test.cpp
