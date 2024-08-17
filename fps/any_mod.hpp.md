@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/fps/any_mod.test.cpp
+    title: test/fps/any_mod.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://kopricky.github.io/code/Computation_Advanced/garner.html
@@ -76,8 +79,9 @@ data:
   path: fps/any_mod.hpp
   requiredBy: []
   timestamp: '2024-08-17 09:03:21+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/fps/any_mod.test.cpp
 documentation_of: fps/any_mod.hpp
 layout: document
 redirect_from:

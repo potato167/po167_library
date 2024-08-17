@@ -61,7 +61,7 @@ data:
     - icon: ':warning:'
       path: fps/FSP_add.hpp
       title: fps/FSP_add.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: fps/any_mod.hpp
       title: fps/any_mod.hpp
   - name: math
@@ -87,6 +87,9 @@ data:
       title: test/ds/swag.test.cpp
   - name: test/fps
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/fps/any_mod.test.cpp
+      title: test/fps/any_mod.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/fps/comp_inverse.test.cpp
       title: test/fps/comp_inverse.test.cpp
