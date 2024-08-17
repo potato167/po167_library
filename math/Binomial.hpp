@@ -87,5 +87,10 @@ struct Binomial{
         c += e;
         return C(c + d - a - b, c - a) - C(c + d - a - b, c - b + 1); 
     }
+    // return sum_{i = 0, ... , a} sum_{j = 0, ... , b} C(a + b, a)
+    // return C(a + b + 2, a + 1) - 1;
+    T gird_sum(int a, int b){
+        return C(a + b + 2, a + 1) - 1;
+    }
 };
 }
