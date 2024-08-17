@@ -49,14 +49,18 @@ data:
     \ (a + e < b || c + e < d) return 0;\n        if (a > c || b > d) return 0;\n\
     \        a += e;\n        c += e;\n        return C(c + d - a - b, c - a) - C(c\
     \ + d - a - b, c - b + 1); \n    }\n    // return sum_{i = 0, ... , a} sum_{j\
-    \ = 0, ... , b} C(a + b, a)\n    // return C(a + b + 2, a + 1) - 1;\n    T gird_sum(int\
-    \ a, int b){\n        return C(a + b + 2, a + 1) - 1;\n    }\n};\n}\n#line 4 \"\
-    test/math/Binomial_Coefficient_Prime_Mod.test.cpp\"\n#include <bits/stdc++.h>\n\
-    #include <atcoder/modint>\n\n\nint main(){\n    int T, m;\n    std::cin >> T >>\
-    \ m;\n    using mint = atcoder::dynamic_modint<1>;\n    mint::set_mod(m);\n  \
-    \  po167::Binomial<mint> table(std::min(m, 10000000) - 1);\n    while (T--){\n\
-    \        int n, k;\n        std::cin >> n >> k;\n        std::cout << table.C(n,\
-    \ k).val() << \"\\n\";\n    }\n}\n"
+    \ = 0, ... , b} C(i + j, i)\n    // return C(a + b + 2, a + 1) - 1;\n    T gird_sum(int\
+    \ a, int b){\n        if (a < 0 || b < 0) return 0;\n        return C(a + b +\
+    \ 2, a + 1) - 1;\n    }\n    // return sum_{i = a, ..., b - 1} sum_{j = c, ...\
+    \ , d - 1} C(i + j, i)\n    // AGC 018 E\n    T gird_sum_2(int a, int b, int c,\
+    \ int d){\n        if (a >= b || c >= d) return 0;\n        a--, b--, c--, d--;\n\
+    \        return gird_sum(a, c) - gird_sum(a, d) - gird_sum(b, c) + gird_sum(b,\
+    \ d);\n    }\n};\n}\n#line 4 \"test/math/Binomial_Coefficient_Prime_Mod.test.cpp\"\
+    \n#include <bits/stdc++.h>\n#include <atcoder/modint>\n\n\nint main(){\n    int\
+    \ T, m;\n    std::cin >> T >> m;\n    using mint = atcoder::dynamic_modint<1>;\n\
+    \    mint::set_mod(m);\n    po167::Binomial<mint> table(std::min(m, 10000000)\
+    \ - 1);\n    while (T--){\n        int n, k;\n        std::cin >> n >> k;\n  \
+    \      std::cout << table.C(n, k).val() << \"\\n\";\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\"\
     \n\n#include \"../../math/Binomial.hpp\"\n#include <bits/stdc++.h>\n#include <atcoder/modint>\n\
     \n\nint main(){\n    int T, m;\n    std::cin >> T >> m;\n    using mint = atcoder::dynamic_modint<1>;\n\
@@ -68,7 +72,7 @@ data:
   isVerificationFile: true
   path: test/math/Binomial_Coefficient_Prime_Mod.test.cpp
   requiredBy: []
-  timestamp: '2024-08-17 09:33:33+09:00'
+  timestamp: '2024-08-17 09:40:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/Binomial_Coefficient_Prime_Mod.test.cpp
