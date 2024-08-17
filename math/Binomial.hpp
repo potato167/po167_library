@@ -87,10 +87,18 @@ struct Binomial{
         c += e;
         return C(c + d - a - b, c - a) - C(c + d - a - b, c - b + 1); 
     }
-    // return sum_{i = 0, ... , a} sum_{j = 0, ... , b} C(a + b, a)
+    // return sum_{i = 0, ... , a} sum_{j = 0, ... , b} C(i + j, i)
     // return C(a + b + 2, a + 1) - 1;
     T gird_sum(int a, int b){
+        if (a < 0 || b < 0) return 0;
         return C(a + b + 2, a + 1) - 1;
+    }
+    // return sum_{i = a, ..., b - 1} sum_{j = c, ... , d - 1} C(i + j, i)
+    // AGC 018 E
+    T gird_sum_2(int a, int b, int c, int d){
+        if (a >= b || c >= d) return 0;
+        a--, b--, c--, d--;
+        return gird_sum(a, c) - gird_sum(a, d) - gird_sum(b, c) + gird_sum(b, d);
     }
 };
 }
