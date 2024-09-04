@@ -112,8 +112,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/comp_inverse.test.cpp
-  - test/fps/pow.test.cpp
   - test/fps/exp.test.cpp
+  - test/fps/pow.test.cpp
 documentation_of: fps/FPS_exp.hpp
 layout: document
 redirect_from:
