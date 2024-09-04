@@ -21,7 +21,7 @@ struct Binomial{
             fact_inv_vec[i - 1] = fact_inv_vec[i] * T(i);
         }
     }
-    Binomial(int MAX = 2){
+    Binomial(int MAX = 0){
         fact_vec.resize(1, T(1));
         fact_inv_vec.resize(1, T(1));
         extend(MAX + 1);
