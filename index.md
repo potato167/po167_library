@@ -65,6 +65,9 @@ data:
       path: fps/Multipoint_Evaluation.hpp
       title: fps/Multipoint_Evaluation.hpp
     - icon: ':heavy_check_mark:'
+      path: fps/Multipoint_Evaluation_Geo.hpp
+      title: fps/Multipoint_Evaluation_Geo.hpp
+    - icon: ':heavy_check_mark:'
       path: fps/any_mod.hpp
       title: fps/any_mod.hpp
   - name: math
@@ -114,6 +117,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/fps/multpoint_evalution.test.cpp
       title: test/fps/multpoint_evalution.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/fps/multpoint_evalution_geo.test.cpp
+      title: test/fps/multpoint_evalution_geo.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/fps/pow.test.cpp
       title: test/fps/pow.test.cpp

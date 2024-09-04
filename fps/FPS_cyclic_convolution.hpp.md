@@ -11,6 +11,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: fps/FPS_pow.hpp
     title: fps/FPS_pow.hpp
+  - icon: ':heavy_check_mark:'
+    path: fps/Multipoint_Evaluation_Geo.hpp
+    title: fps/Multipoint_Evaluation_Geo.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/fps/comp_inverse.test.cpp
@@ -18,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/fps/exp.test.cpp
     title: test/fps/exp.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/fps/multpoint_evalution_geo.test.cpp
+    title: test/fps/multpoint_evalution_geo.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/fps/pow.test.cpp
     title: test/fps/pow.test.cpp
@@ -46,10 +52,12 @@ data:
   - fps/FPS_exp.hpp
   - fps/FPS_inverse.hpp
   - fps/FPS_pow.hpp
+  - fps/Multipoint_Evaluation_Geo.hpp
   timestamp: '2024-06-19 00:51:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/comp_inverse.test.cpp
+  - test/fps/multpoint_evalution_geo.test.cpp
   - test/fps/exp.test.cpp
   - test/fps/pow.test.cpp
 documentation_of: fps/FPS_cyclic_convolution.hpp
