@@ -61,7 +61,7 @@ data:
     - icon: ':warning:'
       path: fps/FSP_add.hpp
       title: fps/FSP_add.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: fps/Multipoint_Evaluation.hpp
       title: fps/Multipoint_Evaluation.hpp
     - icon: ':heavy_check_mark:'
@@ -111,7 +111,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/fps/linear_kth.test.cpp
       title: test/fps/linear_kth.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/fps/multpoint_evalution.test.cpp
       title: test/fps/multpoint_evalution.test.cpp
     - icon: ':heavy_check_mark:'

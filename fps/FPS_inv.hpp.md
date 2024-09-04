@@ -17,6 +17,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: fps/FPS_pow.hpp
     title: fps/FPS_pow.hpp
+  - icon: ':heavy_check_mark:'
+    path: fps/Multipoint_Evaluation.hpp
+    title: fps/Multipoint_Evaluation.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/fps/comp_inverse.test.cpp
@@ -30,6 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/fps/inv.test.cpp
     title: test/fps/inv.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/fps/multpoint_evalution.test.cpp
+    title: test/fps/multpoint_evalution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/fps/pow.test.cpp
     title: test/fps/pow.test.cpp
@@ -83,12 +89,14 @@ data:
   - fps/FPS_Power_Projection.hpp
   - fps/FPS_inverse.hpp
   - fps/FPS_pow.hpp
+  - fps/Multipoint_Evaluation.hpp
   timestamp: '2024-06-19 00:51:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/comp_inverse.test.cpp
   - test/fps/division.test.cpp
   - test/fps/exp.test.cpp
+  - test/fps/multpoint_evalution.test.cpp
   - test/fps/pow.test.cpp
   - test/fps/inv.test.cpp
 documentation_of: fps/FPS_inv.hpp
