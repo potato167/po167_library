@@ -1,6 +1,6 @@
 #pragma once
 #include <atcoder/convolution>
-#include "po167_library/fps/FPS_division.hpp"
+#include "FPS_division.hpp"
 
 namespace po167{
 template <class T>
