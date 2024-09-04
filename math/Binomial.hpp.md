@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: math/q_Binomial.hpp
+    title: math/q_Binomial.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/math/Binomial_Coefficient_Prime_Mod.test.cpp
     title: test/math/Binomial_Coefficient_Prime_Mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/math/q_Binomial.test.cpp
+    title: test/math/q_Binomial.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -19,7 +25,7 @@ data:
     \       fact_vec[i] = fact_vec[i - 1] * T(i);\n        }\n        fact_inv_vec[m\
     \ - 1] = T(1) / fact_vec[m - 1];\n        for (int i = m - 1; i > n; i--){\n \
     \           fact_inv_vec[i - 1] = fact_inv_vec[i] * T(i);\n        }\n    }\n\
-    \    Binomial(int MAX = 2){\n        fact_vec.resize(1, T(1));\n        fact_inv_vec.resize(1,\
+    \    Binomial(int MAX = 0){\n        fact_vec.resize(1, T(1));\n        fact_inv_vec.resize(1,\
     \ T(1));\n        extend(MAX + 1);\n    }\n\n    T fact(int i){\n        if (i\
     \ < 0) return 0;\n        while (int(fact_vec.size()) <= i) extend();\n      \
     \  return fact_vec[i];\n    }\n    T invfact(int i){\n        if (i < 0) return\
@@ -59,7 +65,7 @@ data:
     \       fact_vec[i] = fact_vec[i - 1] * T(i);\n        }\n        fact_inv_vec[m\
     \ - 1] = T(1) / fact_vec[m - 1];\n        for (int i = m - 1; i > n; i--){\n \
     \           fact_inv_vec[i - 1] = fact_inv_vec[i] * T(i);\n        }\n    }\n\
-    \    Binomial(int MAX = 2){\n        fact_vec.resize(1, T(1));\n        fact_inv_vec.resize(1,\
+    \    Binomial(int MAX = 0){\n        fact_vec.resize(1, T(1));\n        fact_inv_vec.resize(1,\
     \ T(1));\n        extend(MAX + 1);\n    }\n\n    T fact(int i){\n        if (i\
     \ < 0) return 0;\n        while (int(fact_vec.size()) <= i) extend();\n      \
     \  return fact_vec[i];\n    }\n    T invfact(int i){\n        if (i < 0) return\
@@ -94,11 +100,13 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: math/Binomial.hpp
-  requiredBy: []
-  timestamp: '2024-08-17 09:40:44+09:00'
+  requiredBy:
+  - math/q_Binomial.hpp
+  timestamp: '2024-09-04 23:15:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/Binomial_Coefficient_Prime_Mod.test.cpp
+  - test/math/q_Binomial.test.cpp
 documentation_of: math/Binomial.hpp
 layout: document
 title: "\u4E8C\u9805\u4FC2\u6570\u95A2\u9023"

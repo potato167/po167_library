@@ -24,7 +24,7 @@ data:
     \       fact_vec[i] = fact_vec[i - 1] * T(i);\n        }\n        fact_inv_vec[m\
     \ - 1] = T(1) / fact_vec[m - 1];\n        for (int i = m - 1; i > n; i--){\n \
     \           fact_inv_vec[i - 1] = fact_inv_vec[i] * T(i);\n        }\n    }\n\
-    \    Binomial(int MAX = 2){\n        fact_vec.resize(1, T(1));\n        fact_inv_vec.resize(1,\
+    \    Binomial(int MAX = 0){\n        fact_vec.resize(1, T(1));\n        fact_inv_vec.resize(1,\
     \ T(1));\n        extend(MAX + 1);\n    }\n\n    T fact(int i){\n        if (i\
     \ < 0) return 0;\n        while (int(fact_vec.size()) <= i) extend();\n      \
     \  return fact_vec[i];\n    }\n    T invfact(int i){\n        if (i < 0) return\
@@ -72,7 +72,7 @@ data:
   isVerificationFile: true
   path: test/math/Binomial_Coefficient_Prime_Mod.test.cpp
   requiredBy: []
-  timestamp: '2024-08-17 09:40:44+09:00'
+  timestamp: '2024-09-04 23:15:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/Binomial_Coefficient_Prime_Mod.test.cpp
