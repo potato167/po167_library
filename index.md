@@ -68,6 +68,9 @@ data:
       path: fps/Multipoint_Evaluation_Geo.hpp
       title: fps/Multipoint_Evaluation_Geo.hpp
     - icon: ':heavy_check_mark:'
+      path: fps/Taylor_Shift.hpp
+      title: fps/Taylor_Shift.hpp
+    - icon: ':heavy_check_mark:'
       path: fps/any_mod.hpp
       title: fps/any_mod.hpp
   - name: math
@@ -126,6 +129,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/fps/product_sequence.test.cpp
       title: test/fps/product_sequence.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/fps/taylor_shift.test.cpp
+      title: test/fps/taylor_shift.test.cpp
   - name: test/math
     pages:
     - icon: ':heavy_check_mark:'
