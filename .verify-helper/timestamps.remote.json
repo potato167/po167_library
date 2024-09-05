@@ -11,6 +11,7 @@
 "test/fps/multpoint_evalution_geo.test.cpp": "2024-09-05 20:11:34 +0900",
 "test/fps/pow.test.cpp": "2024-09-05 20:11:34 +0900",
 "test/fps/product_sequence.test.cpp": "2024-06-19 18:48:40 +0900",
+"test/fps/taylor_shift.test.cpp": "2024-09-05 20:21:53 +0900",
 "test/math/Binomial_Coefficient_Prime_Mod.test.cpp": "2024-09-04 23:15:09 +0900",
 "test/math/q_Binomial.test.cpp": "2024-09-04 23:15:09 +0900",
 "test/math/sampleproblem.test.cpp": "2024-06-15 02:47:36 +0900"
