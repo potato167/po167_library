@@ -1,7 +1,7 @@
 #include "FPS_cyclic_convolution.hpp"
 namespace po167{
-template <class T>
 // return {f(ar^0), f(ar^1), f(ar^2), ... f(ar^{len - 1})}
+template <class T>
 std::vector<T> Multipoint_Evaluation_Geo(
     std::vector<T> f,
     T a, T r, int len = -1

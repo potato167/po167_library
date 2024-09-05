@@ -3,8 +3,8 @@
 #include "FPS_division.hpp"
 
 namespace po167{
-template <class T>
 // return {f(p[0]), f(p[1]), f(p[2]), ... }
+template <class T>
 std::vector<T> Multipoint_Evaluation(
     std::vector<T> f,
     std::vector<T> p

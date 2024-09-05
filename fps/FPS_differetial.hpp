@@ -2,6 +2,7 @@
 #include <vector>
 
 namespace po167{
+// return f'
 template <class T>
 std::vector<T> FPS_differential(std::vector<T> f){
     if (f.empty()) return f;
