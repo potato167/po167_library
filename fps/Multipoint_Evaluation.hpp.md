@@ -50,7 +50,7 @@ data:
     \   for (int i = 0; i < (int)f.size(); i++) r[i] -= f[i];\n    while (!q.empty()\
     \ && q.back() == 0) q.pop_back();\n    while (!r.empty() && r.back() == 0) r.pop_back();\n\
     \    return {q, r};\n}\n}\n#line 4 \"fps/Multipoint_Evaluation.hpp\"\n\nnamespace\
-    \ po167{\ntemplate <class T>\n// return {f(p[0]), f(p[1]), f(p[2]), ... }\nstd::vector<T>\
+    \ po167{\n// return {f(p[0]), f(p[1]), f(p[2]), ... }\ntemplate <class T>\nstd::vector<T>\
     \ Multipoint_Evaluation(\n    std::vector<T> f,\n    std::vector<T> p\n){\n  \
     \  int m = p.size();\n    if (m == 0) return {};\n    if (m == 1){\n        T\
     \ res = 0;\n        T tmp = 1;\n        for (auto x : f) res += tmp * x, tmp *=\
@@ -67,8 +67,8 @@ data:
     \ ind * 2 + 1, po167::FPS_division(tmp, prod[ind * 2 + 1]).second);\n    };calc(calc,\
     \ 0, size, 1, f);\n    return res;\n}\n}\n"
   code: "#pragma once\n#include <atcoder/convolution>\n#include \"FPS_division.hpp\"\
-    \n\nnamespace po167{\ntemplate <class T>\n// return {f(p[0]), f(p[1]), f(p[2]),\
-    \ ... }\nstd::vector<T> Multipoint_Evaluation(\n    std::vector<T> f,\n    std::vector<T>\
+    \n\nnamespace po167{\n// return {f(p[0]), f(p[1]), f(p[2]), ... }\ntemplate <class\
+    \ T>\nstd::vector<T> Multipoint_Evaluation(\n    std::vector<T> f,\n    std::vector<T>\
     \ p\n){\n    int m = p.size();\n    if (m == 0) return {};\n    if (m == 1){\n\
     \        T res = 0;\n        T tmp = 1;\n        for (auto x : f) res += tmp *\
     \ x, tmp *= p[0];\n        return {res};\n    }\n    int size = 1;\n    while\
@@ -89,7 +89,7 @@ data:
   isVerificationFile: false
   path: fps/Multipoint_Evaluation.hpp
   requiredBy: []
-  timestamp: '2024-09-05 05:56:40+09:00'
+  timestamp: '2024-09-05 20:11:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/multpoint_evalution.test.cpp

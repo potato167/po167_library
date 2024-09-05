@@ -27,7 +27,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"fps/FPS_log.hpp\"\n#include <vector>\n#line 3 \"fps/FPS_differetial.hpp\"\
-    \n\nnamespace po167{\ntemplate <class T>\nstd::vector<T> FPS_differential(std::vector<T>\
+    \n\nnamespace po167{\n// return f'\ntemplate <class T>\nstd::vector<T> FPS_differential(std::vector<T>\
     \ f){\n    if (f.empty()) return f;\n    for (int i = 0; i < (int)f.size() - 1;\
     \ i++){\n        f[i] = f[i + 1] * (T)(i + 1);\n    }\n    f.pop_back();\n   \
     \ return f;\n}\n}\n#line 3 \"fps/FPS_integral.hpp\"\n\nnamespace po167{\ntemplate\
@@ -58,7 +58,7 @@ data:
   requiredBy:
   - fps/FPS_inverse.hpp
   - fps/FPS_pow.hpp
-  timestamp: '2024-06-19 00:51:37+09:00'
+  timestamp: '2024-09-05 20:11:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/comp_inverse.test.cpp

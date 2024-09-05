@@ -25,8 +25,8 @@ data:
     \    for (int i = 0; i < (int)f.size(); i++) f[i] *= g[i];\n    atcoder::internal::butterfly_inv(f);\n\
     \    T iz = (T)(1) / (T)(f.size());\n    for (int i = 0; i < (int)f.size(); i++)\
     \ f[i] *= iz;\n    return f;\n}\n}\n#line 2 \"fps/Multipoint_Evaluation_Geo.hpp\"\
-    \nnamespace po167{\ntemplate <class T>\n// return {f(ar^0), f(ar^1), f(ar^2),\
-    \ ... f(ar^{len - 1})}\nstd::vector<T> Multipoint_Evaluation_Geo(\n    std::vector<T>\
+    \nnamespace po167{\n// return {f(ar^0), f(ar^1), f(ar^2), ... f(ar^{len - 1})}\n\
+    template <class T>\nstd::vector<T> Multipoint_Evaluation_Geo(\n    std::vector<T>\
     \ f,\n    T a, T r, int len = -1\n){\n    if (len == -1) len = f.size();\n   \
     \ if (r == 0){\n        T tmp = 1;\n        std::vector<T> res(len, f[0]);\n \
     \       for (int i = 1; i < (int)f.size(); i++){\n            tmp *= a;\n    \
@@ -67,7 +67,7 @@ data:
   isVerificationFile: true
   path: test/fps/multpoint_evalution_geo.test.cpp
   requiredBy: []
-  timestamp: '2024-09-05 06:08:07+09:00'
+  timestamp: '2024-09-05 20:11:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fps/multpoint_evalution_geo.test.cpp
