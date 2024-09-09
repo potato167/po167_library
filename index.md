@@ -12,6 +12,9 @@ data:
   - name: ds
     pages:
     - icon: ':heavy_check_mark:'
+      path: ds/Doubling.hpp
+      title: ds/Doubling.hpp
+    - icon: ':heavy_check_mark:'
       path: ds/Swag.hpp
       title: ds/Swag.hpp
   - name: fps
@@ -94,6 +97,9 @@ data:
       title: test/algorithm/sum_min_conv.test.cpp
   - name: test/ds
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/ds/doubling_rmq.test.cpp
+      title: test/ds/doubling_rmq.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/ds/swag.test.cpp
       title: test/ds/swag.test.cpp
