@@ -112,8 +112,8 @@ data:
   timestamp: '2024-09-04 23:15:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/math/Binomial_Coefficient_Prime_Mod.test.cpp
   - test/math/q_Binomial.test.cpp
+  - test/math/Binomial_Coefficient_Prime_Mod.test.cpp
   - test/fps/taylor_shift.test.cpp
 documentation_of: math/Binomial.hpp
 layout: document
