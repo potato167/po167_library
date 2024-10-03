@@ -5,6 +5,11 @@ namespace po167{
 
 template<class T, T(*op)(T, T)>
 struct Doubling_op{
+    struct result{
+        long long times;
+        int ind;
+        T val;
+    };
     int n;
     int depth;
     std::vector<std::vector<int>> index;
@@ -29,10 +34,11 @@ struct Doubling_op{
             }
         }
     }
-    std::pair<int, T> query(int start_ind, T start_val, long long times){
+    result query(int start_ind, T start_val, long long times){
         assert(0 <= start_ind && start_ind < n);
         assert(0 <= times && times < (1ll << depth));
         int i = 0;
+        long long TIMES = times;
         while (times){
             if (times & 1){
                 start_val = op(start_val, val[i][start_ind]);
@@ -41,7 +47,19 @@ struct Doubling_op{
             i++;
             times >>= 1;
         }
-        return std::make_pair(start_ind, start_val);
+        return {TIMES, start_ind, start_val};
+    }
+    result max_right(int start_ind, T start_val, auto f){
+        if (!f(start_val)) return {-1, start_ind, start_val};
+        long long times = 0;
+        for (int d = depth - 1; d >= 0; d--){
+            if (f(op(start_val, val[d][start_ind]))){
+                start_val = op(start_val, val[d][start_ind]);
+                start_ind = index[d][start_ind];
+                times += (1ll << d);
+            }
+        }
+        return {times, start_ind, start_val};
     }
 };
 

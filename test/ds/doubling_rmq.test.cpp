@@ -22,6 +22,6 @@ int main(){
     while (Q--){
         int l, r;
         std::cin >> l >> r;
-        std::cout << D.query(l, 1 << 30, r - l).second << "\n";
+        std::cout << D.query(l, 1 << 30, r - l).val << "\n";
     }
 }
