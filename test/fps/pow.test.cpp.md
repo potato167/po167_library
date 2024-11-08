@@ -79,7 +79,7 @@ data:
     \ < (int)f.size() ? f[i] : 0) - A[i];\n        // g_hat = g (1 - g + f)\n    \
     \    // g += B = g * A\n        g.resize(2 * s);\n        B = FPS_cyclic_convolution(A,\
     \ g);\n        for (int i = s; i < s * 2; i++) g[i] = B[i];\n        s *= 2;\n\
-    \    }\n    g.resize(len);\n    return g;\n}\n}\n#line 5 \"fps/FPS_log.hpp\"\n\
+    \    }\n    g.resize(len);\n    return g;\n}\n}\n#line 6 \"fps/FPS_log.hpp\"\n\
     \nnamespace po167{\ntemplate<class T>\nstd::vector<T> FPS_log(std::vector<T> f,\
     \ int len = -1){\n    if (len == -1) len = f.size();\n    if (len == 0) return\
     \ {};\n    if (len == 1) return {T(0)};\n    assert(!f.empty() && f[0] == 1);\n\
@@ -125,7 +125,7 @@ data:
   isVerificationFile: true
   path: test/fps/pow.test.cpp
   requiredBy: []
-  timestamp: '2024-09-05 20:11:34+09:00'
+  timestamp: '2024-11-08 23:20:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fps/pow.test.cpp

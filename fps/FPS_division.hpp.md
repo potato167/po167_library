@@ -75,8 +75,8 @@ data:
   timestamp: '2024-06-22 20:46:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/fps/multpoint_evalution.test.cpp
   - test/fps/division.test.cpp
+  - test/fps/multpoint_evalution.test.cpp
 documentation_of: fps/FPS_division.hpp
 layout: document
 redirect_from:
