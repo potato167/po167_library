@@ -14,6 +14,7 @@
 "test/fps/pow.test.cpp": "2024-11-08 23:20:15 +0900",
 "test/fps/product_sequence.test.cpp": "2024-06-19 18:48:40 +0900",
 "test/fps/taylor_shift.test.cpp": "2024-09-05 20:21:53 +0900",
+"test/graph/tree/jump_tree.test.cpp": "2024-11-20 00:41:29 +0900",
 "test/graph/tree/lca_1.test.cpp": "2024-11-20 00:33:35 +0900",
 "test/math/Binomial_Coefficient_Prime_Mod.test.cpp": "2024-09-04 23:15:09 +0900",
 "test/math/q_Binomial.test.cpp": "2024-09-04 23:15:09 +0900",
