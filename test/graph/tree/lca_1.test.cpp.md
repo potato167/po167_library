@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/Sparce_table.hpp
     title: ds/Sparce_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/LCA.hpp
     title: graph/tree/LCA.hpp
   _extendedRequiredBy: []

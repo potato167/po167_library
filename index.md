@@ -14,7 +14,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/Doubling.hpp
       title: ds/Doubling.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/Sparce_table.hpp
       title: ds/Sparce_table.hpp
     - icon: ':heavy_check_mark:'
@@ -81,7 +81,7 @@ data:
       title: fps/any_mod.hpp
   - name: graph/tree
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/LCA.hpp
       title: graph/tree/LCA.hpp
   - name: math
@@ -151,7 +151,7 @@ data:
       title: test/fps/taylor_shift.test.cpp
   - name: test/graph/tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/graph/tree/jump_tree.test.cpp
       title: test/graph/tree/jump_tree.test.cpp
     - icon: ':heavy_check_mark:'

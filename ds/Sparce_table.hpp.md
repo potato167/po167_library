@@ -2,22 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/LCA.hpp
     title: graph/tree/LCA.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/ds/sparce_table.test.cpp
     title: test/ds/sparce_table.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/graph/tree/jump_tree.test.cpp
     title: test/graph/tree/jump_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/graph/tree/lca_1.test.cpp
     title: test/graph/tree/lca_1.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/Sparce_table.hpp\"\n#include <vector>\n#include <cassert>\n\
@@ -50,7 +50,7 @@ data:
   requiredBy:
   - graph/tree/LCA.hpp
   timestamp: '2024-11-20 00:33:35+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/ds/sparce_table.test.cpp
   - test/graph/tree/lca_1.test.cpp
