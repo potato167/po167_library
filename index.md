@@ -14,6 +14,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/Doubling.hpp
       title: ds/Doubling.hpp
+    - icon: ':question:'
+      path: ds/Sparce_table.hpp
+      title: ds/Sparce_table.hpp
     - icon: ':heavy_check_mark:'
       path: ds/Swag.hpp
       title: ds/Swag.hpp
@@ -76,6 +79,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: fps/any_mod.hpp
       title: fps/any_mod.hpp
+  - name: graph/tree
+    pages:
+    - icon: ':question:'
+      path: graph/tree/LCA.hpp
+      title: graph/tree/LCA.hpp
   - name: math
     pages:
     - icon: ':heavy_check_mark:'
@@ -100,6 +108,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/ds/doubling_rmq.test.cpp
       title: test/ds/doubling_rmq.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/ds/sparce_table.test.cpp
+      title: test/ds/sparce_table.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/ds/swag.test.cpp
       title: test/ds/swag.test.cpp
@@ -138,6 +149,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/fps/taylor_shift.test.cpp
       title: test/fps/taylor_shift.test.cpp
+  - name: test/graph/tree
+    pages:
+    - icon: ':x:'
+      path: test/graph/tree/jump_tree.test.cpp
+      title: test/graph/tree/jump_tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/graph/tree/lca_1.test.cpp
+      title: test/graph/tree/lca_1.test.cpp
   - name: test/math
     pages:
     - icon: ':heavy_check_mark:'
