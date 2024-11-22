@@ -31,7 +31,7 @@ std::vector<T> Multipoint_Evaluation(
     auto calc = [&](auto self, int l, int r, int ind, std::vector<T> tmp) -> void {
         if (m <= l) return;
         if (l + 1 == r){
-            res[l] = tmp[0];
+            res[l] = (tmp.empty() ? T(0) : tmp[0]);
             return;
         }
         int mid = (l + r) / 2;
