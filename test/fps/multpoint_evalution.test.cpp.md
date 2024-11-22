@@ -66,11 +66,11 @@ data:
     \ i--){\n        prod[i] = atcoder::convolution(prod[i * 2], prod[i * 2 + 1]);\n\
     \    }\n    std::vector<T> res(m);\n    auto calc = [&](auto self, int l, int\
     \ r, int ind, std::vector<T> tmp) -> void {\n        if (m <= l) return;\n   \
-    \     if (l + 1 == r){\n            res[l] = tmp[0];\n            return;\n  \
-    \      }\n        int mid = (l + r) / 2;\n        self(self, l, mid, ind * 2,\
-    \ po167::FPS_division(tmp, prod[ind * 2]).second);\n        self(self, mid, r,\
-    \ ind * 2 + 1, po167::FPS_division(tmp, prod[ind * 2 + 1]).second);\n    };calc(calc,\
-    \ 0, size, 1, f);\n    return res;\n}\n}\n#line 3 \"test/fps/multpoint_evalution.test.cpp\"\
+    \     if (l + 1 == r){\n            res[l] = (tmp.empty() ? T(0) : tmp[0]);\n\
+    \            return;\n        }\n        int mid = (l + r) / 2;\n        self(self,\
+    \ l, mid, ind * 2, po167::FPS_division(tmp, prod[ind * 2]).second);\n        self(self,\
+    \ mid, r, ind * 2 + 1, po167::FPS_division(tmp, prod[ind * 2 + 1]).second);\n\
+    \    };calc(calc, 0, size, 1, f);\n    return res;\n}\n}\n#line 3 \"test/fps/multpoint_evalution.test.cpp\"\
     \n\n#include <iostream>\nint main(){\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n    using mint = atcoder::modint998244353;\n\n  \
     \  int N, M;\n    std::cin >> N >> M;\n    std::vector<mint> c(N), p(M);\n   \
@@ -95,7 +95,7 @@ data:
   isVerificationFile: true
   path: test/fps/multpoint_evalution.test.cpp
   requiredBy: []
-  timestamp: '2024-09-05 20:11:34+09:00'
+  timestamp: '2024-11-23 01:53:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fps/multpoint_evalution.test.cpp

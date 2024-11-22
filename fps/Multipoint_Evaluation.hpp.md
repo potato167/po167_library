@@ -61,11 +61,11 @@ data:
     \ i--){\n        prod[i] = atcoder::convolution(prod[i * 2], prod[i * 2 + 1]);\n\
     \    }\n    std::vector<T> res(m);\n    auto calc = [&](auto self, int l, int\
     \ r, int ind, std::vector<T> tmp) -> void {\n        if (m <= l) return;\n   \
-    \     if (l + 1 == r){\n            res[l] = tmp[0];\n            return;\n  \
-    \      }\n        int mid = (l + r) / 2;\n        self(self, l, mid, ind * 2,\
-    \ po167::FPS_division(tmp, prod[ind * 2]).second);\n        self(self, mid, r,\
-    \ ind * 2 + 1, po167::FPS_division(tmp, prod[ind * 2 + 1]).second);\n    };calc(calc,\
-    \ 0, size, 1, f);\n    return res;\n}\n}\n"
+    \     if (l + 1 == r){\n            res[l] = (tmp.empty() ? T(0) : tmp[0]);\n\
+    \            return;\n        }\n        int mid = (l + r) / 2;\n        self(self,\
+    \ l, mid, ind * 2, po167::FPS_division(tmp, prod[ind * 2]).second);\n        self(self,\
+    \ mid, r, ind * 2 + 1, po167::FPS_division(tmp, prod[ind * 2 + 1]).second);\n\
+    \    };calc(calc, 0, size, 1, f);\n    return res;\n}\n}\n"
   code: "#pragma once\n#include <atcoder/convolution>\n#include \"FPS_division.hpp\"\
     \n\nnamespace po167{\n// return {f(p[0]), f(p[1]), f(p[2]), ... }\ntemplate <class\
     \ T>\nstd::vector<T> Multipoint_Evaluation(\n    std::vector<T> f,\n    std::vector<T>\
@@ -78,18 +78,18 @@ data:
     \ - 1; i > 0; i--){\n        prod[i] = atcoder::convolution(prod[i * 2], prod[i\
     \ * 2 + 1]);\n    }\n    std::vector<T> res(m);\n    auto calc = [&](auto self,\
     \ int l, int r, int ind, std::vector<T> tmp) -> void {\n        if (m <= l) return;\n\
-    \        if (l + 1 == r){\n            res[l] = tmp[0];\n            return;\n\
-    \        }\n        int mid = (l + r) / 2;\n        self(self, l, mid, ind * 2,\
-    \ po167::FPS_division(tmp, prod[ind * 2]).second);\n        self(self, mid, r,\
-    \ ind * 2 + 1, po167::FPS_division(tmp, prod[ind * 2 + 1]).second);\n    };calc(calc,\
-    \ 0, size, 1, f);\n    return res;\n}\n}"
+    \        if (l + 1 == r){\n            res[l] = (tmp.empty() ? T(0) : tmp[0]);\n\
+    \            return;\n        }\n        int mid = (l + r) / 2;\n        self(self,\
+    \ l, mid, ind * 2, po167::FPS_division(tmp, prod[ind * 2]).second);\n        self(self,\
+    \ mid, r, ind * 2 + 1, po167::FPS_division(tmp, prod[ind * 2 + 1]).second);\n\
+    \    };calc(calc, 0, size, 1, f);\n    return res;\n}\n}"
   dependsOn:
   - fps/FPS_division.hpp
   - fps/FPS_inv.hpp
   isVerificationFile: false
   path: fps/Multipoint_Evaluation.hpp
   requiredBy: []
-  timestamp: '2024-09-05 20:11:34+09:00'
+  timestamp: '2024-11-23 01:53:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/multpoint_evalution.test.cpp
