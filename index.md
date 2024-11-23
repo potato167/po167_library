@@ -90,6 +90,9 @@ data:
       path: math/Binomial.hpp
       title: "\u4E8C\u9805\u4FC2\u6570\u95A2\u9023"
     - icon: ':heavy_check_mark:'
+      path: math/Bitwise_Convolution.hpp
+      title: math/Bitwise_Convolution.hpp
+    - icon: ':heavy_check_mark:'
       path: math/q_Binomial.hpp
       title: math/q_Binomial.hpp
   - name: modint
@@ -163,10 +166,19 @@ data:
       path: test/math/Binomial_Coefficient_Prime_Mod.test.cpp
       title: test/math/Binomial_Coefficient_Prime_Mod.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/math/and_convolution.test.cpp
+      title: test/math/and_convolution.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/math/or_convolution.test.cpp
+      title: test/math/or_convolution.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/math/q_Binomial.test.cpp
       title: test/math/q_Binomial.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/math/sampleproblem.test.cpp
       title: test/math/sampleproblem.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/math/xor_convolution.test.cpp
+      title: test/math/xor_convolution.test.cpp
 layout: toppage
 ---
