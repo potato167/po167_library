@@ -100,5 +100,13 @@ struct Binomial{
         a--, b--, c--, d--;
         return gird_sum(a, c) - gird_sum(a, d) - gird_sum(b, c) + gird_sum(b, d);
     }
+
+    // the number of diagonal dissections of a convex n-gon into k+1 regions.
+    // OEIS A033282
+    // AGC065D
+    T diagonal(int n, int k){
+        if (n <= 2 || n - 3 < k || k < 0) return 0;
+        return C(n - 3, k) * C(n + k - 1, k) * inv(k + 1);
+    }
 };
 }
