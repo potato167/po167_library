@@ -53,29 +53,33 @@ data:
     \ ..., b - 1} sum_{j = c, ... , d - 1} C(i + j, i)\n    // AGC 018 E\n    T gird_sum_2(int\
     \ a, int b, int c, int d){\n        if (a >= b || c >= d) return 0;\n        a--,\
     \ b--, c--, d--;\n        return gird_sum(a, c) - gird_sum(a, d) - gird_sum(b,\
-    \ c) + gird_sum(b, d);\n    }\n};\n}\n#line 4 \"math/q_Binomial.hpp\"\n\nnamespace\
-    \ po167{\ntemplate<class T>\nstruct q_Binomial{\n    std::vector<T> q_pow, q_sum,\
-    \ fact_vec, fact_inv_vec;\n    T q;\n    int lim;\n    int mod;\n    Binomial<T>\
-    \ table;\n    q_Binomial(int q_, int mod_, int lim_ = 10'000'100){\n        q\
-    \ = q_;\n        mod = mod_;\n        lim = lim_;\n        table.extend(std::min(lim\
-    \ + 1, mod));\n        q_pow.resize(lim, T(1));\n        q_sum.resize(lim, T(0));\n\
-    \        for (int i = 1; i < lim; i++){\n            q_pow[i] = q_pow[i - 1] *\
-    \ q;\n            q_sum[i] = q_sum[i - 1] + q_pow[i - 1];\n            if (q_pow[i]\
-    \ == 1){\n                lim = i;\n                q_pow.resize(lim);\n     \
-    \           q_sum.resize(lim);\n                break;\n            }\n      \
-    \  }\n        fact_vec.resize(lim, T(1));\n        fact_inv_vec.resize(lim, T(1));\n\
-    \        for (int i = 1; i < lim; i++){\n            fact_vec[i] = fact_vec[i\
-    \ - 1] * q_sum[i];\n        }\n        fact_inv_vec.back() = (T)(1) / (T)(fact_vec.back());\n\
-    \        for (int i = lim - 1; i > 0; i--){\n            fact_inv_vec[i - 1] =\
-    \ fact_inv_vec[i] * q_sum[i];\n        }\n    }\n    T fact(long long i){\n  \
-    \      if (i < 0 || lim <= i) return 0;\n        return fact_vec[i];\n    }\n\
-    \    T invfact(long long i){\n        if (i < 0 || lim <= i) return 0;\n     \
-    \   return fact_inv_vec[i];\n    }\n    T aCb(long long a, long long b){\n   \
-    \     if (a < b || b < 0) return 0;\n        if (a < mod) return table.C(a, b);\n\
-    \        return table.C(a % mod, b % mod) * aCb(a / mod, b / mod);\n    }\n  \
-    \  T C(long long a, long long b){\n        if (a < b || b < 0) return 0;\n   \
-    \     if (a < lim) return fact(a) * invfact(b) * invfact(a - b);\n        return\
-    \ C(a % lim, b % lim) * aCb(a / lim, b / lim);\n    }\n};\n}\n"
+    \ c) + gird_sum(b, d);\n    }\n\n    // the number of diagonal dissections of\
+    \ a convex n-gon into k+1 regions.\n    // OEIS A033282\n    // AGC065D\n    T\
+    \ diagonal(int n, int k){\n        if (n <= 2 || n - 3 < k || k < 0) return 0;\n\
+    \        return C(n - 3, k) * C(n + k - 1, k) * inv(k + 1);\n    }\n};\n}\n#line\
+    \ 4 \"math/q_Binomial.hpp\"\n\nnamespace po167{\ntemplate<class T>\nstruct q_Binomial{\n\
+    \    std::vector<T> q_pow, q_sum, fact_vec, fact_inv_vec;\n    T q;\n    int lim;\n\
+    \    int mod;\n    Binomial<T> table;\n    q_Binomial(int q_, int mod_, int lim_\
+    \ = 10'000'100){\n        q = q_;\n        mod = mod_;\n        lim = lim_;\n\
+    \        table.extend(std::min(lim + 1, mod));\n        q_pow.resize(lim, T(1));\n\
+    \        q_sum.resize(lim, T(0));\n        for (int i = 1; i < lim; i++){\n  \
+    \          q_pow[i] = q_pow[i - 1] * q;\n            q_sum[i] = q_sum[i - 1] +\
+    \ q_pow[i - 1];\n            if (q_pow[i] == 1){\n                lim = i;\n \
+    \               q_pow.resize(lim);\n                q_sum.resize(lim);\n     \
+    \           break;\n            }\n        }\n        fact_vec.resize(lim, T(1));\n\
+    \        fact_inv_vec.resize(lim, T(1));\n        for (int i = 1; i < lim; i++){\n\
+    \            fact_vec[i] = fact_vec[i - 1] * q_sum[i];\n        }\n        fact_inv_vec.back()\
+    \ = (T)(1) / (T)(fact_vec.back());\n        for (int i = lim - 1; i > 0; i--){\n\
+    \            fact_inv_vec[i - 1] = fact_inv_vec[i] * q_sum[i];\n        }\n  \
+    \  }\n    T fact(long long i){\n        if (i < 0 || lim <= i) return 0;\n   \
+    \     return fact_vec[i];\n    }\n    T invfact(long long i){\n        if (i <\
+    \ 0 || lim <= i) return 0;\n        return fact_inv_vec[i];\n    }\n    T aCb(long\
+    \ long a, long long b){\n        if (a < b || b < 0) return 0;\n        if (a\
+    \ < mod) return table.C(a, b);\n        return table.C(a % mod, b % mod) * aCb(a\
+    \ / mod, b / mod);\n    }\n    T C(long long a, long long b){\n        if (a <\
+    \ b || b < 0) return 0;\n        if (a < lim) return fact(a) * invfact(b) * invfact(a\
+    \ - b);\n        return C(a % lim, b % lim) * aCb(a / lim, b / lim);\n    }\n\
+    };\n}\n"
   code: "#pragma once\n\n#include \"Binomial.hpp\"\n\nnamespace po167{\ntemplate<class\
     \ T>\nstruct q_Binomial{\n    std::vector<T> q_pow, q_sum, fact_vec, fact_inv_vec;\n\
     \    T q;\n    int lim;\n    int mod;\n    Binomial<T> table;\n    q_Binomial(int\
@@ -104,7 +108,7 @@ data:
   isVerificationFile: false
   path: math/q_Binomial.hpp
   requiredBy: []
-  timestamp: '2024-09-04 23:15:09+09:00'
+  timestamp: '2024-11-28 11:40:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/q_Binomial.test.cpp

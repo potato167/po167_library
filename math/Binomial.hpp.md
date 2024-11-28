@@ -62,7 +62,10 @@ data:
     \ , d - 1} C(i + j, i)\n    // AGC 018 E\n    T gird_sum_2(int a, int b, int c,\
     \ int d){\n        if (a >= b || c >= d) return 0;\n        a--, b--, c--, d--;\n\
     \        return gird_sum(a, c) - gird_sum(a, d) - gird_sum(b, c) + gird_sum(b,\
-    \ d);\n    }\n};\n}\n"
+    \ d);\n    }\n\n    // the number of diagonal dissections of a convex n-gon into\
+    \ k+1 regions.\n    // OEIS A033282\n    // AGC065D\n    T diagonal(int n, int\
+    \ k){\n        if (n <= 2 || n - 3 < k || k < 0) return 0;\n        return C(n\
+    \ - 3, k) * C(n + k - 1, k) * inv(k + 1);\n    }\n};\n}\n"
   code: "#pragma once\n\n#include<vector>\n#include<assert.h>\n\nnamespace po167{\n\
     template<class T>\nstruct Binomial{\n    std::vector<T> fact_vec, fact_inv_vec;\n\
     \    void extend(int m = -1){\n        int n = fact_vec.size();\n        if (m\
@@ -102,14 +105,17 @@ data:
     \ , d - 1} C(i + j, i)\n    // AGC 018 E\n    T gird_sum_2(int a, int b, int c,\
     \ int d){\n        if (a >= b || c >= d) return 0;\n        a--, b--, c--, d--;\n\
     \        return gird_sum(a, c) - gird_sum(a, d) - gird_sum(b, c) + gird_sum(b,\
-    \ d);\n    }\n};\n}\n"
+    \ d);\n    }\n\n    // the number of diagonal dissections of a convex n-gon into\
+    \ k+1 regions.\n    // OEIS A033282\n    // AGC065D\n    T diagonal(int n, int\
+    \ k){\n        if (n <= 2 || n - 3 < k || k < 0) return 0;\n        return C(n\
+    \ - 3, k) * C(n + k - 1, k) * inv(k + 1);\n    }\n};\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: math/Binomial.hpp
   requiredBy:
   - math/q_Binomial.hpp
   - fps/Taylor_Shift.hpp
-  timestamp: '2024-09-04 23:15:09+09:00'
+  timestamp: '2024-11-28 11:40:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/Binomial_Coefficient_Prime_Mod.test.cpp

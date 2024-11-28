@@ -58,20 +58,24 @@ data:
     \ , d - 1} C(i + j, i)\n    // AGC 018 E\n    T gird_sum_2(int a, int b, int c,\
     \ int d){\n        if (a >= b || c >= d) return 0;\n        a--, b--, c--, d--;\n\
     \        return gird_sum(a, c) - gird_sum(a, d) - gird_sum(b, c) + gird_sum(b,\
-    \ d);\n    }\n};\n}\n#line 5 \"fps/Taylor_Shift.hpp\"\n\nnamespace po167{\n//\
-    \ return f(x + c)\ntemplate<class T>\nstd::vector<T> Taylor_Shift(\n    std::vector<T>\
-    \ f, T c\n){\n    int n = f.size();\n    Binomial<T> table(n);\n    std::vector<T>\
-    \ g(n);\n    T tmp = 1;\n    for (int i = 0; i < n; i++){\n        g[n - 1 - i]\
-    \ = table.invfact(i) * tmp;\n        tmp *= c;\n        f[i] *= table.fact(i);\n\
-    \    }\n    // using cyclic convolution is faster ? \n    g = atcoder::convolution(f,\
-    \ g);\n    std::vector<T> res(n);\n    for (int i = 0; i < n; i++){\n        res[i]\
-    \ = table.invfact(i) * g[n + i - 1];\n    }\n    return res;\n}\n}\n#line 4 \"\
-    test/fps/taylor_shift.test.cpp\"\n\n#include <iostream>\nint main(){\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n    using mint = atcoder::modint998244353;\n\n  \
-    \  int N, c, a;\n    std::cin >> N >> c;\n    std::vector<mint> f(N);\n    for\
-    \ (auto &x : f){\n        std::cin >> a;\n        x = a;\n    }\n    f = po167::Taylor_Shift(f,\
-    \ (mint)(c));\n    for (int i = 0; i < N; i++){\n        std::cout << f[i].val()\
-    \ << (i + 1 == N ? \"\\n\" : \" \");\n    }\n}\n"
+    \ d);\n    }\n\n    // the number of diagonal dissections of a convex n-gon into\
+    \ k+1 regions.\n    // OEIS A033282\n    // AGC065D\n    T diagonal(int n, int\
+    \ k){\n        if (n <= 2 || n - 3 < k || k < 0) return 0;\n        return C(n\
+    \ - 3, k) * C(n + k - 1, k) * inv(k + 1);\n    }\n};\n}\n#line 5 \"fps/Taylor_Shift.hpp\"\
+    \n\nnamespace po167{\n// return f(x + c)\ntemplate<class T>\nstd::vector<T> Taylor_Shift(\n\
+    \    std::vector<T> f, T c\n){\n    int n = f.size();\n    Binomial<T> table(n);\n\
+    \    std::vector<T> g(n);\n    T tmp = 1;\n    for (int i = 0; i < n; i++){\n\
+    \        g[n - 1 - i] = table.invfact(i) * tmp;\n        tmp *= c;\n        f[i]\
+    \ *= table.fact(i);\n    }\n    // using cyclic convolution is faster ? \n   \
+    \ g = atcoder::convolution(f, g);\n    std::vector<T> res(n);\n    for (int i\
+    \ = 0; i < n; i++){\n        res[i] = table.invfact(i) * g[n + i - 1];\n    }\n\
+    \    return res;\n}\n}\n#line 4 \"test/fps/taylor_shift.test.cpp\"\n\n#include\
+    \ <iostream>\nint main(){\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \    using mint = atcoder::modint998244353;\n\n    int N, c, a;\n    std::cin\
+    \ >> N >> c;\n    std::vector<mint> f(N);\n    for (auto &x : f){\n        std::cin\
+    \ >> a;\n        x = a;\n    }\n    f = po167::Taylor_Shift(f, (mint)(c));\n \
+    \   for (int i = 0; i < N; i++){\n        std::cout << f[i].val() << (i + 1 ==\
+    \ N ? \"\\n\" : \" \");\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_taylor_shift\"\
     \n\n#include \"../../fps/Taylor_Shift.hpp\"\n\n#include <iostream>\nint main(){\n\
     \    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n    using\
@@ -86,7 +90,7 @@ data:
   isVerificationFile: true
   path: test/fps/taylor_shift.test.cpp
   requiredBy: []
-  timestamp: '2024-09-05 20:21:53+09:00'
+  timestamp: '2024-11-28 11:40:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fps/taylor_shift.test.cpp

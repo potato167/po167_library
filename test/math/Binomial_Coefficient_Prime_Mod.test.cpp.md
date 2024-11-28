@@ -55,7 +55,10 @@ data:
     \ , d - 1} C(i + j, i)\n    // AGC 018 E\n    T gird_sum_2(int a, int b, int c,\
     \ int d){\n        if (a >= b || c >= d) return 0;\n        a--, b--, c--, d--;\n\
     \        return gird_sum(a, c) - gird_sum(a, d) - gird_sum(b, c) + gird_sum(b,\
-    \ d);\n    }\n};\n}\n#line 4 \"test/math/Binomial_Coefficient_Prime_Mod.test.cpp\"\
+    \ d);\n    }\n\n    // the number of diagonal dissections of a convex n-gon into\
+    \ k+1 regions.\n    // OEIS A033282\n    // AGC065D\n    T diagonal(int n, int\
+    \ k){\n        if (n <= 2 || n - 3 < k || k < 0) return 0;\n        return C(n\
+    \ - 3, k) * C(n + k - 1, k) * inv(k + 1);\n    }\n};\n}\n#line 4 \"test/math/Binomial_Coefficient_Prime_Mod.test.cpp\"\
     \n#include <bits/stdc++.h>\n#include <atcoder/modint>\n\n\nint main(){\n    int\
     \ T, m;\n    std::cin >> T >> m;\n    using mint = atcoder::dynamic_modint<1>;\n\
     \    mint::set_mod(m);\n    po167::Binomial<mint> table(std::min(m, 10000000)\
@@ -72,7 +75,7 @@ data:
   isVerificationFile: true
   path: test/math/Binomial_Coefficient_Prime_Mod.test.cpp
   requiredBy: []
-  timestamp: '2024-09-04 23:15:09+09:00'
+  timestamp: '2024-11-28 11:40:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/Binomial_Coefficient_Prime_Mod.test.cpp
