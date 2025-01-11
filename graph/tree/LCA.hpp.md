@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: ds/Sparce_table.hpp
-    title: ds/Sparce_table.hpp
+    path: ds/Sparse_table.hpp
+    title: ds/Sparse_table.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -18,19 +18,19 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/tree/LCA.hpp\"\n#include<vector>\n#include<algorithm>\n\
-    #include<cassert>\n#line 4 \"ds/Sparce_table.hpp\"\nnamespace po167{\ntemplate<class\
-    \ T, T(*op)(T, T)>\nstruct Sparce_table{\n    int n;\n    int depth;\n    std::vector<std::vector<T>>\
+    #include<cassert>\n#line 4 \"ds/Sparse_table.hpp\"\nnamespace po167{\ntemplate<class\
+    \ T, T(*op)(T, T)>\nstruct Sparse_table{\n    int n;\n    int depth;\n    std::vector<std::vector<T>>\
     \ val;\n    void init(std::vector<T> &v){\n        depth = 1;\n        n = v.size();\n\
     \        while ((1 << depth) <= n) depth++;\n        val.resize(depth);\n    \
     \    val[0] = v;\n        for (int i = 1; i < depth; i++){\n            val[i].resize(n);\n\
     \            for (int j = 0; j <= n - (1 << i); j++){\n                val[i][j]\
     \ = op(val[i - 1][j], val[i - 1][j + (1 << (i - 1))]);\n            }\n      \
-    \  }\n    }\n    Sparce_table(std::vector<T> v){\n        init(v);\n    }\n  \
-    \  Sparce_table(){}\n    // 0 <= l < r <= n\n    // if l == r : assert\n    T\
+    \  }\n    }\n    Sparse_table(std::vector<T> v){\n        init(v);\n    }\n  \
+    \  Sparse_table(){}\n    // 0 <= l < r <= n\n    // if l == r : assert\n    T\
     \ prod(int l, int r){\n        assert(0 <= l && l < r && r <= n);\n        int\
     \ z=31-__builtin_clz(r-l);\n        return op(val[z][l], val[z][r - (1 << z)]);\n\
     \    }\n};\n}\n#line 6 \"graph/tree/LCA.hpp\"\nnamespace po167{\nint op(int a,\
-    \ int b){\n    return std::min(a, b);\n}\nstruct LCA{\n    Sparce_table<int, op>\
+    \ int b){\n    return std::min(a, b);\n}\nstruct LCA{\n    Sparse_table<int, op>\
     \ table;\n    std::vector<int> depth;\n    std::vector<int> E;\n    std::vector<int>\
     \ order;\n    int var_num;\n    void init(std::vector<std::vector<int>> &g, int\
     \ root = 0){\n        var_num = g.size();\n        assert(0 <= root && root <\
@@ -66,8 +66,8 @@ data:
     \ return back(b, depth[b] - depth[c] - len);\n        return -1;\n    }\n};\n\n\
     }\n"
   code: "#pragma once\n#include<vector>\n#include<algorithm>\n#include<cassert>\n\
-    #include \"../../ds/Sparce_table.hpp\"\nnamespace po167{\nint op(int a, int b){\n\
-    \    return std::min(a, b);\n}\nstruct LCA{\n    Sparce_table<int, op> table;\n\
+    #include \"../../ds/Sparse_table.hpp\"\nnamespace po167{\nint op(int a, int b){\n\
+    \    return std::min(a, b);\n}\nstruct LCA{\n    Sparse_table<int, op> table;\n\
     \    std::vector<int> depth;\n    std::vector<int> E;\n    std::vector<int> order;\n\
     \    int var_num;\n    void init(std::vector<std::vector<int>> &g, int root =\
     \ 0){\n        var_num = g.size();\n        assert(0 <= root && root < var_num);\n\
@@ -103,15 +103,15 @@ data:
     \ return back(b, depth[b] - depth[c] - len);\n        return -1;\n    }\n};\n\n\
     }"
   dependsOn:
-  - ds/Sparce_table.hpp
+  - ds/Sparse_table.hpp
   isVerificationFile: false
   path: graph/tree/LCA.hpp
   requiredBy: []
-  timestamp: '2024-11-20 00:33:35+09:00'
+  timestamp: '2025-01-11 23:26:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/graph/tree/lca_1.test.cpp
   - test/graph/tree/jump_tree.test.cpp
+  - test/graph/tree/lca_1.test.cpp
 documentation_of: graph/tree/LCA.hpp
 layout: document
 redirect_from:

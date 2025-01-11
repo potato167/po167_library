@@ -15,8 +15,8 @@ data:
       path: ds/Doubling.hpp
       title: ds/Doubling.hpp
     - icon: ':heavy_check_mark:'
-      path: ds/Sparce_table.hpp
-      title: ds/Sparce_table.hpp
+      path: ds/Sparse_table.hpp
+      title: ds/Sparse_table.hpp
     - icon: ':heavy_check_mark:'
       path: ds/Swag.hpp
       title: ds/Swag.hpp
@@ -112,8 +112,8 @@ data:
       path: test/ds/doubling_rmq.test.cpp
       title: test/ds/doubling_rmq.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/ds/sparce_table.test.cpp
-      title: test/ds/sparce_table.test.cpp
+      path: test/ds/sparse_table.test.cpp
+      title: test/ds/sparse_table.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/ds/swag.test.cpp
       title: test/ds/swag.test.cpp

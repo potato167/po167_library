@@ -59,8 +59,8 @@ data:
   timestamp: '2024-06-19 15:49:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/fps/linear_kth.test.cpp
   - test/fps/comp_inverse.test.cpp
+  - test/fps/linear_kth.test.cpp
 documentation_of: fps/FPS_pick_even_odd.hpp
 layout: document
 redirect_from:
