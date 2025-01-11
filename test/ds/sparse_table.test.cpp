@@ -1,5 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
-#include "../../ds/Sparce_table.hpp"
+#include "../../ds/Sparse_table.hpp"
 #include <iostream>
 
 int op(int a, int b){
@@ -14,7 +14,7 @@ int main(){
     std::cin >> N >> Q;
     std::vector<int> A(N);
     for (auto &a : A) std::cin >> a;
-    po167::Sparce_table<int, op> table(A);
+    po167::Sparse_table<int, op> table(A);
     while (Q--){
         int l, r;
         std::cin >> l >> r;

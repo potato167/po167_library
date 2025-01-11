@@ -3,7 +3,7 @@
 #include <cassert>
 namespace po167{
 template<class T, T(*op)(T, T)>
-struct Sparce_table{
+struct Sparse_table{
     int n;
     int depth;
     std::vector<std::vector<T>> val;
@@ -20,10 +20,10 @@ struct Sparce_table{
             }
         }
     }
-    Sparce_table(std::vector<T> v){
+    Sparse_table(std::vector<T> v){
         init(v);
     }
-    Sparce_table(){}
+    Sparse_table(){}
     // 0 <= l < r <= n
     // if l == r : assert
     T prod(int l, int r){

@@ -2,13 +2,13 @@
 #include<vector>
 #include<algorithm>
 #include<cassert>
-#include "../../ds/Sparce_table.hpp"
+#include "../../ds/Sparse_table.hpp"
 namespace po167{
 int op(int a, int b){
     return std::min(a, b);
 }
 struct LCA{
-    Sparce_table<int, op> table;
+    Sparse_table<int, op> table;
     std::vector<int> depth;
     std::vector<int> E;
     std::vector<int> order;
