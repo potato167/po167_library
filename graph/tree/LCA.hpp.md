@@ -110,8 +110,8 @@ data:
   timestamp: '2025-01-11 23:26:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/graph/tree/jump_tree.test.cpp
   - test/graph/tree/lca_1.test.cpp
+  - test/graph/tree/jump_tree.test.cpp
 documentation_of: graph/tree/LCA.hpp
 layout: document
 redirect_from:
