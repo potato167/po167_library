@@ -4,10 +4,10 @@
 namespace po167{
 struct mint61{
     using u64 = unsigned long long;
-    const u64 MOD = (1UL << 61) - 1;
-    const u64 MASK30 = (1UL << 30) - 1;
-    const u64 MASK31 = (1UL << 31) - 1;
-    u64  x = 0;
+    static constexpr u64 MOD = (1ULL << 61) - 1;
+    static constexpr u64 MASK30 = (1ULL << 30) - 1;
+    static constexpr u64 MASK31 = (1ULL << 31) - 1;
+    u64  x;
     u64 calcmod(u64 a){
         u64 au = (a >> 61);
         u64 ad = (a & MOD);
@@ -15,6 +15,7 @@ struct mint61{
         if (res >= MOD) res -= MOD;
         return res;
     }
+    mint61(){ x = 0;}
     mint61(long long x_){
         while (x_ < 0) x_ += MOD;
         x = calcmod(x_);
