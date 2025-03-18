@@ -64,6 +64,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: fps/FPS_pow.hpp
       title: fps/FPS_pow.hpp
+    - icon: ':heavy_check_mark:'
+      path: fps/FPS_sum_of_power.hpp
+      title: fps/FPS_sum_of_power.hpp
     - icon: ':warning:'
       path: fps/FSP_add.hpp
       title: fps/FSP_add.hpp
@@ -149,6 +152,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/fps/product_sequence.test.cpp
       title: test/fps/product_sequence.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/fps/sum_of_power.test.cpp
+      title: test/fps/sum_of_power.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/fps/taylor_shift.test.cpp
       title: test/fps/taylor_shift.test.cpp

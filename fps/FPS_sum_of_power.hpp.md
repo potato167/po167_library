@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: fps/FPS_Product_Sequence.hpp
+    title: fps/FPS_Product_Sequence.hpp
+  - icon: ':heavy_check_mark:'
     path: fps/FPS_differetial.hpp
     title: fps/FPS_differetial.hpp
   - icon: ':heavy_check_mark:'
@@ -10,23 +13,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: fps/FPS_inv.hpp
     title: fps/FPS_inv.hpp
-  _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: fps/FPS_inverse.hpp
-    title: fps/FPS_inverse.hpp
-  - icon: ':heavy_check_mark:'
-    path: fps/FPS_pow.hpp
-    title: fps/FPS_pow.hpp
-  - icon: ':heavy_check_mark:'
-    path: fps/FPS_sum_of_power.hpp
-    title: fps/FPS_sum_of_power.hpp
+    path: fps/FPS_log.hpp
+    title: fps/FPS_log.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/fps/comp_inverse.test.cpp
-    title: test/fps/comp_inverse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/fps/pow.test.cpp
-    title: test/fps/pow.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/fps/sum_of_power.test.cpp
     title: test/fps/sum_of_power.test.cpp
@@ -69,34 +60,42 @@ data:
     \    if (len == 0) return {};\n    if (len == 1) return {T(0)};\n    assert(!f.empty()\
     \ && f[0] == 1);\n    std::vector<T> res = atcoder::convolution(FPS_differential(f),\
     \ FPS_inv(f, len));\n    res.resize(len - 1);\n    return FPS_integral(res);\n\
-    }\n}\n"
-  code: "#pragma once\n#include <vector>\n#include \"../fps/FPS_differetial.hpp\"\n\
-    #include \"../fps/FPS_integral.hpp\"\n#include \"../fps/FPS_inv.hpp\"\n\nnamespace\
-    \ po167{\ntemplate<class T>\nstd::vector<T> FPS_log(std::vector<T> f, int len\
-    \ = -1){\n    if (len == -1) len = f.size();\n    if (len == 0) return {};\n \
-    \   if (len == 1) return {T(0)};\n    assert(!f.empty() && f[0] == 1);\n    std::vector<T>\
-    \ res = atcoder::convolution(FPS_differential(f), FPS_inv(f, len));\n    res.resize(len\
-    \ - 1);\n    return FPS_integral(res);\n}\n}"
+    }\n}\n#line 4 \"fps/FPS_Product_Sequence.hpp\"\n\nnamespace po167{\ntemplate<class\
+    \ T>\nstd::vector<T> FPS_Product_Sequence(std::vector<std::vector<T>> f){\n  \
+    \  if (f.empty()) return {1};\n    auto op = [&](auto self,int l, int r) -> std::vector<T>\
+    \ {\n        if (l + 1 == r) return f[l];\n        int m = (l + r) / 2;\n    \
+    \    return atcoder::convolution(self(self, l, m), self(self, m, r));\n    };\n\
+    \    return op(op, 0, f.size());\n}\n}\n#line 4 \"fps/FPS_sum_of_power.hpp\"\n\
+    \nnamespace po167{\ntemplate<class T>\nstd::vector<T> FPS_sum_of_power(std::vector<T>\
+    \ A, int M){\n    std::vector<std::vector<T>> B(A.size());\n    for (int i = 0;\
+    \ i < (int)(A.size()); i++){\n        B[i] = {1, - A[i]};\n    }\n    auto C =\
+    \ FPS_Product_Sequence(B);\n    C = FPS_log(C, M + 1);\n    std::vector<T> res(M\
+    \ + 1);\n    res[0] = (int)A.size();\n    for (int i = 0; i < M; i++){\n     \
+    \   res[i + 1] = C[i + 1] * -1 * (i + 1);\n    }\n    return res;\n}\n}\n"
+  code: "#pragma once\n#include \"FPS_log.hpp\"\n#include \"FPS_Product_Sequence.hpp\"\
+    \n\nnamespace po167{\ntemplate<class T>\nstd::vector<T> FPS_sum_of_power(std::vector<T>\
+    \ A, int M){\n    std::vector<std::vector<T>> B(A.size());\n    for (int i = 0;\
+    \ i < (int)(A.size()); i++){\n        B[i] = {1, - A[i]};\n    }\n    auto C =\
+    \ FPS_Product_Sequence(B);\n    C = FPS_log(C, M + 1);\n    std::vector<T> res(M\
+    \ + 1);\n    res[0] = (int)A.size();\n    for (int i = 0; i < M; i++){\n     \
+    \   res[i + 1] = C[i + 1] * -1 * (i + 1);\n    }\n    return res;\n}\n}"
   dependsOn:
+  - fps/FPS_log.hpp
   - fps/FPS_differetial.hpp
   - fps/FPS_integral.hpp
   - fps/FPS_inv.hpp
+  - fps/FPS_Product_Sequence.hpp
   isVerificationFile: false
-  path: fps/FPS_log.hpp
-  requiredBy:
-  - fps/FPS_inverse.hpp
-  - fps/FPS_sum_of_power.hpp
-  - fps/FPS_pow.hpp
-  timestamp: '2024-11-08 23:20:15+09:00'
+  path: fps/FPS_sum_of_power.hpp
+  requiredBy: []
+  timestamp: '2025-03-19 04:02:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/fps/comp_inverse.test.cpp
   - test/fps/sum_of_power.test.cpp
-  - test/fps/pow.test.cpp
-documentation_of: fps/FPS_log.hpp
+documentation_of: fps/FPS_sum_of_power.hpp
 layout: document
 redirect_from:
-- /library/fps/FPS_log.hpp
-- /library/fps/FPS_log.hpp.html
-title: fps/FPS_log.hpp
+- /library/fps/FPS_sum_of_power.hpp
+- /library/fps/FPS_sum_of_power.hpp.html
+title: fps/FPS_sum_of_power.hpp
 ---

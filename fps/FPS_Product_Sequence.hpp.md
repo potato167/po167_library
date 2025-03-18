@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: fps/FPS_sum_of_power.hpp
+    title: fps/FPS_sum_of_power.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/fps/product_sequence.test.cpp
     title: test/fps/product_sequence.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/fps/sum_of_power.test.cpp
+    title: test/fps/sum_of_power.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -27,10 +33,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: fps/FPS_Product_Sequence.hpp
-  requiredBy: []
+  requiredBy:
+  - fps/FPS_sum_of_power.hpp
   timestamp: '2024-06-19 18:48:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/fps/sum_of_power.test.cpp
   - test/fps/product_sequence.test.cpp
 documentation_of: fps/FPS_Product_Sequence.hpp
 layout: document

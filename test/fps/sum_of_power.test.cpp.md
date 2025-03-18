@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: fps/FPS_Product_Sequence.hpp
+    title: fps/FPS_Product_Sequence.hpp
+  - icon: ':heavy_check_mark:'
     path: fps/FPS_differetial.hpp
     title: fps/FPS_differetial.hpp
   - icon: ':heavy_check_mark:'
@@ -10,32 +13,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: fps/FPS_inv.hpp
     title: fps/FPS_inv.hpp
-  _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: fps/FPS_inverse.hpp
-    title: fps/FPS_inverse.hpp
-  - icon: ':heavy_check_mark:'
-    path: fps/FPS_pow.hpp
-    title: fps/FPS_pow.hpp
+    path: fps/FPS_log.hpp
+    title: fps/FPS_log.hpp
   - icon: ':heavy_check_mark:'
     path: fps/FPS_sum_of_power.hpp
     title: fps/FPS_sum_of_power.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/fps/comp_inverse.test.cpp
-    title: test/fps/comp_inverse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/fps/pow.test.cpp
-    title: test/fps/pow.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/fps/sum_of_power.test.cpp
-    title: test/fps/sum_of_power.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"fps/FPS_log.hpp\"\n#include <vector>\n#line 3 \"fps/FPS_differetial.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://yukicoder.me/problems/no/1145
+    links:
+    - https://yukicoder.me/problems/no/1145
+  bundledCode: "#line 1 \"test/fps/sum_of_power.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/1145\"\
+    \n#line 2 \"fps/FPS_log.hpp\"\n#include <vector>\n#line 3 \"fps/FPS_differetial.hpp\"\
     \n\nnamespace po167{\n// return f'\ntemplate <class T>\nstd::vector<T> FPS_differential(std::vector<T>\
     \ f){\n    if (f.empty()) return f;\n    for (int i = 0; i < (int)f.size() - 1;\
     \ i++){\n        f[i] = f[i + 1] * (T)(i + 1);\n    }\n    f.pop_back();\n   \
@@ -69,34 +64,49 @@ data:
     \    if (len == 0) return {};\n    if (len == 1) return {T(0)};\n    assert(!f.empty()\
     \ && f[0] == 1);\n    std::vector<T> res = atcoder::convolution(FPS_differential(f),\
     \ FPS_inv(f, len));\n    res.resize(len - 1);\n    return FPS_integral(res);\n\
-    }\n}\n"
-  code: "#pragma once\n#include <vector>\n#include \"../fps/FPS_differetial.hpp\"\n\
-    #include \"../fps/FPS_integral.hpp\"\n#include \"../fps/FPS_inv.hpp\"\n\nnamespace\
-    \ po167{\ntemplate<class T>\nstd::vector<T> FPS_log(std::vector<T> f, int len\
-    \ = -1){\n    if (len == -1) len = f.size();\n    if (len == 0) return {};\n \
-    \   if (len == 1) return {T(0)};\n    assert(!f.empty() && f[0] == 1);\n    std::vector<T>\
-    \ res = atcoder::convolution(FPS_differential(f), FPS_inv(f, len));\n    res.resize(len\
-    \ - 1);\n    return FPS_integral(res);\n}\n}"
+    }\n}\n#line 4 \"fps/FPS_Product_Sequence.hpp\"\n\nnamespace po167{\ntemplate<class\
+    \ T>\nstd::vector<T> FPS_Product_Sequence(std::vector<std::vector<T>> f){\n  \
+    \  if (f.empty()) return {1};\n    auto op = [&](auto self,int l, int r) -> std::vector<T>\
+    \ {\n        if (l + 1 == r) return f[l];\n        int m = (l + r) / 2;\n    \
+    \    return atcoder::convolution(self(self, l, m), self(self, m, r));\n    };\n\
+    \    return op(op, 0, f.size());\n}\n}\n#line 4 \"fps/FPS_sum_of_power.hpp\"\n\
+    \nnamespace po167{\ntemplate<class T>\nstd::vector<T> FPS_sum_of_power(std::vector<T>\
+    \ A, int M){\n    std::vector<std::vector<T>> B(A.size());\n    for (int i = 0;\
+    \ i < (int)(A.size()); i++){\n        B[i] = {1, - A[i]};\n    }\n    auto C =\
+    \ FPS_Product_Sequence(B);\n    C = FPS_log(C, M + 1);\n    std::vector<T> res(M\
+    \ + 1);\n    res[0] = (int)A.size();\n    for (int i = 0; i < M; i++){\n     \
+    \   res[i + 1] = C[i + 1] * -1 * (i + 1);\n    }\n    return res;\n}\n}\n#line\
+    \ 3 \"test/fps/sum_of_power.test.cpp\"\n#include <iostream>\n\nint main(){\n\t\
+    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n    int N, M;\n\
+    \    std::cin >> N >> M;\n    std::vector<atcoder::modint998244353> A(N);\n  \
+    \  for (int i = 0; i < N; i++){\n        int a;\n        std::cin >> a;\n    \
+    \    A[i] = a;\n    }\n    auto ans = po167::FPS_sum_of_power(A, M);\n    for\
+    \ (int i = 1; i <= M; i++){\n        std::cout << ans[i].val() << (i == M ? \"\
+    \\n\" : \" \");\n    }\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1145\"\n#include \"../../fps/FPS_sum_of_power.hpp\"\
+    \n#include <iostream>\n\nint main(){\n\tstd::ios::sync_with_stdio(false);\n  \
+    \  std::cin.tie(nullptr);\n    int N, M;\n    std::cin >> N >> M;\n    std::vector<atcoder::modint998244353>\
+    \ A(N);\n    for (int i = 0; i < N; i++){\n        int a;\n        std::cin >>\
+    \ a;\n        A[i] = a;\n    }\n    auto ans = po167::FPS_sum_of_power(A, M);\n\
+    \    for (int i = 1; i <= M; i++){\n        std::cout << ans[i].val() << (i ==\
+    \ M ? \"\\n\" : \" \");\n    }\n}"
   dependsOn:
+  - fps/FPS_sum_of_power.hpp
+  - fps/FPS_log.hpp
   - fps/FPS_differetial.hpp
   - fps/FPS_integral.hpp
   - fps/FPS_inv.hpp
-  isVerificationFile: false
-  path: fps/FPS_log.hpp
-  requiredBy:
-  - fps/FPS_inverse.hpp
-  - fps/FPS_sum_of_power.hpp
-  - fps/FPS_pow.hpp
-  timestamp: '2024-11-08 23:20:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/fps/comp_inverse.test.cpp
-  - test/fps/sum_of_power.test.cpp
-  - test/fps/pow.test.cpp
-documentation_of: fps/FPS_log.hpp
+  - fps/FPS_Product_Sequence.hpp
+  isVerificationFile: true
+  path: test/fps/sum_of_power.test.cpp
+  requiredBy: []
+  timestamp: '2025-03-19 04:02:58+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/fps/sum_of_power.test.cpp
 layout: document
 redirect_from:
-- /library/fps/FPS_log.hpp
-- /library/fps/FPS_log.hpp.html
-title: fps/FPS_log.hpp
+- /verify/test/fps/sum_of_power.test.cpp
+- /verify/test/fps/sum_of_power.test.cpp.html
+title: test/fps/sum_of_power.test.cpp
 ---
