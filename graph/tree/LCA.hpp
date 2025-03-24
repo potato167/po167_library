@@ -61,6 +61,9 @@ struct LCA{
     LCA (std::vector<int> pare){
         init(pare);
     }
+    LCA(){
+        
+    }
     int lca(int a, int b){
         assert(0 <= std::min(a, b) && std::max(a, b) < var_num);
         if (a == b) return a;
