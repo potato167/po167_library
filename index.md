@@ -84,6 +84,9 @@ data:
       title: fps/any_mod.hpp
   - name: graph/tree
     pages:
+    - icon: ':warning:'
+      path: graph/tree/Auxiliary_Tree.hpp
+      title: graph/tree/Auxiliary_Tree.hpp
     - icon: ':heavy_check_mark:'
       path: graph/tree/LCA.hpp
       title: graph/tree/LCA.hpp

@@ -51,26 +51,26 @@ data:
     \             g[pare[i]].push_back(i);\n            }\n        }\n        assert(root\
     \ != -1);\n        init(g, root);\n    }\n    LCA (std::vector<std::vector<int>>\
     \ g, int root = 0){\n        init(g, root);\n    }\n    LCA (std::vector<int>\
-    \ pare){\n        init(pare);\n    }\n    int lca(int a, int b){\n        assert(0\
-    \ <= std::min(a, b) && std::max(a, b) < var_num);\n        if (a == b) return\
-    \ a;\n        if (E[a] > E[b]) std::swap(a, b);\n        return order[table.prod(E[a],\
-    \ E[b])];\n    }\n    int dist(int a, int b){\n        assert(0 <= std::min(a,\
-    \ b) && std::max(a, b) < var_num);\n        return depth[a] + depth[b] - 2 * depth[lca(a,\
-    \ b)];\n    }\n    int back(int var, int len){\n        assert(len <= depth[var]);\n\
-    \        if (len == 0) return var;\n        int l = 0, r = E[var];\n        while\
-    \ (r - l > 1){\n            int m = (l + r) / 2;\n            if (depth[var] -\
-    \ depth[order[table.prod(m, E[var])]] < len){\n                r = m;\n      \
-    \      }\n            else l = m;\n        }\n        return order[table.prod(l,\
-    \ E[var])];\n    }\n    // a -> b\n    int jump(int a, int b, int len){\n    \
-    \    int c = lca(a, b);\n        if (len <= depth[a] - depth[c]) return back(a,\
-    \ len);\n        len -= depth[a] - depth[c];\n        if (len <= depth[b] - depth[c])\
-    \ return back(b, depth[b] - depth[c] - len);\n        return -1;\n    }\n};\n\n\
-    }\n#line 4 \"test/graph/tree/lca_1.test.cpp\"\n#include <iostream>\nint main(){\n\
-    \    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n    int N,\
-    \ Q;\n    std::cin >> N >> Q;\n    std::vector<int> pare(N, -1);\n    for (int\
-    \ i = 1; i < N; i++) std::cin >> pare[i];\n    po167::LCA L(pare);\n    while\
-    \ (Q--){\n        int a, b;\n        std::cin >> a >> b;\n        std::cout <<\
-    \ L.lca(a, b) << \"\\n\";\n    }\n}\n"
+    \ pare){\n        init(pare);\n    }\n    LCA(){\n        \n    }\n    int lca(int\
+    \ a, int b){\n        assert(0 <= std::min(a, b) && std::max(a, b) < var_num);\n\
+    \        if (a == b) return a;\n        if (E[a] > E[b]) std::swap(a, b);\n  \
+    \      return order[table.prod(E[a], E[b])];\n    }\n    int dist(int a, int b){\n\
+    \        assert(0 <= std::min(a, b) && std::max(a, b) < var_num);\n        return\
+    \ depth[a] + depth[b] - 2 * depth[lca(a, b)];\n    }\n    int back(int var, int\
+    \ len){\n        assert(len <= depth[var]);\n        if (len == 0) return var;\n\
+    \        int l = 0, r = E[var];\n        while (r - l > 1){\n            int m\
+    \ = (l + r) / 2;\n            if (depth[var] - depth[order[table.prod(m, E[var])]]\
+    \ < len){\n                r = m;\n            }\n            else l = m;\n  \
+    \      }\n        return order[table.prod(l, E[var])];\n    }\n    // a -> b\n\
+    \    int jump(int a, int b, int len){\n        int c = lca(a, b);\n        if\
+    \ (len <= depth[a] - depth[c]) return back(a, len);\n        len -= depth[a] -\
+    \ depth[c];\n        if (len <= depth[b] - depth[c]) return back(b, depth[b] -\
+    \ depth[c] - len);\n        return -1;\n    }\n};\n\n}\n#line 4 \"test/graph/tree/lca_1.test.cpp\"\
+    \n#include <iostream>\nint main(){\n    std::ios::sync_with_stdio(false);\n  \
+    \  std::cin.tie(nullptr);\n    int N, Q;\n    std::cin >> N >> Q;\n    std::vector<int>\
+    \ pare(N, -1);\n    for (int i = 1; i < N; i++) std::cin >> pare[i];\n    po167::LCA\
+    \ L(pare);\n    while (Q--){\n        int a, b;\n        std::cin >> a >> b;\n\
+    \        std::cout << L.lca(a, b) << \"\\n\";\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n\n#include \"../../../graph/tree/LCA.hpp\"\
     \n#include <iostream>\nint main(){\n    std::ios::sync_with_stdio(false);\n  \
     \  std::cin.tie(nullptr);\n    int N, Q;\n    std::cin >> N >> Q;\n    std::vector<int>\
@@ -83,7 +83,7 @@ data:
   isVerificationFile: true
   path: test/graph/tree/lca_1.test.cpp
   requiredBy: []
-  timestamp: '2025-01-11 23:26:54+09:00'
+  timestamp: '2025-03-24 15:48:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/graph/tree/lca_1.test.cpp
