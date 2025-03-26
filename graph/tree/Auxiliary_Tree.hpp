@@ -1,8 +1,8 @@
-
 #pragma once
 #include "LCA.hpp"
 #include <vector>
 #include <stack>
+#include <tuple>
 
 namespace po167{
 struct Auxiliary_Tree{
@@ -15,7 +15,7 @@ struct Auxiliary_Tree{
         std::stack<int> st;
         n = (int)g.size();
         std::vector<int> seen(n);
-        seen[root] = 0;
+        seen[root] = 1;
         st.push(root);
         while (!st.empty()){
             int a = st.top();
