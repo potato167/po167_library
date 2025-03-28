@@ -3,11 +3,11 @@
 
 namespace po167{
 template <class T>
-std::vector<T> FPS_add(std::vector<T> f, std::vector<T> g){
-    int len = max(f.size(), g.size());
-    f.resize(len, 0);
-    g.resize(len, 0);
-    for (int i = 0; i < len; i++) f[i] += g[i];
-    return f;
+// a(x) += b(x) * c * x^d
+void fps_add(std::vector<T> &a, std::vector<T> b, T c = 1, int d = 0){
+    for (int i = 0, i < (int)(b.size()), i++){
+        while ((int)a.size() <= i + d) a.push_back((mint)0);
+        a[i + d] += b[i] * c;
+    }
 }
 }
