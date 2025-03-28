@@ -28,7 +28,10 @@ data:
     \ operator+(mint61 a, mint61 b){return a += b;}\n    friend mint61 operator-(mint61\
     \ a, mint61 b){return a -= b;}\n    friend mint61 operator*(mint61 a, mint61 b){return\
     \ a *= b;}\n    friend bool operator==(mint61 a, mint61 b){return a.x == b.x;}\n\
-    \    friend bool operator!=(mint61 a, mint61 b){return a.x != b.x;}\n};\n}\n"
+    \    friend bool operator!=(mint61 a, mint61 b){return a.x != b.x;}\n    mint61\
+    \ pow(long long e) const {\n        mint61 r = 1,b =*this;\n        while (e){\n\
+    \            if (e & 1) r *= b;\n            b *= b;\n            e >>= 1;\n \
+    \       }\n        return r;\n    }\n};\n}\n"
   code: "#pragma once\n\n// https://qiita.com/keymoon/items/11fac5627672a6d6a9f6\n\
     namespace po167{\nstruct mint61{\n    using u64 = unsigned long long;\n    static\
     \ constexpr u64 MOD = (1ULL << 61) - 1;\n    static constexpr u64 MASK30 = (1ULL\
@@ -48,12 +51,15 @@ data:
     \ operator+(mint61 a, mint61 b){return a += b;}\n    friend mint61 operator-(mint61\
     \ a, mint61 b){return a -= b;}\n    friend mint61 operator*(mint61 a, mint61 b){return\
     \ a *= b;}\n    friend bool operator==(mint61 a, mint61 b){return a.x == b.x;}\n\
-    \    friend bool operator!=(mint61 a, mint61 b){return a.x != b.x;}\n};\n}"
+    \    friend bool operator!=(mint61 a, mint61 b){return a.x != b.x;}\n    mint61\
+    \ pow(long long e) const {\n        mint61 r = 1,b =*this;\n        while (e){\n\
+    \            if (e & 1) r *= b;\n            b *= b;\n            e >>= 1;\n \
+    \       }\n        return r;\n    }\n};\n}"
   dependsOn: []
   isVerificationFile: false
   path: modint/mint61.hpp
   requiredBy: []
-  timestamp: '2025-02-03 02:52:06+09:00'
+  timestamp: '2025-03-29 02:27:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: modint/mint61.hpp
