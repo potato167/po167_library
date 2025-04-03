@@ -31,6 +31,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: fps/FPS_Product_Sequence.hpp
       title: fps/FPS_Product_Sequence.hpp
+    - icon: ':warning:'
+      path: fps/FPS_add.hpp
+      title: fps/FPS_add.hpp
     - icon: ':heavy_check_mark:'
       path: fps/FPS_cyclic_convolution.hpp
       title: fps/FPS_cyclic_convolution.hpp
@@ -67,9 +70,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: fps/FPS_sum_of_power.hpp
       title: fps/FPS_sum_of_power.hpp
-    - icon: ':warning:'
-      path: fps/FSP_add.hpp
-      title: fps/FSP_add.hpp
     - icon: ':heavy_check_mark:'
       path: fps/Multipoint_Evaluation.hpp
       title: fps/Multipoint_Evaluation.hpp
