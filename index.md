@@ -103,9 +103,17 @@ data:
       title: math/q_Binomial.hpp
   - name: modint
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: modint/mint61.hpp
       title: modint/mint61.hpp
+  - name: string
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: string/Manacher.hpp
+      title: string/Manacher.hpp
+    - icon: ':heavy_check_mark:'
+      path: string/Rolling_Hash.hpp
+      title: string/Rolling_Hash.hpp
   verificationCategories:
   - name: test/algorithm
     pages:
@@ -189,5 +197,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/math/xor_convolution.test.cpp
       title: test/math/xor_convolution.test.cpp
+  - name: test/string
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/string/manacher.test.cpp
+      title: test/string/manacher.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/string/rolling_hash_1.test.cpp
+      title: test/string/rolling_hash_1.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/string/rolling_hash_2.test.cpp
+      title: test/string/rolling_hash_2.test.cpp
 layout: toppage
 ---
