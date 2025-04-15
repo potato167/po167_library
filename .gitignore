@@ -4,3 +4,4 @@ a.sh
 bundle.sh
 compile.sh
 in.txt
+.DS_Store
