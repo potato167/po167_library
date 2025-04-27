@@ -14,6 +14,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/Doubling.hpp
       title: ds/Doubling.hpp
+    - icon: ':warning:'
+      path: ds/Segtree.hpp
+      title: ds/Segtree.hpp
     - icon: ':heavy_check_mark:'
       path: ds/Sparse_table.hpp
       title: ds/Sparse_table.hpp
@@ -114,6 +117,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/Rolling_Hash.hpp
       title: string/Rolling_Hash.hpp
+  - name: test/ds
+    pages:
+    - icon: ':warning:'
+      path: test/ds/segtree.cpp
+      title: test/ds/segtree.cpp
   verificationCategories:
   - name: test/algorithm
     pages:

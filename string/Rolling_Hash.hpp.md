@@ -37,20 +37,20 @@ data:
     \ a, mint61 b){return a -= b;}\n    friend mint61 operator*(mint61 a, mint61 b){return\
     \ a *= b;}\n    friend bool operator==(mint61 a, mint61 b){return a.x == b.x;}\n\
     \    friend bool operator!=(mint61 a, mint61 b){return a.x != b.x;}\n    mint61\
-    \ pow(long long e) const {\n        mint61 r = 1,b =*this;\n        while (e){\n\
-    \            if (e & 1) r *= b;\n            b *= b;\n            e >>= 1;\n \
-    \       }\n        return r;\n    }\n};\n}\n#line 3 \"string/Rolling_Hash.hpp\"\
-    \n#include <random>\n#include <string>\n#include <vector>\n\nnamespace po167{\n\
-    struct RollingHash {\n    using u64 = uint64_t;\n    static inline const mint61\
-    \ base = std::mt19937_64{std::random_device{}()}();\n    int n;\n    std::vector<mint61>\
-    \ hash, pow;\n    RollingHash(const std::string& s): n(s.size()), hash(n + 1),\
-    \ pow(n + 1, 1) {\n        for (int i = 0; i < n; i++) {\n            pow[i +\
-    \ 1] = pow[i] * base;\n            hash[i + 1] = hash[i] * base + s[i];\n    \
-    \    }\n    }\n    template<class T>\n    RollingHash(const std::vector<T> &v):\
-    \ n(v.size()), hash(n + 1), pow(n + 1, 1) {\n        for (int i = 0; i < n; i++){\n\
-    \            pow[i + 1] = pow[i] * base;\n            hash[i + 1] = hash[i] *\
-    \ base + v[i];\n        }\n    }\n    mint61 get(int l, int r) const {\n     \
-    \   return hash[r] - hash[l] * pow[r - l];\n    }\n};\n}\n"
+    \ pow(long long e) const {\n        mint61 r = 1,b =*this;\n        if (e < 0)\
+    \ e = MOD - 1 + e % (MOD - 1);\n        while (e){\n            if (e & 1) r *=\
+    \ b;\n            b *= b;\n            e >>= 1;\n        }\n        return r;\n\
+    \    }\n};\n}\n#line 3 \"string/Rolling_Hash.hpp\"\n#include <random>\n#include\
+    \ <string>\n#include <vector>\n\nnamespace po167{\nstruct RollingHash {\n    using\
+    \ u64 = uint64_t;\n    static inline const mint61 base = std::mt19937_64{std::random_device{}()}();\n\
+    \    int n;\n    std::vector<mint61> hash, pow;\n    RollingHash(const std::string&\
+    \ s): n(s.size()), hash(n + 1), pow(n + 1, 1) {\n        for (int i = 0; i < n;\
+    \ i++) {\n            pow[i + 1] = pow[i] * base;\n            hash[i + 1] = hash[i]\
+    \ * base + s[i];\n        }\n    }\n    template<class T>\n    RollingHash(const\
+    \ std::vector<T> &v): n(v.size()), hash(n + 1), pow(n + 1, 1) {\n        for (int\
+    \ i = 0; i < n; i++){\n            pow[i + 1] = pow[i] * base;\n            hash[i\
+    \ + 1] = hash[i] * base + v[i];\n        }\n    }\n    mint61 get(int l, int r)\
+    \ const {\n        return hash[r] - hash[l] * pow[r - l];\n    }\n};\n}\n"
   code: "#pragma once\n#include \"../modint/mint61.hpp\"\n#include <random>\n#include\
     \ <string>\n#include <vector>\n\nnamespace po167{\nstruct RollingHash {\n    using\
     \ u64 = uint64_t;\n    static inline const mint61 base = std::mt19937_64{std::random_device{}()}();\n\
@@ -67,7 +67,7 @@ data:
   isVerificationFile: false
   path: string/Rolling_Hash.hpp
   requiredBy: []
-  timestamp: '2025-04-15 19:14:29+09:00'
+  timestamp: '2025-04-27 17:28:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/string/rolling_hash_2.test.cpp
