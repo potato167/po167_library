@@ -50,6 +50,7 @@ struct mint61{
     friend bool operator!=(mint61 a, mint61 b){return a.x != b.x;}
     mint61 pow(long long e) const {
         mint61 r = 1,b =*this;
+        if (e < 0) e = MOD - 1 + e % (MOD - 1);
         while (e){
             if (e & 1) r *= b;
             b *= b;
