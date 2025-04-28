@@ -11,10 +11,10 @@ int main(){
     int N, K;
     std::cin >> N >> K;
     po167::Binomial<mint> table;
-    mint ans = 1;
+    mint ans = 0;
     for (int i = 1; i <= K; i++){
         ans += table.narayana(K, i) * table.C(K * 2 + N - i * 2 + 1, K * 2);
     }
-    if (K == 0) ans = 0;
+    if (K == 0) ans = 1;
     std::cout << ans.val() << "\n";
 }
