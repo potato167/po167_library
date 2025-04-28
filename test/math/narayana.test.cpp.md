@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/Binomial.hpp
     title: "\u4E8C\u9805\u4FC2\u6570\u95A2\u9023"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/2472
@@ -60,24 +60,26 @@ data:
     \ - 3, k) * C(n + k - 1, k) * inv(k + 1);\n    }\n};\n}\n#line 3 \"test/math/narayana.test.cpp\"\
     \n#include <iostream>\n#include <atcoder/modint>\nusing mint = atcoder::modint998244353;\n\
     \nint main(){\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
-    \    \n    int N, K;\n    std::cin >> N >> K;\n    po167::Binomial<mint> table;\n\
-    \    mint ans = 1;\n    for (int i = 1; i <= K; i++){\n        ans += table.narayana(K,\
-    \ i) * table.C(K * 2 + N - i * 2 + 1, K * 2);\n    }\n    if (K == 0) ans = 0;\n\
-    \    std::cout << ans.val() << \"\\n\";\n}\n"
+    \    \n    int N, K;\n    std::cin >> N >> K;\n    if (K == 0){\n        std::cout\
+    \ << \"1\\n\";\n        return 0; \n    }\n    po167::Binomial<mint> table;\n\
+    \    mint ans = 0;\n    for (int i = 1; i <= K; i++){\n        ans += table.narayana(K,\
+    \ i) * table.C(K * 2 + N - i * 2 + 1, K * 2);\n    }\n    std::cout << ans.val()\
+    \ << \"\\n\";\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/2472\"\n#include \"../../math/Binomial.hpp\"\
     \n#include <iostream>\n#include <atcoder/modint>\nusing mint = atcoder::modint998244353;\n\
     \nint main(){\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
-    \    \n    int N, K;\n    std::cin >> N >> K;\n    po167::Binomial<mint> table;\n\
-    \    mint ans = 1;\n    for (int i = 1; i <= K; i++){\n        ans += table.narayana(K,\
-    \ i) * table.C(K * 2 + N - i * 2 + 1, K * 2);\n    }\n    if (K == 0) ans = 0;\n\
-    \    std::cout << ans.val() << \"\\n\";\n}"
+    \    \n    int N, K;\n    std::cin >> N >> K;\n    if (K == 0){\n        std::cout\
+    \ << \"1\\n\";\n        return 0; \n    }\n    po167::Binomial<mint> table;\n\
+    \    mint ans = 0;\n    for (int i = 1; i <= K; i++){\n        ans += table.narayana(K,\
+    \ i) * table.C(K * 2 + N - i * 2 + 1, K * 2);\n    }\n    std::cout << ans.val()\
+    \ << \"\\n\";\n}"
   dependsOn:
   - math/Binomial.hpp
   isVerificationFile: true
   path: test/math/narayana.test.cpp
   requiredBy: []
-  timestamp: '2025-04-28 14:58:57+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-04-28 15:03:38+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/narayana.test.cpp
 layout: document
