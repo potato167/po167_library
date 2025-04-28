@@ -19,6 +19,7 @@
 "test/graph/tree/lca_1.test.cpp": "2025-03-24 15:48:39 +0900",
 "test/math/Binomial_Coefficient_Prime_Mod.test.cpp": "2024-11-28 11:40:27 +0900",
 "test/math/and_convolution.test.cpp": "2024-11-23 15:36:46 +0900",
+"test/math/narayana.test.cpp": "2025-04-28 14:59:14 +0900",
 "test/math/or_convolution.test.cpp": "2024-11-23 15:36:46 +0900",
 "test/math/q_Binomial.test.cpp": "2024-11-28 11:40:27 +0900",
 "test/math/sampleproblem.test.cpp": "2024-06-15 02:47:36 +0900",
