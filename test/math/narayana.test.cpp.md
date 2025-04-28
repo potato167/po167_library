@@ -61,14 +61,14 @@ data:
     \n#include <iostream>\n#include <atcoder/modint>\nusing mint = atcoder::modint998244353;\n\
     \nint main(){\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
     \    \n    int N, K;\n    std::cin >> N >> K;\n    po167::Binomial<mint> table;\n\
-    \    mint ans = 0;\n    for (int i = 1; i <= K; i++){\n        ans += table.narayana(K,\
+    \    mint ans = 1;\n    for (int i = 1; i <= K; i++){\n        ans += table.narayana(K,\
     \ i) * table.C(K * 2 + N - i * 2 + 1, K * 2);\n    }\n    if (K == 0) ans = 0;\n\
     \    std::cout << ans.val() << \"\\n\";\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/2472\"\n#include \"../../math/Binomial.hpp\"\
     \n#include <iostream>\n#include <atcoder/modint>\nusing mint = atcoder::modint998244353;\n\
     \nint main(){\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
     \    \n    int N, K;\n    std::cin >> N >> K;\n    po167::Binomial<mint> table;\n\
-    \    mint ans = 0;\n    for (int i = 1; i <= K; i++){\n        ans += table.narayana(K,\
+    \    mint ans = 1;\n    for (int i = 1; i <= K; i++){\n        ans += table.narayana(K,\
     \ i) * table.C(K * 2 + N - i * 2 + 1, K * 2);\n    }\n    if (K == 0) ans = 0;\n\
     \    std::cout << ans.val() << \"\\n\";\n}"
   dependsOn:
@@ -76,7 +76,7 @@ data:
   isVerificationFile: true
   path: test/math/narayana.test.cpp
   requiredBy: []
-  timestamp: '2025-04-28 14:56:07+09:00'
+  timestamp: '2025-04-28 14:58:57+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/math/narayana.test.cpp
