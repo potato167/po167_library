@@ -95,7 +95,7 @@ data:
       title: graph/tree/LCA.hpp
   - name: math
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/Binomial.hpp
       title: "\u4E8C\u9805\u4FC2\u6570\u95A2\u9023"
     - icon: ':heavy_check_mark:'
@@ -193,6 +193,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/math/and_convolution.test.cpp
       title: test/math/and_convolution.test.cpp
+    - icon: ':x:'
+      path: test/math/narayana.test.cpp
+      title: test/math/narayana.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/math/or_convolution.test.cpp
       title: test/math/or_convolution.test.cpp

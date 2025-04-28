@@ -15,12 +15,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/math/Binomial_Coefficient_Prime_Mod.test.cpp
     title: test/math/Binomial_Coefficient_Prime_Mod.test.cpp
+  - icon: ':x:'
+    path: test/math/narayana.test.cpp
+    title: test/math/narayana.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/math/q_Binomial.test.cpp
     title: test/math/q_Binomial.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/Binomial.hpp\"\n\n#include<vector>\n#include<assert.h>\n\
@@ -116,10 +119,11 @@ data:
   - math/q_Binomial.hpp
   - fps/Taylor_Shift.hpp
   timestamp: '2024-11-28 11:40:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/math/Binomial_Coefficient_Prime_Mod.test.cpp
   - test/math/q_Binomial.test.cpp
+  - test/math/narayana.test.cpp
   - test/fps/taylor_shift.test.cpp
 documentation_of: math/Binomial.hpp
 layout: document

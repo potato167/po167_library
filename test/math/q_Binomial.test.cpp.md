@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/Binomial.hpp
     title: "\u4E8C\u9805\u4FC2\u6570\u95A2\u9023"
   - icon: ':heavy_check_mark:'
