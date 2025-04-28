@@ -5,9 +5,7 @@ documentation_of: //fps/FPS_Boston_Mori.hpp
 
 ## ボスタン森法
 
-```cpp
-T Boston_Mori(long long k, std::vector<T> P, std::vector<T> Q)
-```
+<code>T Boston_Mori(long long k, std::vector<T> P, std::vector<T> Q)</code>
 
 $[x^{k}](P(x) / Q(x))$ を返す関数
 
@@ -17,9 +15,7 @@ $Q(x)$ の DFT から $Q(-x)$ の DFT が簡単に求まることや、偶奇の
 
 ## 線形漸化式
 
-```cpp
-T Kth_Linear(long long k, std::vector<T> a, std::vector<T> c)
-```
+<code>T Kth_Linear(long long k, std::vector<T> a, std::vector<T> c)</code>
 
 $|a| = d, |c| = d + 1$ を満たす数列 $a, c$ を用いて、以下を満たす正整数列 $b$ の $k$ 項目を求める。
 
