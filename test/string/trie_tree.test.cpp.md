@@ -1,0 +1,93 @@
+---
+data:
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: string/Trie_Tree.hpp
+    title: string/Trie_Tree.hpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
+  _pathExtension: cpp
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2873
+    links:
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2873
+  bundledCode: "#line 1 \"test/string/trie_tree.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2873\"\
+    \n#line 2 \"string/Trie_Tree.hpp\"\n#include <vector>\n#include <array>\n#include\
+    \ <string>\n\nnamespace po167{\ntemplate<const int char_size,int base>\nstruct\
+    \ Trie_Tree\n{\n    struct Node{\n        std::array<int, char_size> next_node;\n\
+    \        std::vector<int> terminate_node;\n        int parent_node;\n        int\
+    \ char_number;\n        int accepet_count;\n        explicit Node(int c_):parent_node(-1),char_number(c_),accepet_count(0){\n\
+    \            for(int i=0;i<char_size;i++) next_node[i]=-1;\n        }\n    };\n\
+    \    std::vector<Node> nodes;\n    std::vector<int> fail;\n    Trie_Tree(){\n\
+    \        nodes.push_back(Node(-1));\n    }\n    std::vector<int> insert(std::string\
+    \ &word,int word_id){\n        int node_id=0;\n        std::vector<int> ids;\n\
+    \        for (char & i : word){\n            node_id=min_insert(i,node_id,word_id);\n\
+    \            ids.push_back(node_id);\n        }\n        nodes[ids.back()].terminate_node.push_back(word_id);\n\
+    \        return ids;\n    }\n    int min_insert(char ch,int node_id,int word_id){\n\
+    \        int c=(int)(ch-base);\n        int next_id=nodes[node_id].next_node[c];\n\
+    \        if(next_id==-1){\n            next_id=(int)nodes.size();\n          \
+    \  nodes.push_back(Node(c));\n        }\n        nodes[next_id].parent_node=node_id;\n\
+    \        nodes[node_id].next_node[c]=next_id;\n        // nodes[next_id].accept_node.push_back(word_id);\n\
+    \        nodes[node_id].accepet_count++;\n        node_id=next_id;\n        return\
+    \ node_id;\n    }\n    void aho(){\n        fail.resize(nodes.size());\n     \
+    \   std::vector<int> order = {0};\n        order.reserve(nodes.size());\n    \
+    \    for (int i = 0; i < (int)(order.size()); i++){\n            int id = order[i];\n\
+    \            if (id == 0){\n                fail[id] = 0;\n            }\n   \
+    \         else{\n                int f = fail[nodes[id].parent_node];\n      \
+    \          int c = nodes[id].char_number;\n                while (f != fail[f]\
+    \ && nodes[f].next_node[c] == -1){\n                    f = fail[f];\n       \
+    \         }\n                if (nodes[f].next_node[c] != -1 && nodes[f].next_node[c]\
+    \ != id) fail[id] = nodes[f].next_node[c];\n                else fail[id] = 0;\n\
+    \            }\n            for (int j = 0; j < char_size; j++){\n           \
+    \     if (nodes[id].next_node[j] != -1) order.push_back(nodes[id].next_node[j]);\n\
+    \            }\n        }\n    }\n};\n}\nusing po167::Trie_Tree;\n#line 3 \"test/string/trie_tree.test.cpp\"\
+    \n#include <iostream>\n\nint main(){\n    std::string S;\n    std::cin >> S;\n\
+    \    int N;\n    std::cin >> N;\n    po167::Trie_Tree<26,'a'> tt;\n    for (int\
+    \ i = 0; i < N; i++){\n        std::string t;\n        std::cin >> t;\n      \
+    \  tt.insert(t, i);\n    }\n    tt.aho();\n    std::vector<int> taboo(tt.nodes.size());\n\
+    \    {\n        std::vector<int> order = {0};\n        for (int i = 0; i < (int)order.size();\
+    \ i++){\n            int a = order[i];\n            if (!tt.nodes[a].terminate_node.empty())\
+    \ taboo[a] = 1;\n            if (taboo[tt.fail[a]]) taboo[a] = 1;\n          \
+    \  for (int j = 0; j < 26; j++) if (tt.nodes[a].next_node[j] != -1){\n       \
+    \         order.push_back(tt.nodes[a].next_node[j]);\n            }\n        }\n\
+    \    }\n    int ans = 0;\n    int r = 0;\n    int node = 0;\n    while (r != (int)S.size()){\n\
+    \        int c = S[r] - 'a';\n        if (tt.nodes[node].next_node[c] == -1){\n\
+    \            if (node == 0) r++;\n            node = tt.fail[node];\n        }\n\
+    \        else{\n            node = tt.nodes[node].next_node[c];\n            r++;\n\
+    \        }\n        if (taboo[node]){\n            ans++;\n            node =\
+    \ 0;\n        }\n    }\n    std::cout << ans << \"\\n\";\n}\n"
+  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2873\"\
+    \n#include \"../../string/Trie_Tree.hpp\"\n#include <iostream>\n\nint main(){\n\
+    \    std::string S;\n    std::cin >> S;\n    int N;\n    std::cin >> N;\n    po167::Trie_Tree<26,'a'>\
+    \ tt;\n    for (int i = 0; i < N; i++){\n        std::string t;\n        std::cin\
+    \ >> t;\n        tt.insert(t, i);\n    }\n    tt.aho();\n    std::vector<int>\
+    \ taboo(tt.nodes.size());\n    {\n        std::vector<int> order = {0};\n    \
+    \    for (int i = 0; i < (int)order.size(); i++){\n            int a = order[i];\n\
+    \            if (!tt.nodes[a].terminate_node.empty()) taboo[a] = 1;\n        \
+    \    if (taboo[tt.fail[a]]) taboo[a] = 1;\n            for (int j = 0; j < 26;\
+    \ j++) if (tt.nodes[a].next_node[j] != -1){\n                order.push_back(tt.nodes[a].next_node[j]);\n\
+    \            }\n        }\n    }\n    int ans = 0;\n    int r = 0;\n    int node\
+    \ = 0;\n    while (r != (int)S.size()){\n        int c = S[r] - 'a';\n       \
+    \ if (tt.nodes[node].next_node[c] == -1){\n            if (node == 0) r++;\n \
+    \           node = tt.fail[node];\n        }\n        else{\n            node\
+    \ = tt.nodes[node].next_node[c];\n            r++;\n        }\n        if (taboo[node]){\n\
+    \            ans++;\n            node = 0;\n        }\n    }\n    std::cout <<\
+    \ ans << \"\\n\";\n}"
+  dependsOn:
+  - string/Trie_Tree.hpp
+  isVerificationFile: true
+  path: test/string/trie_tree.test.cpp
+  requiredBy: []
+  timestamp: '2025-06-26 21:26:57+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/string/trie_tree.test.cpp
+layout: document
+redirect_from:
+- /verify/test/string/trie_tree.test.cpp
+- /verify/test/string/trie_tree.test.cpp.html
+title: test/string/trie_tree.test.cpp
+---

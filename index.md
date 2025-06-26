@@ -117,6 +117,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/Rolling_Hash.hpp
       title: string/Rolling_Hash.hpp
+    - icon: ':heavy_check_mark:'
+      path: string/Trie_Tree.hpp
+      title: string/Trie_Tree.hpp
   - name: test/ds
     pages:
     - icon: ':warning:'
@@ -219,5 +222,8 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/string/rolling_hash_2.test.cpp
       title: test/string/rolling_hash_2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/string/trie_tree.test.cpp
+      title: test/string/trie_tree.test.cpp
 layout: toppage
 ---
