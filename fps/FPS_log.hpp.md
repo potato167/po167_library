@@ -85,14 +85,14 @@ data:
   path: fps/FPS_log.hpp
   requiredBy:
   - fps/FPS_sum_of_power.hpp
-  - fps/FPS_pow.hpp
   - fps/FPS_inverse.hpp
+  - fps/FPS_pow.hpp
   timestamp: '2024-11-08 23:20:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/fps/comp_inverse.test.cpp
-  - test/fps/sum_of_power.test.cpp
   - test/fps/pow.test.cpp
+  - test/fps/sum_of_power.test.cpp
+  - test/fps/comp_inverse.test.cpp
 documentation_of: fps/FPS_log.hpp
 layout: document
 redirect_from:

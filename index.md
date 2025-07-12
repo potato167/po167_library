@@ -12,6 +12,9 @@ data:
   - name: ds
     pages:
     - icon: ':heavy_check_mark:'
+      path: ds/Deque.hpp
+      title: ds/Deque.hpp
+    - icon: ':heavy_check_mark:'
       path: ds/Doubling.hpp
       title: ds/Doubling.hpp
     - icon: ':warning:'
@@ -133,6 +136,9 @@ data:
       title: test/algorithm/sum_min_conv.test.cpp
   - name: test/ds
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/ds/deque.test.cpp
+      title: test/ds/deque.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/ds/doubling_rmq.test.cpp
       title: test/ds/doubling_rmq.test.cpp
