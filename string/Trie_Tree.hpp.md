@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/string/aho.test.cpp
+    title: test/string/aho.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/string/trie_tree.test.cpp
     title: test/string/trie_tree.test.cpp
   _isVerificationFailed: false
@@ -76,6 +79,7 @@ data:
   timestamp: '2025-06-26 21:26:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/string/aho.test.cpp
   - test/string/trie_tree.test.cpp
 documentation_of: string/Trie_Tree.hpp
 layout: document

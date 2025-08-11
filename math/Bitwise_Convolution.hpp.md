@@ -86,9 +86,9 @@ data:
   timestamp: '2024-11-23 15:36:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/math/or_convolution.test.cpp
-  - test/math/xor_convolution.test.cpp
   - test/math/and_convolution.test.cpp
+  - test/math/xor_convolution.test.cpp
+  - test/math/or_convolution.test.cpp
 documentation_of: math/Bitwise_Convolution.hpp
 layout: document
 redirect_from:

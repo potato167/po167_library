@@ -220,6 +220,9 @@ data:
   - name: test/string
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/string/aho.test.cpp
+      title: test/string/aho.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/string/manacher.test.cpp
       title: test/string/manacher.test.cpp
     - icon: ':heavy_check_mark:'
