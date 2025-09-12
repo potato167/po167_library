@@ -35,7 +35,7 @@ std::vector<T> FPS_pow(std::vector<T> f,long long M, int len = -1){
             v = v * v;
             M >>= 1;
         }
-        for (int i = 0; i < len; i++) res[i + zero] = g[i] * c;
+        for (int j = 0; j < len; j++) res[j + zero] = g[j] * c;
         return res;
     }
     return res;
