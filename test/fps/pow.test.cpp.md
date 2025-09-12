@@ -96,8 +96,8 @@ data:
     \ M;\n        g = FPS_log(g, len);\n        for (T &x : g) x *= M;\n        g\
     \ = FPS_exp(g, len);\n        v = (T)(1) / v;\n        T c = 1;\n        while\
     \ (M){\n            if (M & 1) c = c * v;\n            v = v * v;\n          \
-    \  M >>= 1;\n        }\n        for (int i = 0; i < len; i++) res[i + zero] =\
-    \ g[i] * c;\n        return res;\n    }\n    return res;\n}\n}\n#line 4 \"test/fps/pow.test.cpp\"\
+    \  M >>= 1;\n        }\n        for (int j = 0; j < len; j++) res[j + zero] =\
+    \ g[j] * c;\n        return res;\n    }\n    return res;\n}\n}\n#line 4 \"test/fps/pow.test.cpp\"\
     \n\n#line 6 \"test/fps/pow.test.cpp\"\n#include <iostream>\n#include <atcoder/modint>\n\
     \n\nint main(){\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
     \    int N;\n    long long M;\n    std::cin >> N >> M;\n    std::vector<atcoder::modint998244353>\
@@ -125,7 +125,7 @@ data:
   isVerificationFile: true
   path: test/fps/pow.test.cpp
   requiredBy: []
-  timestamp: '2024-11-08 23:20:15+09:00'
+  timestamp: '2025-09-13 04:45:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fps/pow.test.cpp

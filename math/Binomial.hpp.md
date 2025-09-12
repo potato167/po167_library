@@ -116,15 +116,15 @@ data:
   isVerificationFile: false
   path: math/Binomial.hpp
   requiredBy:
-  - fps/Taylor_Shift.hpp
   - math/q_Binomial.hpp
+  - fps/Taylor_Shift.hpp
   timestamp: '2024-11-28 11:40:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/fps/taylor_shift.test.cpp
-  - test/math/narayana.test.cpp
   - test/math/q_Binomial.test.cpp
   - test/math/Binomial_Coefficient_Prime_Mod.test.cpp
+  - test/math/narayana.test.cpp
+  - test/fps/taylor_shift.test.cpp
 documentation_of: math/Binomial.hpp
 layout: document
 title: "\u4E8C\u9805\u4FC2\u6570\u95A2\u9023"

@@ -92,8 +92,8 @@ data:
     \ M;\n        g = FPS_log(g, len);\n        for (T &x : g) x *= M;\n        g\
     \ = FPS_exp(g, len);\n        v = (T)(1) / v;\n        T c = 1;\n        while\
     \ (M){\n            if (M & 1) c = c * v;\n            v = v * v;\n          \
-    \  M >>= 1;\n        }\n        for (int i = 0; i < len; i++) res[i + zero] =\
-    \ g[i] * c;\n        return res;\n    }\n    return res;\n}\n}\n"
+    \  M >>= 1;\n        }\n        for (int j = 0; j < len; j++) res[j + zero] =\
+    \ g[j] * c;\n        return res;\n    }\n    return res;\n}\n}\n"
   code: "#pragma once\n\n#include <vector>\n#include <atcoder/convolution>\n\n#include\
     \ \"FPS_exp.hpp\"\n#include \"FPS_log.hpp\"\n\nnamespace po167{\ntemplate<class\
     \ T>\nstd::vector<T> FPS_pow(std::vector<T> f,long long M, int len = -1){\n  \
@@ -106,8 +106,8 @@ data:
     \        if (i) len -= i * M;\n        g = FPS_log(g, len);\n        for (T &x\
     \ : g) x *= M;\n        g = FPS_exp(g, len);\n        v = (T)(1) / v;\n      \
     \  T c = 1;\n        while (M){\n            if (M & 1) c = c * v;\n         \
-    \   v = v * v;\n            M >>= 1;\n        }\n        for (int i = 0; i < len;\
-    \ i++) res[i + zero] = g[i] * c;\n        return res;\n    }\n    return res;\n\
+    \   v = v * v;\n            M >>= 1;\n        }\n        for (int j = 0; j < len;\
+    \ j++) res[j + zero] = g[j] * c;\n        return res;\n    }\n    return res;\n\
     }\n}"
   dependsOn:
   - fps/FPS_exp.hpp
@@ -119,7 +119,7 @@ data:
   isVerificationFile: false
   path: fps/FPS_pow.hpp
   requiredBy: []
-  timestamp: '2024-11-08 23:20:15+09:00'
+  timestamp: '2025-09-13 04:45:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/pow.test.cpp

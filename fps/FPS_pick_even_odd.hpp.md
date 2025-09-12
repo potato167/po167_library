@@ -53,14 +53,14 @@ data:
   isVerificationFile: false
   path: fps/FPS_pick_even_odd.hpp
   requiredBy:
-  - fps/FPS_Boston_Mori.hpp
   - fps/FPS_Power_Projection.hpp
   - fps/FPS_inverse.hpp
+  - fps/FPS_Boston_Mori.hpp
   timestamp: '2024-06-19 15:49:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/fps/linear_kth.test.cpp
   - test/fps/comp_inverse.test.cpp
+  - test/fps/linear_kth.test.cpp
 documentation_of: fps/FPS_pick_even_odd.hpp
 layout: document
 redirect_from:
