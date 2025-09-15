@@ -2,6 +2,7 @@
 #include <vector>
 #include <array>
 #include <string>
+#include <cassert>
 
 namespace po167{
 template<const int char_size,int base>
