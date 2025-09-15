@@ -46,15 +46,16 @@ data:
     \            }\n        }\n    }\n\n    // node \u3067\u3042\u3063\u3066\u3001\
     \u8FFD\u52A0\u3057\u305F\u6587\u5B57\u5217\u3092\u90E8\u5206\u5217\u3068\u3057\
     \u3066\u542B\u307E\u306A\u3044\u3082\u306E\u3092\u8FD4\u3059\n    // aho \u3092\
-    \u5148\u306B\u547C\u3093\u3067\u3044\u308B\u3053\u3068\u304C\u524D\u63D0\n   \
-    \ std::vector<bool> taboo(){\n        assert(!fail.empty());\n        std::vector<int>\
-    \ order = {0};\n        std::vector<bool> taboo(nodes.size(), false);\n      \
-    \  for (int i = 0; i < (int)order.size(); i++){\n            int a = order[i];\n\
-    \            if (!nodes[a].terminate_node.empty()) taboo[a] = true;\n        \
-    \    if (taboo[fail[a]]) taboo[a] = true;\n            if (a != 0 && taboo[nodes[a].parent_node])\
-    \ taboo[a] = true;\n            for (int j = 0; j < char_size; j++){\n       \
-    \         int c = nodes[a].next_node[j];\n                if (c != -1) order.push_back(c);\n\
-    \            }\n        }    \n        return taboo;\n    }\n};\n}\nusing po167::Trie_Tree;\n"
+    \u547C\u3093\u3067\u3044\u306A\u3044\u306A\u3089\u547C\u3073\u307E\u3059\n   \
+    \ std::vector<bool> taboo(){\n        if (fail.size() != nodes.size()){\n    \
+    \        aho();\n        }\n        std::vector<int> order = {0};\n        std::vector<bool>\
+    \ taboo(nodes.size(), false);\n        for (int i = 0; i < (int)order.size();\
+    \ i++){\n            int a = order[i];\n            if (!nodes[a].terminate_node.empty())\
+    \ taboo[a] = true;\n            if (taboo[fail[a]]) taboo[a] = true;\n       \
+    \     if (a != 0 && taboo[nodes[a].parent_node]) taboo[a] = true;\n          \
+    \  for (int j = 0; j < char_size; j++){\n                int c = nodes[a].next_node[j];\n\
+    \                if (c != -1) order.push_back(c);\n            }\n        }  \
+    \  \n        return taboo;\n    }\n};\n}\nusing po167::Trie_Tree;\n"
   code: "#pragma once\n#include <vector>\n#include <array>\n#include <string>\n#include\
     \ <cassert>\n\nnamespace po167{\ntemplate<const int char_size,int base>\nstruct\
     \ Trie_Tree\n{\n    struct Node{\n        std::array<int, char_size> next_node;\n\
@@ -86,20 +87,21 @@ data:
     \            }\n        }\n    }\n\n    // node \u3067\u3042\u3063\u3066\u3001\
     \u8FFD\u52A0\u3057\u305F\u6587\u5B57\u5217\u3092\u90E8\u5206\u5217\u3068\u3057\
     \u3066\u542B\u307E\u306A\u3044\u3082\u306E\u3092\u8FD4\u3059\n    // aho \u3092\
-    \u5148\u306B\u547C\u3093\u3067\u3044\u308B\u3053\u3068\u304C\u524D\u63D0\n   \
-    \ std::vector<bool> taboo(){\n        assert(!fail.empty());\n        std::vector<int>\
-    \ order = {0};\n        std::vector<bool> taboo(nodes.size(), false);\n      \
-    \  for (int i = 0; i < (int)order.size(); i++){\n            int a = order[i];\n\
-    \            if (!nodes[a].terminate_node.empty()) taboo[a] = true;\n        \
-    \    if (taboo[fail[a]]) taboo[a] = true;\n            if (a != 0 && taboo[nodes[a].parent_node])\
-    \ taboo[a] = true;\n            for (int j = 0; j < char_size; j++){\n       \
-    \         int c = nodes[a].next_node[j];\n                if (c != -1) order.push_back(c);\n\
-    \            }\n        }    \n        return taboo;\n    }\n};\n}\nusing po167::Trie_Tree;\n"
+    \u547C\u3093\u3067\u3044\u306A\u3044\u306A\u3089\u547C\u3073\u307E\u3059\n   \
+    \ std::vector<bool> taboo(){\n        if (fail.size() != nodes.size()){\n    \
+    \        aho();\n        }\n        std::vector<int> order = {0};\n        std::vector<bool>\
+    \ taboo(nodes.size(), false);\n        for (int i = 0; i < (int)order.size();\
+    \ i++){\n            int a = order[i];\n            if (!nodes[a].terminate_node.empty())\
+    \ taboo[a] = true;\n            if (taboo[fail[a]]) taboo[a] = true;\n       \
+    \     if (a != 0 && taboo[nodes[a].parent_node]) taboo[a] = true;\n          \
+    \  for (int j = 0; j < char_size; j++){\n                int c = nodes[a].next_node[j];\n\
+    \                if (c != -1) order.push_back(c);\n            }\n        }  \
+    \  \n        return taboo;\n    }\n};\n}\nusing po167::Trie_Tree;\n"
   dependsOn: []
   isVerificationFile: false
   path: string/Trie_Tree.hpp
   requiredBy: []
-  timestamp: '2025-09-16 01:43:13+09:00'
+  timestamp: '2025-09-16 02:00:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/string/trie_tree.test.cpp
