@@ -72,9 +72,11 @@ struct Trie_Tree
     }
 
     // node であって、追加した文字列を部分列として含まないものを返す
-    // aho を先に呼んでいることが前提
+    // aho を呼んでいないなら呼びます
     std::vector<bool> taboo(){
-        assert(!fail.empty());
+        if (fail.size() != nodes.size()){
+            aho();
+        }
         std::vector<int> order = {0};
         std::vector<bool> taboo(nodes.size(), false);
         for (int i = 0; i < (int)order.size(); i++){

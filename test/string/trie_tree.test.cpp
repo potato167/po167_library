@@ -13,7 +13,6 @@ int main(){
         std::cin >> t;
         tt.insert(t, i);
     }
-    tt.aho();
     auto taboo = tt.taboo();
     int ans = 0;
     int r = 0;
