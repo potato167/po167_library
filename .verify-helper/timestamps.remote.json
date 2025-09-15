@@ -25,9 +25,7 @@
 "test/math/q_Binomial.test.cpp": "2024-11-28 11:40:27 +0900",
 "test/math/sampleproblem.test.cpp": "2024-06-15 02:47:36 +0900",
 "test/math/xor_convolution.test.cpp": "2024-11-23 15:36:46 +0900",
-"test/string/aho.test.cpp": "2025-08-12 01:06:17 +0900",
 "test/string/manacher.test.cpp": "2025-04-15 19:14:29 +0900",
 "test/string/rolling_hash_1.test.cpp": "2025-04-27 17:28:05 +0900",
-"test/string/rolling_hash_2.test.cpp": "2025-04-27 17:28:05 +0900",
-"test/string/trie_tree.test.cpp": "2025-06-26 21:26:57 +0900"
+"test/string/rolling_hash_2.test.cpp": "2025-04-27 17:28:05 +0900"
 }
