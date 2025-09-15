@@ -14,18 +14,7 @@ int main(){
         tt.insert(t, i);
     }
     tt.aho();
-    std::vector<int> taboo(tt.nodes.size());
-    {
-        std::vector<int> order = {0};
-        for (int i = 0; i < (int)order.size(); i++){
-            int a = order[i];
-            if (!tt.nodes[a].terminate_node.empty()) taboo[a] = 1;
-            if (taboo[tt.fail[a]]) taboo[a] = 1;
-            for (int j = 0; j < 26; j++) if (tt.nodes[a].next_node[j] != -1){
-                order.push_back(tt.nodes[a].next_node[j]);
-            }
-        }
-    }
+    auto taboo = tt.taboo();
     int ans = 0;
     int r = 0;
     int node = 0;

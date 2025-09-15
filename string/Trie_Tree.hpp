@@ -69,6 +69,25 @@ struct Trie_Tree
             }
         }
     }
+
+    // node であって、追加した文字列を部分列として含まないものを返す
+    // aho を先に呼んでいることが前提
+    std::vector<bool> taboo(){
+        assert(!fail.empty());
+        std::vector<int> order = {0};
+        std::vector<bool> taboo(nodes.size(), false);
+        for (int i = 0; i < (int)order.size(); i++){
+            int a = order[i];
+            if (!nodes[a].terminate_node.empty()) taboo[a] = true;
+            if (taboo[fail[a]]) taboo[a] = true;
+            if (a != 0 && taboo[nodes[a].parent_node]) taboo[a] = true;
+            for (int j = 0; j < char_size; j++){
+                int c = nodes[a].next_node[j];
+                if (c != -1) order.push_back(c);
+            }
+        }    
+        return taboo;
+    }
 };
 }
 using po167::Trie_Tree;
