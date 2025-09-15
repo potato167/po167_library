@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/Trie_Tree.hpp
     title: string/Trie_Tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2873
@@ -16,15 +16,15 @@ data:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2873
   bundledCode: "#line 1 \"test/string/trie_tree.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2873\"\
     \n#line 2 \"string/Trie_Tree.hpp\"\n#include <vector>\n#include <array>\n#include\
-    \ <string>\n\nnamespace po167{\ntemplate<const int char_size,int base>\nstruct\
-    \ Trie_Tree\n{\n    struct Node{\n        std::array<int, char_size> next_node;\n\
-    \        std::vector<int> terminate_node;\n        int parent_node;\n        int\
-    \ char_number;\n        int accepet_count;\n        explicit Node(int c_):parent_node(-1),char_number(c_),accepet_count(0){\n\
-    \            for(int i=0;i<char_size;i++) next_node[i]=-1;\n        }\n    };\n\
-    \    std::vector<Node> nodes;\n    std::vector<int> fail;\n    Trie_Tree(){\n\
-    \        nodes.push_back(Node(-1));\n    }\n    std::vector<int> insert(std::string\
-    \ &word,int word_id){\n        int node_id=0;\n        std::vector<int> ids;\n\
-    \        for (char & i : word){\n            node_id=min_insert(i,node_id,word_id);\n\
+    \ <string>\n#include <cassert>\n\nnamespace po167{\ntemplate<const int char_size,int\
+    \ base>\nstruct Trie_Tree\n{\n    struct Node{\n        std::array<int, char_size>\
+    \ next_node;\n        std::vector<int> terminate_node;\n        int parent_node;\n\
+    \        int char_number;\n        int accepet_count;\n        explicit Node(int\
+    \ c_):parent_node(-1),char_number(c_),accepet_count(0){\n            for(int i=0;i<char_size;i++)\
+    \ next_node[i]=-1;\n        }\n    };\n    std::vector<Node> nodes;\n    std::vector<int>\
+    \ fail;\n    Trie_Tree(){\n        nodes.push_back(Node(-1));\n    }\n    std::vector<int>\
+    \ insert(std::string &word,int word_id){\n        int node_id=0;\n        std::vector<int>\
+    \ ids;\n        for (char & i : word){\n            node_id=min_insert(i,node_id,word_id);\n\
     \            ids.push_back(node_id);\n        }\n        nodes[ids.back()].terminate_node.push_back(word_id);\n\
     \        return ids;\n    }\n    int min_insert(char ch,int node_id,int word_id){\n\
     \        int c=(int)(ch-base);\n        int next_id=nodes[node_id].next_node[c];\n\
@@ -81,8 +81,8 @@ data:
   isVerificationFile: true
   path: test/string/trie_tree.test.cpp
   requiredBy: []
-  timestamp: '2025-09-16 01:39:10+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-09-16 01:43:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/string/trie_tree.test.cpp
 layout: document

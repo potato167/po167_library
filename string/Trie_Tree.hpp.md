@@ -3,23 +3,24 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/string/aho.test.cpp
     title: test/string/aho.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/string/trie_tree.test.cpp
     title: test/string/trie_tree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"string/Trie_Tree.hpp\"\n#include <vector>\n#include <array>\n\
-    #include <string>\n\nnamespace po167{\ntemplate<const int char_size,int base>\n\
-    struct Trie_Tree\n{\n    struct Node{\n        std::array<int, char_size> next_node;\n\
-    \        std::vector<int> terminate_node;\n        int parent_node;\n        int\
-    \ char_number;\n        int accepet_count;\n        explicit Node(int c_):parent_node(-1),char_number(c_),accepet_count(0){\n\
-    \            for(int i=0;i<char_size;i++) next_node[i]=-1;\n        }\n    };\n\
+    #include <string>\n#include <cassert>\n\nnamespace po167{\ntemplate<const int\
+    \ char_size,int base>\nstruct Trie_Tree\n{\n    struct Node{\n        std::array<int,\
+    \ char_size> next_node;\n        std::vector<int> terminate_node;\n        int\
+    \ parent_node;\n        int char_number;\n        int accepet_count;\n       \
+    \ explicit Node(int c_):parent_node(-1),char_number(c_),accepet_count(0){\n  \
+    \          for(int i=0;i<char_size;i++) next_node[i]=-1;\n        }\n    };\n\
     \    std::vector<Node> nodes;\n    std::vector<int> fail;\n    Trie_Tree(){\n\
     \        nodes.push_back(Node(-1));\n    }\n    std::vector<int> insert(std::string\
     \ &word,int word_id){\n        int node_id=0;\n        std::vector<int> ids;\n\
@@ -54,11 +55,11 @@ data:
     \ taboo[a] = true;\n            for (int j = 0; j < char_size; j++){\n       \
     \         int c = nodes[a].next_node[j];\n                if (c != -1) order.push_back(c);\n\
     \            }\n        }    \n        return taboo;\n    }\n};\n}\nusing po167::Trie_Tree;\n"
-  code: "#pragma once\n#include <vector>\n#include <array>\n#include <string>\n\n\
-    namespace po167{\ntemplate<const int char_size,int base>\nstruct Trie_Tree\n{\n\
-    \    struct Node{\n        std::array<int, char_size> next_node;\n        std::vector<int>\
-    \ terminate_node;\n        int parent_node;\n        int char_number;\n      \
-    \  int accepet_count;\n        explicit Node(int c_):parent_node(-1),char_number(c_),accepet_count(0){\n\
+  code: "#pragma once\n#include <vector>\n#include <array>\n#include <string>\n#include\
+    \ <cassert>\n\nnamespace po167{\ntemplate<const int char_size,int base>\nstruct\
+    \ Trie_Tree\n{\n    struct Node{\n        std::array<int, char_size> next_node;\n\
+    \        std::vector<int> terminate_node;\n        int parent_node;\n        int\
+    \ char_number;\n        int accepet_count;\n        explicit Node(int c_):parent_node(-1),char_number(c_),accepet_count(0){\n\
     \            for(int i=0;i<char_size;i++) next_node[i]=-1;\n        }\n    };\n\
     \    std::vector<Node> nodes;\n    std::vector<int> fail;\n    Trie_Tree(){\n\
     \        nodes.push_back(Node(-1));\n    }\n    std::vector<int> insert(std::string\
@@ -98,8 +99,8 @@ data:
   isVerificationFile: false
   path: string/Trie_Tree.hpp
   requiredBy: []
-  timestamp: '2025-09-16 01:39:10+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-09-16 01:43:13+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/string/trie_tree.test.cpp
   - test/string/aho.test.cpp
