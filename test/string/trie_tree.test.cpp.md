@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/Trie_Tree.hpp
     title: string/Trie_Tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2873
@@ -43,17 +43,23 @@ data:
     \ != id) fail[id] = nodes[f].next_node[c];\n                else fail[id] = 0;\n\
     \            }\n            for (int j = 0; j < char_size; j++){\n           \
     \     if (nodes[id].next_node[j] != -1) order.push_back(nodes[id].next_node[j]);\n\
-    \            }\n        }\n    }\n};\n}\nusing po167::Trie_Tree;\n#line 3 \"test/string/trie_tree.test.cpp\"\
-    \n#include <iostream>\n\nint main(){\n    std::string S;\n    std::cin >> S;\n\
-    \    int N;\n    std::cin >> N;\n    po167::Trie_Tree<26,'a'> tt;\n    for (int\
-    \ i = 0; i < N; i++){\n        std::string t;\n        std::cin >> t;\n      \
-    \  tt.insert(t, i);\n    }\n    tt.aho();\n    std::vector<int> taboo(tt.nodes.size());\n\
-    \    {\n        std::vector<int> order = {0};\n        for (int i = 0; i < (int)order.size();\
-    \ i++){\n            int a = order[i];\n            if (!tt.nodes[a].terminate_node.empty())\
-    \ taboo[a] = 1;\n            if (taboo[tt.fail[a]]) taboo[a] = 1;\n          \
-    \  for (int j = 0; j < 26; j++) if (tt.nodes[a].next_node[j] != -1){\n       \
-    \         order.push_back(tt.nodes[a].next_node[j]);\n            }\n        }\n\
-    \    }\n    int ans = 0;\n    int r = 0;\n    int node = 0;\n    while (r != (int)S.size()){\n\
+    \            }\n        }\n    }\n\n    // node \u3067\u3042\u3063\u3066\u3001\
+    \u8FFD\u52A0\u3057\u305F\u6587\u5B57\u5217\u3092\u90E8\u5206\u5217\u3068\u3057\
+    \u3066\u542B\u307E\u306A\u3044\u3082\u306E\u3092\u8FD4\u3059\n    // aho \u3092\
+    \u5148\u306B\u547C\u3093\u3067\u3044\u308B\u3053\u3068\u304C\u524D\u63D0\n   \
+    \ std::vector<bool> taboo(){\n        assert(!fail.empty());\n        std::vector<int>\
+    \ order = {0};\n        std::vector<bool> taboo(nodes.size(), false);\n      \
+    \  for (int i = 0; i < (int)order.size(); i++){\n            int a = order[i];\n\
+    \            if (!nodes[a].terminate_node.empty()) taboo[a] = true;\n        \
+    \    if (taboo[fail[a]]) taboo[a] = true;\n            if (a != 0 && taboo[nodes[a].parent_node])\
+    \ taboo[a] = true;\n            for (int j = 0; j < char_size; j++){\n       \
+    \         int c = nodes[a].next_node[j];\n                if (c != -1) order.push_back(c);\n\
+    \            }\n        }    \n        return taboo;\n    }\n};\n}\nusing po167::Trie_Tree;\n\
+    #line 3 \"test/string/trie_tree.test.cpp\"\n#include <iostream>\n\nint main(){\n\
+    \    std::string S;\n    std::cin >> S;\n    int N;\n    std::cin >> N;\n    po167::Trie_Tree<26,'a'>\
+    \ tt;\n    for (int i = 0; i < N; i++){\n        std::string t;\n        std::cin\
+    \ >> t;\n        tt.insert(t, i);\n    }\n    tt.aho();\n    auto taboo = tt.taboo();\n\
+    \    int ans = 0;\n    int r = 0;\n    int node = 0;\n    while (r != (int)S.size()){\n\
     \        int c = S[r] - 'a';\n        if (tt.nodes[node].next_node[c] == -1){\n\
     \            if (node == 0) r++;\n            node = tt.fail[node];\n        }\n\
     \        else{\n            node = tt.nodes[node].next_node[c];\n            r++;\n\
@@ -63,26 +69,20 @@ data:
     \n#include \"../../string/Trie_Tree.hpp\"\n#include <iostream>\n\nint main(){\n\
     \    std::string S;\n    std::cin >> S;\n    int N;\n    std::cin >> N;\n    po167::Trie_Tree<26,'a'>\
     \ tt;\n    for (int i = 0; i < N; i++){\n        std::string t;\n        std::cin\
-    \ >> t;\n        tt.insert(t, i);\n    }\n    tt.aho();\n    std::vector<int>\
-    \ taboo(tt.nodes.size());\n    {\n        std::vector<int> order = {0};\n    \
-    \    for (int i = 0; i < (int)order.size(); i++){\n            int a = order[i];\n\
-    \            if (!tt.nodes[a].terminate_node.empty()) taboo[a] = 1;\n        \
-    \    if (taboo[tt.fail[a]]) taboo[a] = 1;\n            for (int j = 0; j < 26;\
-    \ j++) if (tt.nodes[a].next_node[j] != -1){\n                order.push_back(tt.nodes[a].next_node[j]);\n\
-    \            }\n        }\n    }\n    int ans = 0;\n    int r = 0;\n    int node\
-    \ = 0;\n    while (r != (int)S.size()){\n        int c = S[r] - 'a';\n       \
-    \ if (tt.nodes[node].next_node[c] == -1){\n            if (node == 0) r++;\n \
-    \           node = tt.fail[node];\n        }\n        else{\n            node\
-    \ = tt.nodes[node].next_node[c];\n            r++;\n        }\n        if (taboo[node]){\n\
-    \            ans++;\n            node = 0;\n        }\n    }\n    std::cout <<\
-    \ ans << \"\\n\";\n}"
+    \ >> t;\n        tt.insert(t, i);\n    }\n    tt.aho();\n    auto taboo = tt.taboo();\n\
+    \    int ans = 0;\n    int r = 0;\n    int node = 0;\n    while (r != (int)S.size()){\n\
+    \        int c = S[r] - 'a';\n        if (tt.nodes[node].next_node[c] == -1){\n\
+    \            if (node == 0) r++;\n            node = tt.fail[node];\n        }\n\
+    \        else{\n            node = tt.nodes[node].next_node[c];\n            r++;\n\
+    \        }\n        if (taboo[node]){\n            ans++;\n            node =\
+    \ 0;\n        }\n    }\n    std::cout << ans << \"\\n\";\n}"
   dependsOn:
   - string/Trie_Tree.hpp
   isVerificationFile: true
   path: test/string/trie_tree.test.cpp
   requiredBy: []
-  timestamp: '2025-06-26 21:26:57+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-09-16 01:39:10+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/string/trie_tree.test.cpp
 layout: document

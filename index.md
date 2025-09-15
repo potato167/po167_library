@@ -120,7 +120,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/Rolling_Hash.hpp
       title: string/Rolling_Hash.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: string/Trie_Tree.hpp
       title: string/Trie_Tree.hpp
   - name: test/ds
@@ -219,7 +219,7 @@ data:
       title: test/math/xor_convolution.test.cpp
   - name: test/string
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/string/aho.test.cpp
       title: test/string/aho.test.cpp
     - icon: ':heavy_check_mark:'
@@ -231,7 +231,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/string/rolling_hash_2.test.cpp
       title: test/string/rolling_hash_2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/string/trie_tree.test.cpp
       title: test/string/trie_tree.test.cpp
 layout: toppage
