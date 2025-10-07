@@ -1,18 +1,21 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: fps/FPS_consecutive_linear.hpp
     title: fps/FPS_consecutive_linear.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/consecutive_terms_of_linear_recurrent_sequence
     links:
     - https://judge.yosupo.jp/problem/consecutive_terms_of_linear_recurrent_sequence
-  bundledCode: "#line 1 \"test/fps/consecutive_linear.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/consecutive_terms_of_linear_recurrent_sequence\"\
+  bundledCode: "#line 1 \"test/fps/consecutive_linear.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/consecutive_terms_of_linear_recurrent_sequence\"\
     \n\n\n#line 2 \"fps/FPS_consecutive_linear.hpp\"\n#include<atcoder/convolution>\n\
     namespace po167\n{\ntemplate<class T>\n// input A(x)\n// B(x) = 1 / A(x)\n// return\
     \ {B[l], B[l + 1], ... , B[r - 1]}\n// 0 < r\nstd::vector<T> FPS_Inv_Consecutive(long\
@@ -37,8 +40,8 @@ data:
     \   P.resize(d);\n    std::vector<T> Q = FPS_Inv_Consecutive(l - d, r, c);\n \
     \   P = atcoder::convolution(P, Q);\n    for (int i = 0; i < r - l; i++){\n  \
     \      P[i] = P[i + d];\n    }\n    P.resize(r - l);\n    return P;\n}\n} // namespace\
-    \ po167\n#line 5 \"test/fps/consecutive_linear.cpp\"\n#include<iostream>\nint\
-    \ main(){\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \ po167\n#line 5 \"test/fps/consecutive_linear.test.cpp\"\n#include<iostream>\n\
+    int main(){\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
     \    using mint = atcoder::modint998244353;\n\n    long long d, k, M, num;\n \
     \   std::cin >> d >> k >> M;\n    std::vector<mint> A(d), C(d + 1);\n    for (int\
     \ i = 0; i < d; i++) std::cin >> num, A[i] = num;\n    for (int i = 1; i <= d;\
@@ -58,16 +61,16 @@ data:
     \ << \"\\n\";\n}"
   dependsOn:
   - fps/FPS_consecutive_linear.hpp
-  isVerificationFile: false
-  path: test/fps/consecutive_linear.cpp
+  isVerificationFile: true
+  path: test/fps/consecutive_linear.test.cpp
   requiredBy: []
-  timestamp: '2025-10-08 04:27:48+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2025-10-08 04:32:24+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/fps/consecutive_linear.cpp
+documentation_of: test/fps/consecutive_linear.test.cpp
 layout: document
 redirect_from:
-- /library/test/fps/consecutive_linear.cpp
-- /library/test/fps/consecutive_linear.cpp.html
-title: test/fps/consecutive_linear.cpp
+- /verify/test/fps/consecutive_linear.test.cpp
+- /verify/test/fps/consecutive_linear.test.cpp.html
+title: test/fps/consecutive_linear.test.cpp
 ---

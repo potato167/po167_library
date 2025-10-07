@@ -40,7 +40,7 @@ data:
     - icon: ':warning:'
       path: fps/FPS_add.hpp
       title: fps/FPS_add.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: fps/FPS_consecutive_linear.hpp
       title: fps/FPS_consecutive_linear.hpp
     - icon: ':heavy_check_mark:'
@@ -131,11 +131,6 @@ data:
     - icon: ':warning:'
       path: test/ds/segtree.cpp
       title: test/ds/segtree.cpp
-  - name: test/fps
-    pages:
-    - icon: ':warning:'
-      path: test/fps/consecutive_linear.cpp
-      title: test/fps/consecutive_linear.cpp
   verificationCategories:
   - name: test/algorithm
     pages:
@@ -164,6 +159,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/fps/comp_inverse.test.cpp
       title: test/fps/comp_inverse.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/fps/consecutive_linear.test.cpp
+      title: test/fps/consecutive_linear.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/fps/division.test.cpp
       title: test/fps/division.test.cpp

@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/fps/consecutive_linear.cpp
-    title: test/fps/consecutive_linear.cpp
-  _extendedVerifiedWith: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/fps/consecutive_linear.test.cpp
+    title: test/fps/consecutive_linear.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"fps/FPS_consecutive_linear.hpp\"\n#include<atcoder/convolution>\n\
@@ -63,11 +63,11 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: fps/FPS_consecutive_linear.hpp
-  requiredBy:
-  - test/fps/consecutive_linear.cpp
+  requiredBy: []
   timestamp: '2025-10-08 04:27:48+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/fps/consecutive_linear.test.cpp
 documentation_of: fps/FPS_consecutive_linear.hpp
 layout: document
 redirect_from:
