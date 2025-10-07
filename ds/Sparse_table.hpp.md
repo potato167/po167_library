@@ -57,8 +57,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/ds/sparse_table.test.cpp
-  - test/graph/tree/lca_1.test.cpp
   - test/graph/tree/jump_tree.test.cpp
+  - test/graph/tree/lca_1.test.cpp
 documentation_of: ds/Sparse_table.hpp
 layout: document
 redirect_from:

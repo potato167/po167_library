@@ -38,8 +38,8 @@ data:
   timestamp: '2024-06-19 18:48:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/fps/product_sequence.test.cpp
   - test/fps/sum_of_power.test.cpp
+  - test/fps/product_sequence.test.cpp
 documentation_of: fps/FPS_Product_Sequence.hpp
 layout: document
 redirect_from:
