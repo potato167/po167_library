@@ -8,6 +8,18 @@ std::pair<std::vector<T>, std::vector<T>> count_square(std::vector<T> L, std::ve
     assert(!L.empty() && !D.empty());
     int N = L.size();
     int M = D.size();
+    if (std::min(N, M) <= 60){
+        int sw = 0;
+        if (N > M) std::swap(N, M), std::swap(L, D), sw = 1;
+        std::vector<T> R(N);
+        for (int i = 0; i < N; i++){
+            D[0] += L[i];
+            for (int j = 1; j < M; j++) D[j] += D[j - 1];
+            R[i] = D.back();
+        }
+        if (sw) std::swap(R, D);
+        return {R, D};
+    }
     po167::Binomial<T> table(N + M);
     std::vector<T> R(N), U(M);
     int z = 0;
@@ -116,7 +128,9 @@ std::vector<T> NAIVE_count_increase_sequences_with_upper_lower_bounds(std::vecto
 template<class T>
 /*
  * f(a, b) を X[0] = a, X[N - 1] = b であるような、A, B に挟まれたものとする
- * res[b] = sum C[a - A[0]] * f(a, b)
+ * 長さ B[N - 1] - A[N - 1] を返す
+ * res[b - A.back()] = sum C[a - A[0]] * f(a, b)
+ * A, B は広義単調増加が嬉しい
  */
 std::vector<T> count_increase_sequences_with_upper_lower_bounds(std::vector<int> A, std::vector<int> B, std::vector<T> C = {}){
     int N = A.size();
