@@ -1,6 +1,7 @@
 #pragma once
 #include <atcoder/convolution>
 #include "../math/Binomial.hpp"
+#include "FPS_cyclic_convolution.hpp"
 namespace po167{
 template<class T>
 std::pair<std::vector<T>, std::vector<T>> count_square(std::vector<T> L, std::vector<T> D){
@@ -9,6 +10,8 @@ std::pair<std::vector<T>, std::vector<T>> count_square(std::vector<T> L, std::ve
     int M = D.size();
     po167::Binomial<T> table(N + M);
     std::vector<T> R(N), U(M);
+    int z = 0;
+    while ((1 << z) < (N + M - 1)) z++;
     // 左から右
     {
         std::vector<T> tmp(N);
@@ -18,10 +21,11 @@ std::pair<std::vector<T>, std::vector<T>> count_square(std::vector<T> L, std::ve
     }
     // 左から上
     {
-        std::vector<T> tmp(M + N - 1);
+        std::vector<T> tmp(1 << z);
         for (int i = 0; i < N; i++) L[i] *= table.invfact(N - 1 - i);
         for (int i = 0; i < N + M - 1; i++) tmp[i] = table.fact(i);
-        tmp = atcoder::convolution(tmp, L);
+        L.resize(1 << z, 0);
+        tmp = po167::FPS_cyclic_convolution(tmp, L);
         for (int i = 0; i < M; i++) U[i] += tmp[N - 1 + i] * table.invfact(i);
     }
     // 下から上
@@ -33,10 +37,11 @@ std::pair<std::vector<T>, std::vector<T>> count_square(std::vector<T> L, std::ve
     }
     // 下から右
     {
-        std::vector<T> tmp(N + M - 1);
+        std::vector<T> tmp(1 << z);
         for (int i = 0; i < M; i++) D[i] *= table.invfact(M - i - 1);
         for (int i = 0; i < N + M - 1; i++) tmp[i] = table.fact(i);
-        tmp = atcoder::convolution(tmp, D);
+        D.resize(1 << z, 0);
+        tmp = po167::FPS_cyclic_convolution(tmp, D);
         for (int i = 0; i < N; i++) R[i] += tmp[M - 1 + i] * table.invfact(i);
     }
     return {R, U};
