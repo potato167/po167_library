@@ -69,18 +69,23 @@ data:
     \    return f;\n}\n}\n#line 5 \"fps/count_increasing_sequences.hpp\"\nnamespace\
     \ po167{\ntemplate<class T>\nstd::pair<std::vector<T>, std::vector<T>> count_square(std::vector<T>\
     \ L, std::vector<T> D){\n    assert(!L.empty() && !D.empty());\n    int N = L.size();\n\
-    \    int M = D.size();\n    po167::Binomial<T> table(N + M);\n    std::vector<T>\
-    \ R(N), U(M);\n    int z = 0;\n    while ((1 << z) < (N + M - 1)) z++;\n    //\
-    \ \u5DE6\u304B\u3089\u53F3\n    {\n        std::vector<T> tmp(N);\n        for\
-    \ (int i = 0; i < N; i++) tmp[i] = table.C(M - 1 + i, i);\n        tmp = atcoder::convolution(tmp,\
-    \ L);\n        for (int i = 0; i < N; i++) R[i] += tmp[i];\n    }\n    // \u5DE6\
-    \u304B\u3089\u4E0A\n    {\n        std::vector<T> tmp(1 << z);\n        for (int\
-    \ i = 0; i < N; i++) L[i] *= table.invfact(N - 1 - i);\n        for (int i = 0;\
-    \ i < N + M - 1; i++) tmp[i] = table.fact(i);\n        L.resize(1 << z, 0);\n\
-    \        tmp = po167::FPS_cyclic_convolution(tmp, L);\n        for (int i = 0;\
-    \ i < M; i++) U[i] += tmp[N - 1 + i] * table.invfact(i);\n    }\n    // \u4E0B\
-    \u304B\u3089\u4E0A\n    {\n        std::vector<T> tmp(M);\n        for (int i\
-    \ = 0; i < M; i++) tmp[i] = table.C(N - 1 + i, i);\n        tmp = atcoder::convolution(tmp,\
+    \    int M = D.size();\n    if (std::min(N, M) <= 60){\n        int sw = 0;\n\
+    \        if (N > M) std::swap(N, M), std::swap(L, D), sw = 1;\n        std::vector<T>\
+    \ R(N);\n        for (int i = 0; i < N; i++){\n            D[0] += L[i];\n   \
+    \         for (int j = 1; j < M; j++) D[j] += D[j - 1];\n            R[i] = D.back();\n\
+    \        }\n        if (sw) std::swap(R, D);\n        return {R, D};\n    }\n\
+    \    po167::Binomial<T> table(N + M);\n    std::vector<T> R(N), U(M);\n    int\
+    \ z = 0;\n    while ((1 << z) < (N + M - 1)) z++;\n    // \u5DE6\u304B\u3089\u53F3\
+    \n    {\n        std::vector<T> tmp(N);\n        for (int i = 0; i < N; i++) tmp[i]\
+    \ = table.C(M - 1 + i, i);\n        tmp = atcoder::convolution(tmp, L);\n    \
+    \    for (int i = 0; i < N; i++) R[i] += tmp[i];\n    }\n    // \u5DE6\u304B\u3089\
+    \u4E0A\n    {\n        std::vector<T> tmp(1 << z);\n        for (int i = 0; i\
+    \ < N; i++) L[i] *= table.invfact(N - 1 - i);\n        for (int i = 0; i < N +\
+    \ M - 1; i++) tmp[i] = table.fact(i);\n        L.resize(1 << z, 0);\n        tmp\
+    \ = po167::FPS_cyclic_convolution(tmp, L);\n        for (int i = 0; i < M; i++)\
+    \ U[i] += tmp[N - 1 + i] * table.invfact(i);\n    }\n    // \u4E0B\u304B\u3089\
+    \u4E0A\n    {\n        std::vector<T> tmp(M);\n        for (int i = 0; i < M;\
+    \ i++) tmp[i] = table.C(N - 1 + i, i);\n        tmp = atcoder::convolution(tmp,\
     \ D);\n        for (int i = 0; i < M; i++) U[i] += tmp[i];\n    }\n    // \u4E0B\
     \u304B\u3089\u53F3\n    {\n        std::vector<T> tmp(1 << z);\n        for (int\
     \ i = 0; i < M; i++) D[i] *= table.invfact(M - i - 1);\n        for (int i = 0;\
@@ -117,8 +122,10 @@ data:
     \ = 0; i < B.back() - A.back(); i++){\n        res[i] = tmp[A.back() - A[0] +\
     \ i];\n    }\n    return res;\n}\n\ntemplate<class T>\n/*\n * f(a, b) \u3092 X[0]\
     \ = a, X[N - 1] = b \u3067\u3042\u308B\u3088\u3046\u306A\u3001A, B \u306B\u631F\
-    \u307E\u308C\u305F\u3082\u306E\u3068\u3059\u308B\n * res[b] = sum C[a - A[0]]\
-    \ * f(a, b)\n */\nstd::vector<T> count_increase_sequences_with_upper_lower_bounds(std::vector<int>\
+    \u307E\u308C\u305F\u3082\u306E\u3068\u3059\u308B\n * \u9577\u3055 B[N - 1] - A[N\
+    \ - 1] \u3092\u8FD4\u3059\n * res[b - A.back()] = sum C[a - A[0]] * f(a, b)\n\
+    \ * A, B \u306F\u5E83\u7FA9\u5358\u8ABF\u5897\u52A0\u304C\u5B09\u3057\u3044\n\
+    \ */\nstd::vector<T> count_increase_sequences_with_upper_lower_bounds(std::vector<int>\
     \ A, std::vector<int> B, std::vector<T> C = {}){\n    int N = A.size();\n    assert(A.size()\
     \ == B.size());\n    for (int i = 0; i < N - 1; i++){\n        A[i + 1] = std::max(A[i],\
     \ A[i + 1]);\n    }\n    for (int i = N - 1; i > 0; i--){\n        B[i - 1] =\
@@ -157,18 +164,23 @@ data:
     \n#include \"FPS_cyclic_convolution.hpp\"\nnamespace po167{\ntemplate<class T>\n\
     std::pair<std::vector<T>, std::vector<T>> count_square(std::vector<T> L, std::vector<T>\
     \ D){\n    assert(!L.empty() && !D.empty());\n    int N = L.size();\n    int M\
-    \ = D.size();\n    po167::Binomial<T> table(N + M);\n    std::vector<T> R(N),\
-    \ U(M);\n    int z = 0;\n    while ((1 << z) < (N + M - 1)) z++;\n    // \u5DE6\
-    \u304B\u3089\u53F3\n    {\n        std::vector<T> tmp(N);\n        for (int i\
-    \ = 0; i < N; i++) tmp[i] = table.C(M - 1 + i, i);\n        tmp = atcoder::convolution(tmp,\
-    \ L);\n        for (int i = 0; i < N; i++) R[i] += tmp[i];\n    }\n    // \u5DE6\
-    \u304B\u3089\u4E0A\n    {\n        std::vector<T> tmp(1 << z);\n        for (int\
-    \ i = 0; i < N; i++) L[i] *= table.invfact(N - 1 - i);\n        for (int i = 0;\
-    \ i < N + M - 1; i++) tmp[i] = table.fact(i);\n        L.resize(1 << z, 0);\n\
-    \        tmp = po167::FPS_cyclic_convolution(tmp, L);\n        for (int i = 0;\
-    \ i < M; i++) U[i] += tmp[N - 1 + i] * table.invfact(i);\n    }\n    // \u4E0B\
-    \u304B\u3089\u4E0A\n    {\n        std::vector<T> tmp(M);\n        for (int i\
-    \ = 0; i < M; i++) tmp[i] = table.C(N - 1 + i, i);\n        tmp = atcoder::convolution(tmp,\
+    \ = D.size();\n    if (std::min(N, M) <= 60){\n        int sw = 0;\n        if\
+    \ (N > M) std::swap(N, M), std::swap(L, D), sw = 1;\n        std::vector<T> R(N);\n\
+    \        for (int i = 0; i < N; i++){\n            D[0] += L[i];\n           \
+    \ for (int j = 1; j < M; j++) D[j] += D[j - 1];\n            R[i] = D.back();\n\
+    \        }\n        if (sw) std::swap(R, D);\n        return {R, D};\n    }\n\
+    \    po167::Binomial<T> table(N + M);\n    std::vector<T> R(N), U(M);\n    int\
+    \ z = 0;\n    while ((1 << z) < (N + M - 1)) z++;\n    // \u5DE6\u304B\u3089\u53F3\
+    \n    {\n        std::vector<T> tmp(N);\n        for (int i = 0; i < N; i++) tmp[i]\
+    \ = table.C(M - 1 + i, i);\n        tmp = atcoder::convolution(tmp, L);\n    \
+    \    for (int i = 0; i < N; i++) R[i] += tmp[i];\n    }\n    // \u5DE6\u304B\u3089\
+    \u4E0A\n    {\n        std::vector<T> tmp(1 << z);\n        for (int i = 0; i\
+    \ < N; i++) L[i] *= table.invfact(N - 1 - i);\n        for (int i = 0; i < N +\
+    \ M - 1; i++) tmp[i] = table.fact(i);\n        L.resize(1 << z, 0);\n        tmp\
+    \ = po167::FPS_cyclic_convolution(tmp, L);\n        for (int i = 0; i < M; i++)\
+    \ U[i] += tmp[N - 1 + i] * table.invfact(i);\n    }\n    // \u4E0B\u304B\u3089\
+    \u4E0A\n    {\n        std::vector<T> tmp(M);\n        for (int i = 0; i < M;\
+    \ i++) tmp[i] = table.C(N - 1 + i, i);\n        tmp = atcoder::convolution(tmp,\
     \ D);\n        for (int i = 0; i < M; i++) U[i] += tmp[i];\n    }\n    // \u4E0B\
     \u304B\u3089\u53F3\n    {\n        std::vector<T> tmp(1 << z);\n        for (int\
     \ i = 0; i < M; i++) D[i] *= table.invfact(M - i - 1);\n        for (int i = 0;\
@@ -205,8 +217,10 @@ data:
     \ = 0; i < B.back() - A.back(); i++){\n        res[i] = tmp[A.back() - A[0] +\
     \ i];\n    }\n    return res;\n}\n\ntemplate<class T>\n/*\n * f(a, b) \u3092 X[0]\
     \ = a, X[N - 1] = b \u3067\u3042\u308B\u3088\u3046\u306A\u3001A, B \u306B\u631F\
-    \u307E\u308C\u305F\u3082\u306E\u3068\u3059\u308B\n * res[b] = sum C[a - A[0]]\
-    \ * f(a, b)\n */\nstd::vector<T> count_increase_sequences_with_upper_lower_bounds(std::vector<int>\
+    \u307E\u308C\u305F\u3082\u306E\u3068\u3059\u308B\n * \u9577\u3055 B[N - 1] - A[N\
+    \ - 1] \u3092\u8FD4\u3059\n * res[b - A.back()] = sum C[a - A[0]] * f(a, b)\n\
+    \ * A, B \u306F\u5E83\u7FA9\u5358\u8ABF\u5897\u52A0\u304C\u5B09\u3057\u3044\n\
+    \ */\nstd::vector<T> count_increase_sequences_with_upper_lower_bounds(std::vector<int>\
     \ A, std::vector<int> B, std::vector<T> C = {}){\n    int N = A.size();\n    assert(A.size()\
     \ == B.size());\n    for (int i = 0; i < N - 1; i++){\n        A[i + 1] = std::max(A[i],\
     \ A[i + 1]);\n    }\n    for (int i = N - 1; i > 0; i--){\n        B[i - 1] =\
@@ -247,7 +261,7 @@ data:
   isVerificationFile: false
   path: fps/count_increasing_sequences.hpp
   requiredBy: []
-  timestamp: '2025-10-08 23:14:53+09:00'
+  timestamp: '2025-10-08 23:27:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/count_increasing_sequences.test.cpp
