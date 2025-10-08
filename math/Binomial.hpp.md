@@ -6,9 +6,15 @@ data:
     path: fps/Taylor_Shift.hpp
     title: fps/Taylor_Shift.hpp
   - icon: ':heavy_check_mark:'
+    path: fps/count_increasing_sequences.hpp
+    title: fps/count_increasing_sequences.hpp
+  - icon: ':heavy_check_mark:'
     path: math/q_Binomial.hpp
     title: math/q_Binomial.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/fps/count_increasing_sequences.test.cpp
+    title: test/fps/count_increasing_sequences.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/fps/taylor_shift.test.cpp
     title: test/fps/taylor_shift.test.cpp
@@ -118,6 +124,7 @@ data:
   requiredBy:
   - math/q_Binomial.hpp
   - fps/Taylor_Shift.hpp
+  - fps/count_increasing_sequences.hpp
   timestamp: '2024-11-28 11:40:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -125,6 +132,7 @@ data:
   - test/math/narayana.test.cpp
   - test/math/Binomial_Coefficient_Prime_Mod.test.cpp
   - test/fps/taylor_shift.test.cpp
+  - test/fps/count_increasing_sequences.test.cpp
 documentation_of: math/Binomial.hpp
 layout: document
 title: "\u4E8C\u9805\u4FC2\u6570\u95A2\u9023"

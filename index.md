@@ -91,6 +91,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: fps/any_mod.hpp
       title: fps/any_mod.hpp
+    - icon: ':heavy_check_mark:'
+      path: fps/count_increasing_sequences.hpp
+      title: fps/count_increasing_sequences.hpp
   - name: graph/tree
     pages:
     - icon: ':warning:'
@@ -162,6 +165,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/fps/consecutive_linear.test.cpp
       title: test/fps/consecutive_linear.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/fps/count_increasing_sequences.test.cpp
+      title: test/fps/count_increasing_sequences.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/fps/division.test.cpp
       title: test/fps/division.test.cpp
