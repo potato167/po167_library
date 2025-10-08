@@ -69,7 +69,7 @@ data:
     \    return f;\n}\n}\n#line 5 \"fps/count_increasing_sequences.hpp\"\nnamespace\
     \ po167{\ntemplate<class T>\nstd::pair<std::vector<T>, std::vector<T>> count_square(std::vector<T>\
     \ L, std::vector<T> D){\n    assert(!L.empty() && !D.empty());\n    int N = L.size();\n\
-    \    int M = D.size();\n    if (std::min(N, M) <= 60){\n        int sw = 0;\n\
+    \    int M = D.size();\n    if (std::min(N, M) <= 400){\n        int sw = 0;\n\
     \        if (N > M) std::swap(N, M), std::swap(L, D), sw = 1;\n        std::vector<T>\
     \ R(N);\n        for (int i = 0; i < N; i++){\n            D[0] += L[i];\n   \
     \         for (int j = 1; j < M; j++) D[j] += D[j - 1];\n            R[i] = D.back();\n\
@@ -98,34 +98,30 @@ data:
     \ * \u3092\u8FD4\u3059\n */\nstd::vector<T> count_increase_sequences_with_upper_bounds(std::vector<int>\
     \ A, std::vector<T> C){\n    int N = A.size();\n    assert((int)C.size() == N);\n\
     \    assert(N);\n    for (int i = (int)(A.size()) - 1; i > 0; i--) A[i - 1] =\
-    \ std::min(A[i - 1], A[i]);\n    if (A.back() == 0) return {};\n    if (N == 1){\n\
-    \        std::vector<T> res(A[0]);\n        for (int i = 0; i < A[0]; i++) res[i]\
-    \ = C[0];\n        return res;\n    }\n    int m = N / 2;\n    std::vector<int>\
-    \ LA(m), RA(N - m);\n    std::vector<T> LC(m), RC(N - m);\n    for (int i = 0;\
-    \ i < m; i++){\n        LA[i] = A[i];\n        LC[i] = C[i];\n    }\n    for (int\
-    \ i = 0; i < N - m; i++){\n        RA[i] = A[i + m] - A[m - 1];\n        RC[i]\
-    \ = C[i + m];\n    }\n    std::vector<T> res;\n    res.reserve(A.back());\n  \
-    \  auto L = count_increase_sequences_with_upper_bounds(LA, LC);\n    if (!L.empty()){\n\
-    \        auto [R, U] = count_square(L, RC);\n        for (int i = 0; i < (int)R.size();\
-    \ i++) res.push_back(R[i]);\n        std::swap(U, RC);\n    }\n    auto R = count_increase_sequences_with_upper_bounds(RA,\
-    \ RC);\n    for (auto x : R) res.push_back(x);\n    return res;\n}\ntemplate<class\
-    \ T>\nstd::vector<T> NAIVE_count_increase_sequences_with_upper_lower_bounds(std::vector<int>\
-    \ A, std::vector<int> B, std::vector<T> C = {}){\n    std::vector<T> tmp(B.back()\
-    \ - A[0]);\n    if (C.empty()){\n        int b = B[0];\n        for (int i = 1;\
-    \ i < (int)B.size(); i++) b = std::min(b, B[i]);\n        for (int i = 0; i <\
-    \ b - A[0]; i++) tmp[i] = 1;\n    }\n    else for (int i = 0; i < (int)std::min(tmp.size(),\
-    \ C.size()); i++) tmp[i] = C[i];\n    int N = A.size();\n    for (int i = 1; i\
-    \ < N; i++){\n        for (int j = 1; j < (int)tmp.size(); j++){\n           \
-    \ tmp[j] += tmp[j - 1];\n        }\n        for (int j = 0; j < (int)tmp.size();\
-    \ j++){\n            if (j < A[i] - A[0] || B[i] - A[0] <= j) tmp[j] = 0;\n  \
-    \      }\n    }\n    std::vector<T> res(B.back() - A.back());\n    for (int i\
-    \ = 0; i < B.back() - A.back(); i++){\n        res[i] = tmp[A.back() - A[0] +\
-    \ i];\n    }\n    return res;\n}\n\ntemplate<class T>\n/*\n * f(a, b) \u3092 X[0]\
-    \ = a, X[N - 1] = b \u3067\u3042\u308B\u3088\u3046\u306A\u3001A, B \u306B\u631F\
-    \u307E\u308C\u305F\u3082\u306E\u3068\u3059\u308B\n * \u9577\u3055 B[N - 1] - A[N\
-    \ - 1] \u3092\u8FD4\u3059\n * res[b - A.back()] = sum C[a - A[0]] * f(a, b)\n\
-    \ * A, B \u306F\u5E83\u7FA9\u5358\u8ABF\u5897\u52A0\u304C\u5B09\u3057\u3044\n\
-    \ */\nstd::vector<T> count_increase_sequences_with_upper_lower_bounds(std::vector<int>\
+    \ std::min(A[i - 1], A[i]);\n    if (A.back() == 0) return {};\n    if (std::min(A.back(),\
+    \ N) <= 400){\n        std::vector<T> dp(0);\n        dp.reserve(A.back());\n\
+    \        for (int i = 0; i < N; i++){\n            dp.resize(A[i], 0);\n     \
+    \       if (A[i]) dp[0] += C[i];\n            for (int j = 1; j < (int)dp.size();\
+    \ j++){\n                dp[j] += dp[j - 1];\n            }\n        }\n     \
+    \   return dp;\n    }\n    if (N == 1){\n        std::vector<T> res(A[0]);\n \
+    \       for (int i = 0; i < A[0]; i++) res[i] = C[0];\n        return res;\n \
+    \   }\n    int m = N / 2;\n    std::vector<int> LA(m), RA(N - m);\n    std::vector<T>\
+    \ LC(m), RC(N - m);\n    for (int i = 0; i < m; i++){\n        LA[i] = A[i];\n\
+    \        LC[i] = C[i];\n    }\n    for (int i = 0; i < N - m; i++){\n        RA[i]\
+    \ = A[i + m] - A[m - 1];\n        RC[i] = C[i + m];\n    }\n    std::vector<T>\
+    \ res;\n    res.reserve(A.back());\n    auto L = count_increase_sequences_with_upper_bounds(LA,\
+    \ LC);\n    if (!L.empty()){\n        auto [R, U] = count_square(L, RC);\n   \
+    \     for (int i = 0; i < (int)R.size(); i++) res.push_back(R[i]);\n        std::swap(U,\
+    \ RC);\n    }\n    auto R = count_increase_sequences_with_upper_bounds(RA, RC);\n\
+    \    for (auto x : R) res.push_back(x);\n    return res;\n}\n\ntemplate<class\
+    \ T>\n/*\n * f(a, b) \u3092 X[0] = a, X[N - 1] = b \u3067\u3042\u308B\u3088\u3046\
+    \u306A\u3001A, B \u306B\u631F\u307E\u308C\u305F\u3082\u306E\u3068\u3059\u308B\n\
+    \ * \u9577\u3055 B[N - 1] - A[N - 1] \u3092\u8FD4\u3059\n * res[b - A.back()]\
+    \ = sum C[a - A[0]] * f(a, b)\n * A, B \u306F\u5E83\u7FA9\u5358\u8ABF\u5897\u52A0\
+    \u304C\u5B09\u3057\u3044\n * C \u306F\u7A7A\u306A\u3089\u3070\u3001\u5168\u3066\
+    \ 1 \u3067\u3042\u308B\u3068\u3059\u308B\u3002\n * \u305D\u3046\u3067\u306A\u3044\
+    \u306A\u3089\u3001|C| = B[0] - A[0] \u3067\u306A\u3044\u3068\u3044\u3051\u306A\
+    \u3044\n */\nstd::vector<T> count_increase_sequences_with_upper_lower_bounds(std::vector<int>\
     \ A, std::vector<int> B, std::vector<T> C = {}){\n    int N = A.size();\n    assert(A.size()\
     \ == B.size());\n    for (int i = 0; i < N - 1; i++){\n        A[i + 1] = std::max(A[i],\
     \ A[i + 1]);\n    }\n    for (int i = N - 1; i > 0; i--){\n        B[i - 1] =\
@@ -164,7 +160,7 @@ data:
     \n#include \"FPS_cyclic_convolution.hpp\"\nnamespace po167{\ntemplate<class T>\n\
     std::pair<std::vector<T>, std::vector<T>> count_square(std::vector<T> L, std::vector<T>\
     \ D){\n    assert(!L.empty() && !D.empty());\n    int N = L.size();\n    int M\
-    \ = D.size();\n    if (std::min(N, M) <= 60){\n        int sw = 0;\n        if\
+    \ = D.size();\n    if (std::min(N, M) <= 400){\n        int sw = 0;\n        if\
     \ (N > M) std::swap(N, M), std::swap(L, D), sw = 1;\n        std::vector<T> R(N);\n\
     \        for (int i = 0; i < N; i++){\n            D[0] += L[i];\n           \
     \ for (int j = 1; j < M; j++) D[j] += D[j - 1];\n            R[i] = D.back();\n\
@@ -193,34 +189,30 @@ data:
     \ * \u3092\u8FD4\u3059\n */\nstd::vector<T> count_increase_sequences_with_upper_bounds(std::vector<int>\
     \ A, std::vector<T> C){\n    int N = A.size();\n    assert((int)C.size() == N);\n\
     \    assert(N);\n    for (int i = (int)(A.size()) - 1; i > 0; i--) A[i - 1] =\
-    \ std::min(A[i - 1], A[i]);\n    if (A.back() == 0) return {};\n    if (N == 1){\n\
-    \        std::vector<T> res(A[0]);\n        for (int i = 0; i < A[0]; i++) res[i]\
-    \ = C[0];\n        return res;\n    }\n    int m = N / 2;\n    std::vector<int>\
-    \ LA(m), RA(N - m);\n    std::vector<T> LC(m), RC(N - m);\n    for (int i = 0;\
-    \ i < m; i++){\n        LA[i] = A[i];\n        LC[i] = C[i];\n    }\n    for (int\
-    \ i = 0; i < N - m; i++){\n        RA[i] = A[i + m] - A[m - 1];\n        RC[i]\
-    \ = C[i + m];\n    }\n    std::vector<T> res;\n    res.reserve(A.back());\n  \
-    \  auto L = count_increase_sequences_with_upper_bounds(LA, LC);\n    if (!L.empty()){\n\
-    \        auto [R, U] = count_square(L, RC);\n        for (int i = 0; i < (int)R.size();\
-    \ i++) res.push_back(R[i]);\n        std::swap(U, RC);\n    }\n    auto R = count_increase_sequences_with_upper_bounds(RA,\
-    \ RC);\n    for (auto x : R) res.push_back(x);\n    return res;\n}\ntemplate<class\
-    \ T>\nstd::vector<T> NAIVE_count_increase_sequences_with_upper_lower_bounds(std::vector<int>\
-    \ A, std::vector<int> B, std::vector<T> C = {}){\n    std::vector<T> tmp(B.back()\
-    \ - A[0]);\n    if (C.empty()){\n        int b = B[0];\n        for (int i = 1;\
-    \ i < (int)B.size(); i++) b = std::min(b, B[i]);\n        for (int i = 0; i <\
-    \ b - A[0]; i++) tmp[i] = 1;\n    }\n    else for (int i = 0; i < (int)std::min(tmp.size(),\
-    \ C.size()); i++) tmp[i] = C[i];\n    int N = A.size();\n    for (int i = 1; i\
-    \ < N; i++){\n        for (int j = 1; j < (int)tmp.size(); j++){\n           \
-    \ tmp[j] += tmp[j - 1];\n        }\n        for (int j = 0; j < (int)tmp.size();\
-    \ j++){\n            if (j < A[i] - A[0] || B[i] - A[0] <= j) tmp[j] = 0;\n  \
-    \      }\n    }\n    std::vector<T> res(B.back() - A.back());\n    for (int i\
-    \ = 0; i < B.back() - A.back(); i++){\n        res[i] = tmp[A.back() - A[0] +\
-    \ i];\n    }\n    return res;\n}\n\ntemplate<class T>\n/*\n * f(a, b) \u3092 X[0]\
-    \ = a, X[N - 1] = b \u3067\u3042\u308B\u3088\u3046\u306A\u3001A, B \u306B\u631F\
-    \u307E\u308C\u305F\u3082\u306E\u3068\u3059\u308B\n * \u9577\u3055 B[N - 1] - A[N\
-    \ - 1] \u3092\u8FD4\u3059\n * res[b - A.back()] = sum C[a - A[0]] * f(a, b)\n\
-    \ * A, B \u306F\u5E83\u7FA9\u5358\u8ABF\u5897\u52A0\u304C\u5B09\u3057\u3044\n\
-    \ */\nstd::vector<T> count_increase_sequences_with_upper_lower_bounds(std::vector<int>\
+    \ std::min(A[i - 1], A[i]);\n    if (A.back() == 0) return {};\n    if (std::min(A.back(),\
+    \ N) <= 400){\n        std::vector<T> dp(0);\n        dp.reserve(A.back());\n\
+    \        for (int i = 0; i < N; i++){\n            dp.resize(A[i], 0);\n     \
+    \       if (A[i]) dp[0] += C[i];\n            for (int j = 1; j < (int)dp.size();\
+    \ j++){\n                dp[j] += dp[j - 1];\n            }\n        }\n     \
+    \   return dp;\n    }\n    if (N == 1){\n        std::vector<T> res(A[0]);\n \
+    \       for (int i = 0; i < A[0]; i++) res[i] = C[0];\n        return res;\n \
+    \   }\n    int m = N / 2;\n    std::vector<int> LA(m), RA(N - m);\n    std::vector<T>\
+    \ LC(m), RC(N - m);\n    for (int i = 0; i < m; i++){\n        LA[i] = A[i];\n\
+    \        LC[i] = C[i];\n    }\n    for (int i = 0; i < N - m; i++){\n        RA[i]\
+    \ = A[i + m] - A[m - 1];\n        RC[i] = C[i + m];\n    }\n    std::vector<T>\
+    \ res;\n    res.reserve(A.back());\n    auto L = count_increase_sequences_with_upper_bounds(LA,\
+    \ LC);\n    if (!L.empty()){\n        auto [R, U] = count_square(L, RC);\n   \
+    \     for (int i = 0; i < (int)R.size(); i++) res.push_back(R[i]);\n        std::swap(U,\
+    \ RC);\n    }\n    auto R = count_increase_sequences_with_upper_bounds(RA, RC);\n\
+    \    for (auto x : R) res.push_back(x);\n    return res;\n}\n\ntemplate<class\
+    \ T>\n/*\n * f(a, b) \u3092 X[0] = a, X[N - 1] = b \u3067\u3042\u308B\u3088\u3046\
+    \u306A\u3001A, B \u306B\u631F\u307E\u308C\u305F\u3082\u306E\u3068\u3059\u308B\n\
+    \ * \u9577\u3055 B[N - 1] - A[N - 1] \u3092\u8FD4\u3059\n * res[b - A.back()]\
+    \ = sum C[a - A[0]] * f(a, b)\n * A, B \u306F\u5E83\u7FA9\u5358\u8ABF\u5897\u52A0\
+    \u304C\u5B09\u3057\u3044\n * C \u306F\u7A7A\u306A\u3089\u3070\u3001\u5168\u3066\
+    \ 1 \u3067\u3042\u308B\u3068\u3059\u308B\u3002\n * \u305D\u3046\u3067\u306A\u3044\
+    \u306A\u3089\u3001|C| = B[0] - A[0] \u3067\u306A\u3044\u3068\u3044\u3051\u306A\
+    \u3044\n */\nstd::vector<T> count_increase_sequences_with_upper_lower_bounds(std::vector<int>\
     \ A, std::vector<int> B, std::vector<T> C = {}){\n    int N = A.size();\n    assert(A.size()\
     \ == B.size());\n    for (int i = 0; i < N - 1; i++){\n        A[i + 1] = std::max(A[i],\
     \ A[i + 1]);\n    }\n    for (int i = N - 1; i > 0; i--){\n        B[i - 1] =\
@@ -261,7 +253,7 @@ data:
   isVerificationFile: false
   path: fps/count_increasing_sequences.hpp
   requiredBy: []
-  timestamp: '2025-10-08 23:27:31+09:00'
+  timestamp: '2025-10-09 01:42:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/count_increasing_sequences.test.cpp
