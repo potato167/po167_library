@@ -8,7 +8,7 @@ std::pair<std::vector<T>, std::vector<T>> count_square(std::vector<T> L, std::ve
     assert(!L.empty() && !D.empty());
     int N = L.size();
     int M = D.size();
-    if (std::min(N, M) <= 60){
+    if (std::min(N, M) <= 400){
         int sw = 0;
         if (N > M) std::swap(N, M), std::swap(L, D), sw = 1;
         std::vector<T> R(N);
@@ -72,6 +72,18 @@ std::vector<T> count_increase_sequences_with_upper_bounds(std::vector<int> A, st
     assert(N);
     for (int i = (int)(A.size()) - 1; i > 0; i--) A[i - 1] = std::min(A[i - 1], A[i]);
     if (A.back() == 0) return {};
+    if (std::min(A.back(), N) <= 400){
+        std::vector<T> dp(0);
+        dp.reserve(A.back());
+        for (int i = 0; i < N; i++){
+            dp.resize(A[i], 0);
+            if (A[i]) dp[0] += C[i];
+            for (int j = 1; j < (int)dp.size(); j++){
+                dp[j] += dp[j - 1];
+            }
+        }
+        return dp;
+    }
     if (N == 1){
         std::vector<T> res(A[0]);
         for (int i = 0; i < A[0]; i++) res[i] = C[0];
@@ -100,30 +112,6 @@ std::vector<T> count_increase_sequences_with_upper_bounds(std::vector<int> A, st
     for (auto x : R) res.push_back(x);
     return res;
 }
-template<class T>
-std::vector<T> NAIVE_count_increase_sequences_with_upper_lower_bounds(std::vector<int> A, std::vector<int> B, std::vector<T> C = {}){
-    std::vector<T> tmp(B.back() - A[0]);
-    if (C.empty()){
-        int b = B[0];
-        for (int i = 1; i < (int)B.size(); i++) b = std::min(b, B[i]);
-        for (int i = 0; i < b - A[0]; i++) tmp[i] = 1;
-    }
-    else for (int i = 0; i < (int)std::min(tmp.size(), C.size()); i++) tmp[i] = C[i];
-    int N = A.size();
-    for (int i = 1; i < N; i++){
-        for (int j = 1; j < (int)tmp.size(); j++){
-            tmp[j] += tmp[j - 1];
-        }
-        for (int j = 0; j < (int)tmp.size(); j++){
-            if (j < A[i] - A[0] || B[i] - A[0] <= j) tmp[j] = 0;
-        }
-    }
-    std::vector<T> res(B.back() - A.back());
-    for (int i = 0; i < B.back() - A.back(); i++){
-        res[i] = tmp[A.back() - A[0] + i];
-    }
-    return res;
-}
 
 template<class T>
 /*
@@ -131,6 +119,8 @@ template<class T>
  * 長さ B[N - 1] - A[N - 1] を返す
  * res[b - A.back()] = sum C[a - A[0]] * f(a, b)
  * A, B は広義単調増加が嬉しい
+ * C は空ならば、全て 1 であるとする。
+ * そうでないなら、|C| = B[0] - A[0] でないといけない
  */
 std::vector<T> count_increase_sequences_with_upper_lower_bounds(std::vector<int> A, std::vector<int> B, std::vector<T> C = {}){
     int N = A.size();
