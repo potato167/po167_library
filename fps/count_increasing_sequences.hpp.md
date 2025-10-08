@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: fps/FPS_cyclic_convolution.hpp
+    title: fps/FPS_cyclic_convolution.hpp
+  - icon: ':heavy_check_mark:'
     path: math/Binomial.hpp
     title: "\u4E8C\u9805\u4FC2\u6570\u95A2\u9023"
   _extendedRequiredBy: []
@@ -57,31 +60,38 @@ data:
     \ d);\n    }\n\n    // the number of diagonal dissections of a convex n-gon into\
     \ k+1 regions.\n    // OEIS A033282\n    // AGC065D\n    T diagonal(int n, int\
     \ k){\n        if (n <= 2 || n - 3 < k || k < 0) return 0;\n        return C(n\
-    \ - 3, k) * C(n + k - 1, k) * inv(k + 1);\n    }\n};\n}\n#line 4 \"fps/count_increasing_sequences.hpp\"\
-    \nnamespace po167{\ntemplate<class T>\nstd::pair<std::vector<T>, std::vector<T>>\
-    \ count_square(std::vector<T> L, std::vector<T> D){\n    assert(!L.empty() &&\
-    \ !D.empty());\n    int N = L.size();\n    int M = D.size();\n    po167::Binomial<T>\
-    \ table(N + M);\n    std::vector<T> R(N), U(M);\n    // \u5DE6\u304B\u3089\u53F3\
-    \n    {\n        std::vector<T> tmp(N);\n        for (int i = 0; i < N; i++) tmp[i]\
-    \ = table.C(M - 1 + i, i);\n        tmp = atcoder::convolution(tmp, L);\n    \
-    \    for (int i = 0; i < N; i++) R[i] += tmp[i];\n    }\n    // \u5DE6\u304B\u3089\
-    \u4E0A\n    {\n        std::vector<T> tmp(M + N - 1);\n        for (int i = 0;\
-    \ i < N; i++) L[i] *= table.invfact(N - 1 - i);\n        for (int i = 0; i < N\
-    \ + M - 1; i++) tmp[i] = table.fact(i);\n        tmp = atcoder::convolution(tmp,\
-    \ L);\n        for (int i = 0; i < M; i++) U[i] += tmp[N - 1 + i] * table.invfact(i);\n\
-    \    }\n    // \u4E0B\u304B\u3089\u4E0A\n    {\n        std::vector<T> tmp(M);\n\
-    \        for (int i = 0; i < M; i++) tmp[i] = table.C(N - 1 + i, i);\n       \
-    \ tmp = atcoder::convolution(tmp, D);\n        for (int i = 0; i < M; i++) U[i]\
-    \ += tmp[i];\n    }\n    // \u4E0B\u304B\u3089\u53F3\n    {\n        std::vector<T>\
-    \ tmp(N + M - 1);\n        for (int i = 0; i < M; i++) D[i] *= table.invfact(M\
-    \ - i - 1);\n        for (int i = 0; i < N + M - 1; i++) tmp[i] = table.fact(i);\n\
-    \        tmp = atcoder::convolution(tmp, D);\n        for (int i = 0; i < N; i++)\
-    \ R[i] += tmp[M - 1 + i] * table.invfact(i);\n    }\n    return {R, U};\n}\ntemplate<class\
-    \ T>\n/*\n * g(A, x) \u3092\n * 0 <= B[i] < A[i] \u304B\u3064 B[i] = x \u3092\u6E80\
-    \u305F\u3059\n * \u5E83\u7FA9\u5358\u8ABF\u5897\u52A0\u5217 B \u306E\u6570\u3068\
-    \u3059\u308B\n * res[x] = sum C[i] * g(A[i:N], x)\n * \u3092\u8FD4\u3059\n */\n\
-    std::vector<T> count_increase_sequences_with_upper_bounds(std::vector<int> A,\
-    \ std::vector<T> C){\n    int N = A.size();\n    assert((int)C.size() == N);\n\
+    \ - 3, k) * C(n + k - 1, k) * inv(k + 1);\n    }\n};\n}\n#line 4 \"fps/FPS_cyclic_convolution.hpp\"\
+    \n\nnamespace po167{\n// |f| = |g| = 2 ^ n\ntemplate<class T>\nstd::vector<T>\
+    \ FPS_cyclic_convolution(std::vector<T> f, std::vector<T> g){\n    atcoder::internal::butterfly(f);\n\
+    \    atcoder::internal::butterfly(g);\n    for (int i = 0; i < (int)f.size();\
+    \ i++) f[i] *= g[i];\n    atcoder::internal::butterfly_inv(f);\n    T iz = (T)(1)\
+    \ / (T)(f.size());\n    for (int i = 0; i < (int)f.size(); i++) f[i] *= iz;\n\
+    \    return f;\n}\n}\n#line 5 \"fps/count_increasing_sequences.hpp\"\nnamespace\
+    \ po167{\ntemplate<class T>\nstd::pair<std::vector<T>, std::vector<T>> count_square(std::vector<T>\
+    \ L, std::vector<T> D){\n    assert(!L.empty() && !D.empty());\n    int N = L.size();\n\
+    \    int M = D.size();\n    po167::Binomial<T> table(N + M);\n    std::vector<T>\
+    \ R(N), U(M);\n    int z = 0;\n    while ((1 << z) < (N + M - 1)) z++;\n    //\
+    \ \u5DE6\u304B\u3089\u53F3\n    {\n        std::vector<T> tmp(N);\n        for\
+    \ (int i = 0; i < N; i++) tmp[i] = table.C(M - 1 + i, i);\n        tmp = atcoder::convolution(tmp,\
+    \ L);\n        for (int i = 0; i < N; i++) R[i] += tmp[i];\n    }\n    // \u5DE6\
+    \u304B\u3089\u4E0A\n    {\n        std::vector<T> tmp(1 << z);\n        for (int\
+    \ i = 0; i < N; i++) L[i] *= table.invfact(N - 1 - i);\n        for (int i = 0;\
+    \ i < N + M - 1; i++) tmp[i] = table.fact(i);\n        L.resize(1 << z, 0);\n\
+    \        tmp = po167::FPS_cyclic_convolution(tmp, L);\n        for (int i = 0;\
+    \ i < M; i++) U[i] += tmp[N - 1 + i] * table.invfact(i);\n    }\n    // \u4E0B\
+    \u304B\u3089\u4E0A\n    {\n        std::vector<T> tmp(M);\n        for (int i\
+    \ = 0; i < M; i++) tmp[i] = table.C(N - 1 + i, i);\n        tmp = atcoder::convolution(tmp,\
+    \ D);\n        for (int i = 0; i < M; i++) U[i] += tmp[i];\n    }\n    // \u4E0B\
+    \u304B\u3089\u53F3\n    {\n        std::vector<T> tmp(1 << z);\n        for (int\
+    \ i = 0; i < M; i++) D[i] *= table.invfact(M - i - 1);\n        for (int i = 0;\
+    \ i < N + M - 1; i++) tmp[i] = table.fact(i);\n        D.resize(1 << z, 0);\n\
+    \        tmp = po167::FPS_cyclic_convolution(tmp, D);\n        for (int i = 0;\
+    \ i < N; i++) R[i] += tmp[M - 1 + i] * table.invfact(i);\n    }\n    return {R,\
+    \ U};\n}\ntemplate<class T>\n/*\n * g(A, x) \u3092\n * 0 <= B[i] < A[i] \u304B\
+    \u3064 B[i] = x \u3092\u6E80\u305F\u3059\n * \u5E83\u7FA9\u5358\u8ABF\u5897\u52A0\
+    \u5217 B \u306E\u6570\u3068\u3059\u308B\n * res[x] = sum C[i] * g(A[i:N], x)\n\
+    \ * \u3092\u8FD4\u3059\n */\nstd::vector<T> count_increase_sequences_with_upper_bounds(std::vector<int>\
+    \ A, std::vector<T> C){\n    int N = A.size();\n    assert((int)C.size() == N);\n\
     \    assert(N);\n    for (int i = (int)(A.size()) - 1; i > 0; i--) A[i - 1] =\
     \ std::min(A[i - 1], A[i]);\n    if (A.back() == 0) return {};\n    if (N == 1){\n\
     \        std::vector<T> res(A[0]);\n        for (int i = 0; i < A[0]; i++) res[i]\
@@ -144,30 +154,32 @@ data:
     \   R = count_increase_sequences_with_upper_bounds(nB, U);\n    for (auto x :\
     \ R) res.push_back(x);\n    return res;\n}\n}\n"
   code: "#pragma once\n#include <atcoder/convolution>\n#include \"../math/Binomial.hpp\"\
-    \nnamespace po167{\ntemplate<class T>\nstd::pair<std::vector<T>, std::vector<T>>\
-    \ count_square(std::vector<T> L, std::vector<T> D){\n    assert(!L.empty() &&\
-    \ !D.empty());\n    int N = L.size();\n    int M = D.size();\n    po167::Binomial<T>\
-    \ table(N + M);\n    std::vector<T> R(N), U(M);\n    // \u5DE6\u304B\u3089\u53F3\
-    \n    {\n        std::vector<T> tmp(N);\n        for (int i = 0; i < N; i++) tmp[i]\
-    \ = table.C(M - 1 + i, i);\n        tmp = atcoder::convolution(tmp, L);\n    \
-    \    for (int i = 0; i < N; i++) R[i] += tmp[i];\n    }\n    // \u5DE6\u304B\u3089\
-    \u4E0A\n    {\n        std::vector<T> tmp(M + N - 1);\n        for (int i = 0;\
-    \ i < N; i++) L[i] *= table.invfact(N - 1 - i);\n        for (int i = 0; i < N\
-    \ + M - 1; i++) tmp[i] = table.fact(i);\n        tmp = atcoder::convolution(tmp,\
-    \ L);\n        for (int i = 0; i < M; i++) U[i] += tmp[N - 1 + i] * table.invfact(i);\n\
-    \    }\n    // \u4E0B\u304B\u3089\u4E0A\n    {\n        std::vector<T> tmp(M);\n\
-    \        for (int i = 0; i < M; i++) tmp[i] = table.C(N - 1 + i, i);\n       \
-    \ tmp = atcoder::convolution(tmp, D);\n        for (int i = 0; i < M; i++) U[i]\
-    \ += tmp[i];\n    }\n    // \u4E0B\u304B\u3089\u53F3\n    {\n        std::vector<T>\
-    \ tmp(N + M - 1);\n        for (int i = 0; i < M; i++) D[i] *= table.invfact(M\
-    \ - i - 1);\n        for (int i = 0; i < N + M - 1; i++) tmp[i] = table.fact(i);\n\
-    \        tmp = atcoder::convolution(tmp, D);\n        for (int i = 0; i < N; i++)\
-    \ R[i] += tmp[M - 1 + i] * table.invfact(i);\n    }\n    return {R, U};\n}\ntemplate<class\
-    \ T>\n/*\n * g(A, x) \u3092\n * 0 <= B[i] < A[i] \u304B\u3064 B[i] = x \u3092\u6E80\
-    \u305F\u3059\n * \u5E83\u7FA9\u5358\u8ABF\u5897\u52A0\u5217 B \u306E\u6570\u3068\
-    \u3059\u308B\n * res[x] = sum C[i] * g(A[i:N], x)\n * \u3092\u8FD4\u3059\n */\n\
-    std::vector<T> count_increase_sequences_with_upper_bounds(std::vector<int> A,\
-    \ std::vector<T> C){\n    int N = A.size();\n    assert((int)C.size() == N);\n\
+    \n#include \"FPS_cyclic_convolution.hpp\"\nnamespace po167{\ntemplate<class T>\n\
+    std::pair<std::vector<T>, std::vector<T>> count_square(std::vector<T> L, std::vector<T>\
+    \ D){\n    assert(!L.empty() && !D.empty());\n    int N = L.size();\n    int M\
+    \ = D.size();\n    po167::Binomial<T> table(N + M);\n    std::vector<T> R(N),\
+    \ U(M);\n    int z = 0;\n    while ((1 << z) < (N + M - 1)) z++;\n    // \u5DE6\
+    \u304B\u3089\u53F3\n    {\n        std::vector<T> tmp(N);\n        for (int i\
+    \ = 0; i < N; i++) tmp[i] = table.C(M - 1 + i, i);\n        tmp = atcoder::convolution(tmp,\
+    \ L);\n        for (int i = 0; i < N; i++) R[i] += tmp[i];\n    }\n    // \u5DE6\
+    \u304B\u3089\u4E0A\n    {\n        std::vector<T> tmp(1 << z);\n        for (int\
+    \ i = 0; i < N; i++) L[i] *= table.invfact(N - 1 - i);\n        for (int i = 0;\
+    \ i < N + M - 1; i++) tmp[i] = table.fact(i);\n        L.resize(1 << z, 0);\n\
+    \        tmp = po167::FPS_cyclic_convolution(tmp, L);\n        for (int i = 0;\
+    \ i < M; i++) U[i] += tmp[N - 1 + i] * table.invfact(i);\n    }\n    // \u4E0B\
+    \u304B\u3089\u4E0A\n    {\n        std::vector<T> tmp(M);\n        for (int i\
+    \ = 0; i < M; i++) tmp[i] = table.C(N - 1 + i, i);\n        tmp = atcoder::convolution(tmp,\
+    \ D);\n        for (int i = 0; i < M; i++) U[i] += tmp[i];\n    }\n    // \u4E0B\
+    \u304B\u3089\u53F3\n    {\n        std::vector<T> tmp(1 << z);\n        for (int\
+    \ i = 0; i < M; i++) D[i] *= table.invfact(M - i - 1);\n        for (int i = 0;\
+    \ i < N + M - 1; i++) tmp[i] = table.fact(i);\n        D.resize(1 << z, 0);\n\
+    \        tmp = po167::FPS_cyclic_convolution(tmp, D);\n        for (int i = 0;\
+    \ i < N; i++) R[i] += tmp[M - 1 + i] * table.invfact(i);\n    }\n    return {R,\
+    \ U};\n}\ntemplate<class T>\n/*\n * g(A, x) \u3092\n * 0 <= B[i] < A[i] \u304B\
+    \u3064 B[i] = x \u3092\u6E80\u305F\u3059\n * \u5E83\u7FA9\u5358\u8ABF\u5897\u52A0\
+    \u5217 B \u306E\u6570\u3068\u3059\u308B\n * res[x] = sum C[i] * g(A[i:N], x)\n\
+    \ * \u3092\u8FD4\u3059\n */\nstd::vector<T> count_increase_sequences_with_upper_bounds(std::vector<int>\
+    \ A, std::vector<T> C){\n    int N = A.size();\n    assert((int)C.size() == N);\n\
     \    assert(N);\n    for (int i = (int)(A.size()) - 1; i > 0; i--) A[i - 1] =\
     \ std::min(A[i - 1], A[i]);\n    if (A.back() == 0) return {};\n    if (N == 1){\n\
     \        std::vector<T> res(A[0]);\n        for (int i = 0; i < A[0]; i++) res[i]\
@@ -231,10 +243,11 @@ data:
     \ R) res.push_back(x);\n    return res;\n}\n}"
   dependsOn:
   - math/Binomial.hpp
+  - fps/FPS_cyclic_convolution.hpp
   isVerificationFile: false
   path: fps/count_increasing_sequences.hpp
   requiredBy: []
-  timestamp: '2025-10-08 21:50:51+09:00'
+  timestamp: '2025-10-08 23:14:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/count_increasing_sequences.test.cpp
