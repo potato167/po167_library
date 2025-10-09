@@ -12,6 +12,7 @@ namespace po167{
 //     [x ^ {n - 1}] g(x) f(x) ^ i
 template<class T>
 std::vector<T> Power_Projection(std::vector<T> g, std::vector<T> f, int m){
+    assert(f[0] == 0);
     int ind = (int)g.size() - 1;
     int n = 1;
     while(n < (int)g.size()) n *= 2;
