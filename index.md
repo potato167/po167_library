@@ -40,7 +40,7 @@ data:
     - icon: ':warning:'
       path: fps/FPS_add.hpp
       title: fps/FPS_add.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: fps/FPS_composition.hpp
       title: fps/FPS_composition.hpp
     - icon: ':heavy_check_mark:'
@@ -137,11 +137,6 @@ data:
     - icon: ':warning:'
       path: test/ds/segtree.cpp
       title: test/ds/segtree.cpp
-  - name: test/fps
-    pages:
-    - icon: ':warning:'
-      path: test/fps/comp_test.cpp
-      title: test/fps/comp_test.cpp
   verificationCategories:
   - name: test/algorithm
     pages:
@@ -167,6 +162,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/fps/any_mod.test.cpp
       title: test/fps/any_mod.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/fps/comp.test.cpp
+      title: test/fps/comp.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/fps/comp_inverse.test.cpp
       title: test/fps/comp_inverse.test.cpp

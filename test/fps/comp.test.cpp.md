@@ -1,18 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: fps/FPS_composition.hpp
     title: fps/FPS_composition.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/composition_of_formal_power_series_large
     links:
     - https://judge.yosupo.jp/problem/composition_of_formal_power_series_large
-  bundledCode: "#line 1 \"test/fps/comp_test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/composition_of_formal_power_series_large\"\
+  bundledCode: "#line 1 \"test/fps/comp.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/composition_of_formal_power_series_large\"\
     \n\n\n#line 2 \"fps/FPS_composition.hpp\"\n#include <atcoder/convolution>\n\n\
     namespace po167{\n// n = |g|\n// return f(g(x))\n// https://maspypy.com/fps-\u5408\
     \u6210\u30FB\u9006\u95A2\u6570\u306E\u89E3\u8AAC\uFF082\uFF09\u8EE2\u7F6E\u539F\
@@ -45,7 +47,7 @@ data:
     \ Q(2 * n);\n    for (int i = 0; i < n; i++) Q[i] = -g[i];\n    auto p = rec(rec,\
     \ n, 1, Q);\n    std::vector<T> res(n);\n    for (int i = 0; i < n; i++) res[i]\
     \ = p[i];\n    std::reverse(res.begin(), res.end());\n    res.resize(N);\n   \
-    \ return res;\n}\n}\n#line 5 \"test/fps/comp_test.cpp\"\n#include <iostream>\n\
+    \ return res;\n}\n}\n#line 5 \"test/fps/comp.test.cpp\"\n#include <iostream>\n\
     \nint main(){\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
     \    using mint = atcoder::modint998244353;\n    int n;\n    std::cin >> n;\n\
     \    std::vector<mint> a(n);\n    for (int i = 0; i < n; i++){\n        int mem;\n\
@@ -66,16 +68,16 @@ data:
     \    }\n}"
   dependsOn:
   - fps/FPS_composition.hpp
-  isVerificationFile: false
-  path: test/fps/comp_test.cpp
+  isVerificationFile: true
+  path: test/fps/comp.test.cpp
   requiredBy: []
-  timestamp: '2025-10-10 06:41:52+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2025-10-10 06:57:18+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/fps/comp_test.cpp
+documentation_of: test/fps/comp.test.cpp
 layout: document
 redirect_from:
-- /library/test/fps/comp_test.cpp
-- /library/test/fps/comp_test.cpp.html
-title: test/fps/comp_test.cpp
+- /verify/test/fps/comp.test.cpp
+- /verify/test/fps/comp.test.cpp.html
+title: test/fps/comp.test.cpp
 ---

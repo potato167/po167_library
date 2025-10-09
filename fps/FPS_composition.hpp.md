@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/fps/comp_test.cpp
-    title: test/fps/comp_test.cpp
-  _extendedVerifiedWith: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/fps/comp.test.cpp
+    title: test/fps/comp.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - "https://maspypy.com/fps-\u5408\u6210\u30FB\u9006\u95A2\u6570\u306E\u89E3\u8AAC\
@@ -82,11 +82,11 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: fps/FPS_composition.hpp
-  requiredBy:
-  - test/fps/comp_test.cpp
+  requiredBy: []
   timestamp: '2025-10-10 06:41:52+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/fps/comp.test.cpp
 documentation_of: fps/FPS_composition.hpp
 layout: document
 redirect_from:
