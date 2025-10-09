@@ -40,6 +40,9 @@ data:
     - icon: ':warning:'
       path: fps/FPS_add.hpp
       title: fps/FPS_add.hpp
+    - icon: ':warning:'
+      path: fps/FPS_composition.hpp
+      title: fps/FPS_composition.hpp
     - icon: ':heavy_check_mark:'
       path: fps/FPS_consecutive_linear.hpp
       title: fps/FPS_consecutive_linear.hpp
@@ -134,6 +137,11 @@ data:
     - icon: ':warning:'
       path: test/ds/segtree.cpp
       title: test/ds/segtree.cpp
+  - name: test/fps
+    pages:
+    - icon: ':warning:'
+      path: test/fps/comp_test.cpp
+      title: test/fps/comp_test.cpp
   verificationCategories:
   - name: test/algorithm
     pages:
