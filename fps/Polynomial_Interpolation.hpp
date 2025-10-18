@@ -1,7 +1,7 @@
 #pragma once
-#include "po167_library/fps/FPS_Product_Sequence.hpp"
-#include "po167_library/fps/Multipoint_Evaluation.hpp"
-#include "po167_library/fps/FPS_add.hpp"
+#include "FPS_Product_Sequence.hpp"
+#include "Multipoint_Evaluation.hpp"
+#include "FPS_add.hpp"
 
 namespace po167{
 template<class T>
