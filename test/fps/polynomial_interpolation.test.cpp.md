@@ -28,8 +28,9 @@ data:
     \ X(N);\n    std::vector<mint> Y(N);\n    for (int i = 0; i < N; i++){\n     \
     \   int a;\n        std::cin >> a;\n        X[i] = a;\n    }\n    for (int i =\
     \ 0; i < N; i++){\n        int a;\n        std::cin >> a;\n        Y[i] = a;\n\
-    \    }\n    auto ans = po167::Polynomial_Interpolation(X, Y);\n    for (auto x\
-    \ : ans) std::cout << x.val() << \" \";\n    std::cout << \"\\n\";\n}"
+    \    }\n    auto ans = po167::Polynomial_Interpolation(X, Y);\n    for (int i\
+    \ = 0; i < N; i++){\n        std::cout << ans[i].val() << (i + 1 == N ? \"\\n\"\
+    \ : \" \");\n    }\n}"
   dependsOn: []
   isVerificationFile: true
   path: test/fps/polynomial_interpolation.test.cpp
