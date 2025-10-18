@@ -202,8 +202,17 @@ data:
       path: test/fps/product_sequence.test.cpp
       title: test/fps/product_sequence.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/fps/sparse_exp.test.cpp
+      title: test/fps/sparse_exp.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/fps/sparse_inv.test.cpp
       title: test/fps/sparse_inv.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/fps/sparse_log.test.cpp
+      title: test/fps/sparse_log.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/fps/sparse_pow.test.cpp
+      title: test/fps/sparse_pow.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/fps/sum_of_power.test.cpp
       title: test/fps/sum_of_power.test.cpp

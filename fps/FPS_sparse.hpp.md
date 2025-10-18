@@ -4,8 +4,17 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/fps/sparse_exp.test.cpp
+    title: test/fps/sparse_exp.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/fps/sparse_inv.test.cpp
     title: test/fps/sparse_inv.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/fps/sparse_log.test.cpp
+    title: test/fps/sparse_log.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/fps/sparse_pow.test.cpp
+    title: test/fps/sparse_pow.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -144,7 +153,10 @@ data:
   timestamp: '2025-10-18 20:08:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/fps/sparse_log.test.cpp
   - test/fps/sparse_inv.test.cpp
+  - test/fps/sparse_exp.test.cpp
+  - test/fps/sparse_pow.test.cpp
 documentation_of: fps/FPS_sparse.hpp
 layout: document
 redirect_from:
