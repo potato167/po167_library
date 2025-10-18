@@ -8,6 +8,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: fps/Multipoint_Evaluation.hpp
     title: fps/Multipoint_Evaluation.hpp
+  - icon: ':heavy_check_mark:'
+    path: fps/Polynomial_Interpolation.hpp
+    title: fps/Polynomial_Interpolation.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/fps/division.test.cpp
@@ -15,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/fps/multpoint_evalution.test.cpp
     title: test/fps/multpoint_evalution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/fps/polynomial_interpolation.test.cpp
+    title: test/fps/polynomial_interpolation.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -72,10 +78,12 @@ data:
   path: fps/FPS_division.hpp
   requiredBy:
   - fps/Multipoint_Evaluation.hpp
+  - fps/Polynomial_Interpolation.hpp
   timestamp: '2024-11-23 03:09:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/multpoint_evalution.test.cpp
+  - test/fps/polynomial_interpolation.test.cpp
   - test/fps/division.test.cpp
 documentation_of: fps/FPS_division.hpp
 layout: document

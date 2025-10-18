@@ -37,7 +37,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: fps/FPS_Product_Sequence.hpp
       title: fps/FPS_Product_Sequence.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: fps/FPS_add.hpp
       title: fps/FPS_add.hpp
     - icon: ':heavy_check_mark:'
@@ -91,7 +91,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: fps/Multipoint_Evaluation_Geo.hpp
       title: fps/Multipoint_Evaluation_Geo.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: fps/Polynomial_Interpolation.hpp
       title: fps/Polynomial_Interpolation.hpp
     - icon: ':heavy_check_mark:'
@@ -198,7 +198,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/fps/multpoint_evalution_geo.test.cpp
       title: test/fps/multpoint_evalution_geo.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/fps/polynomial_interpolation.test.cpp
       title: test/fps/polynomial_interpolation.test.cpp
     - icon: ':heavy_check_mark:'

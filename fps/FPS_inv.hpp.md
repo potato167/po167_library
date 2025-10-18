@@ -26,6 +26,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: fps/Multipoint_Evaluation.hpp
     title: fps/Multipoint_Evaluation.hpp
+  - icon: ':heavy_check_mark:'
+    path: fps/Polynomial_Interpolation.hpp
+    title: fps/Polynomial_Interpolation.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/fps/comp_inverse.test.cpp
@@ -42,6 +45,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/fps/multpoint_evalution.test.cpp
     title: test/fps/multpoint_evalution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/fps/polynomial_interpolation.test.cpp
+    title: test/fps/polynomial_interpolation.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/fps/pow.test.cpp
     title: test/fps/pow.test.cpp
@@ -100,6 +106,7 @@ data:
   - fps/FPS_exp.hpp
   - fps/FPS_inverse.hpp
   - fps/FPS_Power_Projection.hpp
+  - fps/Polynomial_Interpolation.hpp
   - fps/FPS_log.hpp
   timestamp: '2024-06-19 00:51:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -108,6 +115,7 @@ data:
   - test/fps/comp_inverse.test.cpp
   - test/fps/sum_of_power.test.cpp
   - test/fps/pow.test.cpp
+  - test/fps/polynomial_interpolation.test.cpp
   - test/fps/exp.test.cpp
   - test/fps/division.test.cpp
   - test/fps/inv.test.cpp

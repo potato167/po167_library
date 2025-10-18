@@ -5,7 +5,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: fps/FPS_sum_of_power.hpp
     title: fps/FPS_sum_of_power.hpp
+  - icon: ':heavy_check_mark:'
+    path: fps/Polynomial_Interpolation.hpp
+    title: fps/Polynomial_Interpolation.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/fps/polynomial_interpolation.test.cpp
+    title: test/fps/polynomial_interpolation.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/fps/product_sequence.test.cpp
     title: test/fps/product_sequence.test.cpp
@@ -35,11 +41,13 @@ data:
   path: fps/FPS_Product_Sequence.hpp
   requiredBy:
   - fps/FPS_sum_of_power.hpp
+  - fps/Polynomial_Interpolation.hpp
   timestamp: '2024-06-19 18:48:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/product_sequence.test.cpp
   - test/fps/sum_of_power.test.cpp
+  - test/fps/polynomial_interpolation.test.cpp
 documentation_of: fps/FPS_Product_Sequence.hpp
 layout: document
 redirect_from:
