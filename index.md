@@ -80,6 +80,9 @@ data:
       path: fps/FPS_pow.hpp
       title: fps/FPS_pow.hpp
     - icon: ':heavy_check_mark:'
+      path: fps/FPS_sparse.hpp
+      title: fps/FPS_sparse.hpp
+    - icon: ':heavy_check_mark:'
       path: fps/FPS_sum_of_power.hpp
       title: fps/FPS_sum_of_power.hpp
     - icon: ':heavy_check_mark:'
@@ -198,6 +201,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/fps/product_sequence.test.cpp
       title: test/fps/product_sequence.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/fps/sparse_inv.test.cpp
+      title: test/fps/sparse_inv.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/fps/sum_of_power.test.cpp
       title: test/fps/sum_of_power.test.cpp
