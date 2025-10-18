@@ -1,0 +1,46 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: true
+  _pathExtension: cpp
+  _verificationStatusIcon: ':x:'
+  attributes: {}
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
+    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
+    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
+    \ File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: po167_library/fps/FPS_Product_Sequence.hpp:\
+    \ line -1: no such header\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_interpolation\"\
+    \n\n#include \"../../fps/Polynomial_Interpolation.hpp\"\n\n#include <iostream>\n\
+    using mint = atcoder::modint998244353;\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n    int N;\n    std::cin >> N;\n    std::vector<int>\
+    \ X(N);\n    std::vector<mint> Y(N);\n    for (int i = 0; i < N; i++){\n     \
+    \   int a;\n        std::cin >> a;\n        X[i] = a;\n    }\n    for (int i =\
+    \ 0; i < N; i++){\n        int a;\n        std::cin >> a;\n        Y[i] = a;\n\
+    \    }\n    auto ans = po167::Polynomial_Interpolation(X, Y);\n    for (auto x\
+    \ : ans) std::cout << x.val() << \" \";\n    std::cout << \"\\n\";\n}"
+  dependsOn: []
+  isVerificationFile: true
+  path: test/fps/polynomial_interpolation.test.cpp
+  requiredBy: []
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
+  verifiedWith: []
+documentation_of: test/fps/polynomial_interpolation.test.cpp
+layout: document
+redirect_from:
+- /verify/test/fps/polynomial_interpolation.test.cpp
+- /verify/test/fps/polynomial_interpolation.test.cpp.html
+title: test/fps/polynomial_interpolation.test.cpp
+---
