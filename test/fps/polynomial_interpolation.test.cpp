@@ -22,6 +22,7 @@ int main() {
         Y[i] = a;
     }
     auto ans = po167::Polynomial_Interpolation(X, Y);
-    for (auto x : ans) std::cout << x.val() << " ";
-    std::cout << "\n";
+    for (int i = 0; i < N; i++){
+        std::cout << ans[i].val() << (i + 1 == N ? "\n" : " ");
+    }
 }
