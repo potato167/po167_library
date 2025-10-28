@@ -29,9 +29,14 @@ namespace po167{
             int r = p + (1 << z);
             // [l, m) -> [m, r)
             std::vector<T> tmp3(r - l);
+            if (l == 0){
+                f_inv.push_back({});
+                g_inv.push_back({});
+            }
             for (int rp = 0; rp < 2; rp++){
                 std::swap(f, g);
                 std::swap(f_inv, g_inv);
+                if (l == 0 && rp == 1) break;
                 std::vector<T> tmp1(r - l), tmp2(r - l);
                 for (int i = l; i < m; i++){
                     tmp1[i - l] = f[i];
@@ -41,12 +46,9 @@ namespace po167{
                     for (int i = 0; i < r - l; i++) {
                         if (i == 0) continue;
                         if (m <= i) break;
-                        if (rp == 0 || i < l) {
-                            tmp2[i] = g[i];
-                        }
+                        tmp2[i] = g[i];
                     }
                     atcoder::internal::butterfly(tmp2);
-                    g_inv.push_back({});
                 }
                 else{
                     if (g_inv[z].empty()){
