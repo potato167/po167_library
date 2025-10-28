@@ -27,27 +27,27 @@ data:
     \ 2, 0);\n            }\n            f[p] = fi;\n            g[p] = gi;\n    \
     \        int l = p - (1 << z);\n            int m = p;\n            int r = p\
     \ + (1 << z);\n            // [l, m) -> [m, r)\n            std::vector<T> tmp3(r\
-    \ - l);\n            for (int rp = 0; rp < 2; rp++){\n                std::swap(f,\
-    \ g);\n                std::swap(f_inv, g_inv);\n                std::vector<T>\
+    \ - l);\n            if (l == 0){\n                f_inv.push_back({});\n    \
+    \            g_inv.push_back({});\n            }\n            for (int rp = 0;\
+    \ rp < 2; rp++){\n                std::swap(f, g);\n                std::swap(f_inv,\
+    \ g_inv);\n                if (l == 0 && rp == 1) break;\n                std::vector<T>\
     \ tmp1(r - l), tmp2(r - l);\n                for (int i = l; i < m; i++){\n  \
     \                  tmp1[i - l] = f[i];\n                }\n                atcoder::internal::butterfly(tmp1);\n\
     \                if (l == 0) {\n                    for (int i = 0; i < r - l;\
     \ i++) {\n                        if (i == 0) continue;\n                    \
-    \    if (m <= i) break;\n                        if (rp == 0 || i < l) {\n   \
-    \                         tmp2[i] = g[i];\n                        }\n       \
-    \             }\n                    atcoder::internal::butterfly(tmp2);\n   \
-    \                 g_inv.push_back({});\n                }\n                else{\n\
-    \                    if (g_inv[z].empty()){\n                        g_inv[z].resize((1\
-    \ << (z + 1)));\n                        for (int i = 0; i < (1 << (z + 1)); i++){\n\
-    \                            if (i) g_inv[z][i] = g[i];\n                    \
-    \        else g_inv[z][i] = 0;\n                        }\n                  \
-    \      atcoder::internal::butterfly(g_inv[z]);\n                    }\n      \
-    \              tmp2 = g_inv[z];\n                }\n                for (int i\
-    \ = 0; i < r - l; i++) tmp3[i] += tmp1[i] * tmp2[i];\n            }\n        \
-    \    atcoder::internal::butterfly_inv(tmp3);\n            T iz = (T)(1) / (T)(r\
-    \ - l);\n            for (int i = m; i < r; i++) h[i] += tmp3[i - l] * iz;\n \
-    \           h[p] += f[0] * g[p];\n            h[p] += f[p] * g[0];\n         \
-    \   return h[p++];\n        }\n    };\n}\n#line 5 \"test/fps/online_fps.test.cpp\"\
+    \    if (m <= i) break;\n                        tmp2[i] = g[i];\n           \
+    \         }\n                    atcoder::internal::butterfly(tmp2);\n       \
+    \         }\n                else{\n                    if (g_inv[z].empty()){\n\
+    \                        g_inv[z].resize((1 << (z + 1)));\n                  \
+    \      for (int i = 0; i < (1 << (z + 1)); i++){\n                           \
+    \ if (i) g_inv[z][i] = g[i];\n                            else g_inv[z][i] = 0;\n\
+    \                        }\n                        atcoder::internal::butterfly(g_inv[z]);\n\
+    \                    }\n                    tmp2 = g_inv[z];\n               \
+    \ }\n                for (int i = 0; i < r - l; i++) tmp3[i] += tmp1[i] * tmp2[i];\n\
+    \            }\n            atcoder::internal::butterfly_inv(tmp3);\n        \
+    \    T iz = (T)(1) / (T)(r - l);\n            for (int i = m; i < r; i++) h[i]\
+    \ += tmp3[i - l] * iz;\n            h[p] += f[0] * g[p];\n            h[p] +=\
+    \ f[p] * g[0];\n            return h[p++];\n        }\n    };\n}\n#line 5 \"test/fps/online_fps.test.cpp\"\
     \n\n\n#include <iostream>\nusing mint = atcoder::modint998244353;\nint main(){\n\
     \    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\n    int\
     \ N, M;\n    std::cin >> N >> M;\n    int X = N + M - 1;\n    std::vector<int>\
@@ -70,7 +70,7 @@ data:
   isVerificationFile: true
   path: test/fps/online_fps.test.cpp
   requiredBy: []
-  timestamp: '2025-10-29 08:03:42+09:00'
+  timestamp: '2025-10-29 08:13:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fps/online_fps.test.cpp
