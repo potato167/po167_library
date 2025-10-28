@@ -4,10 +4,10 @@
 namespace po167{
     template<class T>
     struct FPS_online_convolution{
-        std::vector<T> f, g, h;
+        std::vector<T> f, g, h, iz;
         std::vector<std::vector<T>> f_inv, g_inv;
         int p;
-        FPS_online_convolution() : f(0), g(0), h(0), p(0){}
+        FPS_online_convolution() : f(0), g(0), h(0), iz(0), p(0){}
         T query(T fi, T gi){
             if (p == 0){
                 f = {fi};
@@ -32,6 +32,7 @@ namespace po167{
             if (l == 0){
                 f_inv.push_back({});
                 g_inv.push_back({});
+                iz.push_back((T)(1) / (T)(r - l));
             }
             for (int rp = 0; rp < 2; rp++){
                 std::swap(f, g);
@@ -64,8 +65,7 @@ namespace po167{
                 for (int i = 0; i < r - l; i++) tmp3[i] += tmp1[i] * tmp2[i];
             }
             atcoder::internal::butterfly_inv(tmp3);
-            T iz = (T)(1) / (T)(r - l);
-            for (int i = m; i < r; i++) h[i] += tmp3[i - l] * iz;
+            for (int i = m; i < r; i++) h[i] += tmp3[i - l] * iz[z];
             h[p] += f[0] * g[p];
             h[p] += f[p] * g[0];
             return h[p++];
