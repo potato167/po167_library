@@ -153,10 +153,10 @@ data:
   timestamp: '2025-10-18 20:08:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/fps/sparse_log.test.cpp
-  - test/fps/sparse_inv.test.cpp
   - test/fps/sparse_exp.test.cpp
   - test/fps/sparse_pow.test.cpp
+  - test/fps/sparse_inv.test.cpp
+  - test/fps/sparse_log.test.cpp
 documentation_of: fps/FPS_sparse.hpp
 layout: document
 redirect_from:

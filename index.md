@@ -74,6 +74,9 @@ data:
       path: fps/FPS_log.hpp
       title: fps/FPS_log.hpp
     - icon: ':heavy_check_mark:'
+      path: fps/FPS_online_convolution.hpp
+      title: fps/FPS_online_convolution.hpp
+    - icon: ':heavy_check_mark:'
       path: fps/FPS_pick_even_odd.hpp
       title: fps/FPS_pick_even_odd.hpp
     - icon: ':heavy_check_mark:'
@@ -198,6 +201,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/fps/multpoint_evalution_geo.test.cpp
       title: test/fps/multpoint_evalution_geo.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/fps/online_fps.test.cpp
+      title: test/fps/online_fps.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/fps/polynomial_interpolation.test.cpp
       title: test/fps/polynomial_interpolation.test.cpp

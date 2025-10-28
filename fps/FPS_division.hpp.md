@@ -77,14 +77,14 @@ data:
   isVerificationFile: false
   path: fps/FPS_division.hpp
   requiredBy:
-  - fps/Multipoint_Evaluation.hpp
   - fps/Polynomial_Interpolation.hpp
+  - fps/Multipoint_Evaluation.hpp
   timestamp: '2024-11-23 03:09:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/fps/multpoint_evalution.test.cpp
-  - test/fps/polynomial_interpolation.test.cpp
   - test/fps/division.test.cpp
+  - test/fps/polynomial_interpolation.test.cpp
+  - test/fps/multpoint_evalution.test.cpp
 documentation_of: fps/FPS_division.hpp
 layout: document
 redirect_from:
