@@ -4,23 +4,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: fps/FPS_inv.hpp
     title: fps/FPS_inv.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: fps/Multipoint_Evaluation.hpp
-    title: fps/Multipoint_Evaluation.hpp
-  - icon: ':heavy_check_mark:'
-    path: fps/Polynomial_Interpolation.hpp
-    title: fps/Polynomial_Interpolation.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/fps/division.test.cpp
     title: test/fps/division.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/fps/multpoint_evalution.test.cpp
-    title: test/fps/multpoint_evalution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/fps/polynomial_interpolation.test.cpp
-    title: test/fps/polynomial_interpolation.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -76,15 +64,11 @@ data:
   - fps/FPS_inv.hpp
   isVerificationFile: false
   path: fps/FPS_division.hpp
-  requiredBy:
-  - fps/Polynomial_Interpolation.hpp
-  - fps/Multipoint_Evaluation.hpp
+  requiredBy: []
   timestamp: '2024-11-23 03:09:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/division.test.cpp
-  - test/fps/polynomial_interpolation.test.cpp
-  - test/fps/multpoint_evalution.test.cpp
 documentation_of: fps/FPS_division.hpp
 layout: document
 redirect_from:
