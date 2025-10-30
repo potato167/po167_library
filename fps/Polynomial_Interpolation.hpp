@@ -28,16 +28,41 @@ std::vector<T> Polynomial_Interpolation(std::vector<int> X, std::vector<T> Y){
     std::vector<T> xt(N);
     for (int i = 0; i < N; i++) xt[i] = X[i];
     auto Z = Multipoint_Evaluation(g, xt);
+    std::vector<T> inv = {1, (T)(1) / (T)(2)};
     auto rec = [&](auto self, int l, int r) -> std::pair<std::vector<T>, std::vector<T>> {
         if (l + 1 == r){
             return {{Y[l] / Z[l]}, {-X[l], 1}};
         }
         int m = (l + r) / 2;
-        auto L = self(self, l, m);
-        auto R = self(self, m, r);
-        auto D = atcoder::convolution(L.second, R.second);
-        auto U = atcoder::convolution(L.second, R.first);
-        FPS_add(U, atcoder::convolution(L.first, R.second));
+        auto [Lf, Ls] = self(self, l, m);
+        auto [Rf, Rs] = self(self, m, r);
+        int mx_size = r - l + 1;
+        if (mx_size < 128){
+            auto D = atcoder::convolution(Ls, Rs);
+            auto U = atcoder::convolution(Ls, Rf);
+            FPS_add(U, atcoder::convolution(Lf, Rs));
+            return {U, D};
+        }
+        int z = 0;
+        while ((1 << z) < mx_size) z++;
+        while (int(inv.size()) <= z) inv.push_back(inv.back() * inv[1]);
+        Lf.resize(1 << z, 0);
+        Ls.resize(1 << z, 0);
+        Rf.resize(1 << z, 0);
+        Rs.resize(1 << z, 0);
+        atcoder::internal::butterfly(Lf);
+        atcoder::internal::butterfly(Ls);
+        atcoder::internal::butterfly(Rf);
+        atcoder::internal::butterfly(Rs);
+        std::vector<T> D(1 << z), U(1 << z);
+        for (int i = 0; i < (1 << z); i++){
+            D[i] = Ls[i] * Rs[i] * inv[z];
+            U[i] = (Ls[i] * Rf[i] + Lf[i] * Rs[i]) * inv[z];
+        }
+        atcoder::internal::butterfly_inv(D);
+        atcoder::internal::butterfly_inv(U);
+        D.resize(r - l + 1);
+        U.resize(r - l);
         return {U, D};
     };
     return rec(rec, 0, N).first;
