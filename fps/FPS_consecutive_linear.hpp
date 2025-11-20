@@ -1,6 +1,8 @@
 #pragma once
 #include<atcoder/convolution>
-#include "po167_library/fps/FPS_inv.hpp"
+#include "FPS_inv.hpp"
+#include "FPS_pick_even_odd.hpp"
+
 namespace po167
 {
 template<class T>
@@ -18,12 +20,12 @@ std::vector<T> FPS_Inv_Consecutive(long long l, long long r, std::vector<T> A){
     }
     if (r < (int)A.size() * 4){
         auto res = FPS_inv(A, r);
-        for (int i = 0; i < r; i++){
-            if (i + l < r) res[i] = res[i + l];
-            else res[i] = 0;
+        std::vector<T> n_res(r - l);
+        for (int i = 0; i < r - l; i++){
+            if (0 <= i + l && i + l < r) n_res[i] = res[i + l];
+            else n_res[i] = 0;
         }
-        res.resize(r - l);
-        return res;
+        return n_res;
     }
     int d = A.size();
     int z = 1;
@@ -43,7 +45,7 @@ std::vector<T> FPS_Inv_Consecutive(long long l, long long r, std::vector<T> A){
         }
         FPS_pick_even_odd(A, 0);
         atcoder::internal::butterfly_inv(A);
-        mint iz = ((mint)(1 << z)).inv();
+        T iz = ((T)(1)) / ((T)(1 << z));
         for (int i = 0; i < d; i++) nC[i] = A[i] * iz;
     }
     // calc [l - d + 1, r) 1 / C
