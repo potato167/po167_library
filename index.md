@@ -43,7 +43,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: fps/FPS_composition.hpp
       title: fps/FPS_composition.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: fps/FPS_consecutive_linear.hpp
       title: fps/FPS_consecutive_linear.hpp
     - icon: ':heavy_check_mark:'
@@ -177,7 +177,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/fps/comp_inverse.test.cpp
       title: test/fps/comp_inverse.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/fps/consecutive_linear.test.cpp
       title: test/fps/consecutive_linear.test.cpp
     - icon: ':heavy_check_mark:'

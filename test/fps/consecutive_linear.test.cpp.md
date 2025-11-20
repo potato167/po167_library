@@ -1,54 +1,26 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: fps/FPS_consecutive_linear.hpp
-    title: fps/FPS_consecutive_linear.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/consecutive_terms_of_linear_recurrent_sequence
-    links:
-    - https://judge.yosupo.jp/problem/consecutive_terms_of_linear_recurrent_sequence
-  bundledCode: "#line 1 \"test/fps/consecutive_linear.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/consecutive_terms_of_linear_recurrent_sequence\"\
-    \n\n\n#line 2 \"fps/FPS_consecutive_linear.hpp\"\n#include<atcoder/convolution>\n\
-    namespace po167\n{\ntemplate<class T>\n// input A(x)\n// B(x) = 1 / A(x)\n// return\
-    \ {B[l], B[l + 1], ... , B[r - 1]}\n// 0 < r\nstd::vector<T> FPS_Inv_Consecutive(long\
-    \ long l, long long r, std::vector<T> A){\n    assert(0 < r);\n    if (l >= r)\
-    \ return {};\n    if (r == 1){\n        std::vector<T> res(r - l, 0);\n      \
-    \  res.back() = (T)(1) / (T)(A[0]);\n        return res;\n    }\n    int d = A.size();\n\
-    \    std::vector<T> nA(d);\n    for (int i = 0; i < d; i++){\n        nA[i] =\
-    \ A[i] * (1 - 2 * (i & 1));\n    }\n    auto C = atcoder::convolution(nA, A);\n\
-    \    std::vector<T> nC(d);\n    for (int i = 0; i < d; i++) nC[i] = C[i * 2];\n\
-    \    // calc [l - d + 1, r) 1 / C\n    // calc [(l - d + 1) / 2, r / 2) 1 / nC\n\
-    \    long long nl = std::max(0ll, (l - d) / 2);\n    long long nr = (r + 1) /\
-    \ 2;\n    auto D = FPS_Inv_Consecutive(nl, nr, nC);\n    std::vector<T> nD(2 *\
-    \ (int)D.size());\n    for (int i = 0; i < (int)D.size(); i++){\n        nD[i\
-    \ * 2] = D[i];\n    }\n    auto B = atcoder::convolution(nD, nA);\n    std::vector<T>\
-    \ res(r - l);\n    for (long long i = l; i < r; i++){\n        if (i >= 0) res[i\
-    \ - l] = B[i - nl * 2];\n    }\n    return res;\n}\ntemplate<class T>\n// 0 =\
-    \ a[i] * c[0] + a[i - 1] * c[1] + a[i - 2] * c[2] + ... + a[i - d] * c[d]\n//\
-    \ a.size() + 1 == c.size()\n// almost c[0] = - 1 \n// return {a[l], a[l + 1],\
-    \ ... , a[r - 1]}\nstd::vector<T> Consecutive_Linear(long long l, long long r,\
-    \ std::vector<T> a, std::vector<T> c){\n    int d = a.size();\n    assert(d +\
-    \ 1 == int(c.size()));\n    std::vector<T> P = atcoder::convolution(a, c);\n \
-    \   P.resize(d);\n    std::vector<T> Q = FPS_Inv_Consecutive(l - d, r, c);\n \
-    \   P = atcoder::convolution(P, Q);\n    for (int i = 0; i < r - l; i++){\n  \
-    \      P[i] = P[i + d];\n    }\n    P.resize(r - l);\n    return P;\n}\n} // namespace\
-    \ po167\n#line 5 \"test/fps/consecutive_linear.test.cpp\"\n#include<iostream>\n\
-    int main(){\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
-    \    using mint = atcoder::modint998244353;\n\n    long long d, k, M, num;\n \
-    \   std::cin >> d >> k >> M;\n    std::vector<mint> A(d), C(d + 1);\n    for (int\
-    \ i = 0; i < d; i++) std::cin >> num, A[i] = num;\n    for (int i = 1; i <= d;\
-    \ i++) std::cin >> num, C[i] = num;\n    C[0] = -1;\n    auto ans = po167::Consecutive_Linear(k,\
-    \ k + M, A, C);\n    for (int i = 0; i < (int)ans.size(); i++){\n        if (i)\
-    \ std::cout << \" \";\n        std::cout << ans[i].val();\n    }\n    std::cout\
-    \ << \"\\n\";\n}\n"
+  _verificationStatusIcon: ':x:'
+  attributes: {}
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
+    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
+    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
+    \ File \"/opt/hostedtoolcache/Python/3.12.0/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: po167_library/fps/FPS_inv.hpp:\
+    \ line -1: no such header\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/consecutive_terms_of_linear_recurrent_sequence\"\
     \n\n\n#include \"../../fps/FPS_consecutive_linear.hpp\"\n#include<iostream>\n\
     int main(){\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
@@ -59,13 +31,12 @@ data:
     \ k + M, A, C);\n    for (int i = 0; i < (int)ans.size(); i++){\n        if (i)\
     \ std::cout << \" \";\n        std::cout << ans[i].val();\n    }\n    std::cout\
     \ << \"\\n\";\n}"
-  dependsOn:
-  - fps/FPS_consecutive_linear.hpp
+  dependsOn: []
   isVerificationFile: true
   path: test/fps/consecutive_linear.test.cpp
   requiredBy: []
-  timestamp: '2025-10-08 04:32:24+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/fps/consecutive_linear.test.cpp
 layout: document
