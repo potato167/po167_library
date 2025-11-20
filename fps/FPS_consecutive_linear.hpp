@@ -1,5 +1,6 @@
 #pragma once
 #include<atcoder/convolution>
+#include "po167_library/fps/FPS_inv.hpp"
 namespace po167
 {
 template<class T>
@@ -15,14 +16,36 @@ std::vector<T> FPS_Inv_Consecutive(long long l, long long r, std::vector<T> A){
         res.back() = (T)(1) / (T)(A[0]);
         return res;
     }
+    if (r < (int)A.size() * 4){
+        auto res = FPS_inv(A, r);
+        for (int i = 0; i < r; i++){
+            if (i + l < r) res[i] = res[i + l];
+            else res[i] = 0;
+        }
+        res.resize(r - l);
+        return res;
+    }
     int d = A.size();
+    int z = 1;
+    while ((1 << z) < d) z++;
     std::vector<T> nA(d);
     for (int i = 0; i < d; i++){
         nA[i] = A[i] * (1 - 2 * (i & 1));
     }
-    auto C = atcoder::convolution(nA, A);
     std::vector<T> nC(d);
-    for (int i = 0; i < d; i++) nC[i] = C[i * 2];
+    // for (int i = 0; i < d; i++) nC[i] = C[i * 2];
+    {
+        A.resize(1 << (z + 1));
+        atcoder::internal::butterfly(A);
+        for (int i = 0; i < (1 << z); i++){
+            A[i * 2] *= A[i * 2 + 1];
+            A[i * 2 + 1] = A[i * 2];
+        }
+        FPS_pick_even_odd(A, 0);
+        atcoder::internal::butterfly_inv(A);
+        mint iz = ((mint)(1 << z)).inv();
+        for (int i = 0; i < d; i++) nC[i] = A[i] * iz;
+    }
     // calc [l - d + 1, r) 1 / C
     // calc [(l - d + 1) / 2, r / 2) 1 / nC
     long long nl = std::max(0ll, (l - d) / 2);
