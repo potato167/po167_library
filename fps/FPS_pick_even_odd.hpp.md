@@ -9,12 +9,18 @@ data:
     path: fps/FPS_Power_Projection.hpp
     title: fps/FPS_Power_Projection.hpp
   - icon: ':heavy_check_mark:'
+    path: fps/FPS_consecutive_linear.hpp
+    title: fps/FPS_consecutive_linear.hpp
+  - icon: ':heavy_check_mark:'
     path: fps/FPS_inverse.hpp
     title: fps/FPS_inverse.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/fps/comp_inverse.test.cpp
     title: test/fps/comp_inverse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/fps/consecutive_linear.test.cpp
+    title: test/fps/consecutive_linear.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/fps/linear_kth.test.cpp
     title: test/fps/linear_kth.test.cpp
@@ -54,12 +60,14 @@ data:
   path: fps/FPS_pick_even_odd.hpp
   requiredBy:
   - fps/FPS_inverse.hpp
+  - fps/FPS_consecutive_linear.hpp
   - fps/FPS_Power_Projection.hpp
   - fps/FPS_Boston_Mori.hpp
   timestamp: '2024-06-19 15:49:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/linear_kth.test.cpp
+  - test/fps/consecutive_linear.test.cpp
   - test/fps/comp_inverse.test.cpp
 documentation_of: fps/FPS_pick_even_odd.hpp
 layout: document

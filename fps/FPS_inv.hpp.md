@@ -6,6 +6,9 @@ data:
     path: fps/FPS_Power_Projection.hpp
     title: fps/FPS_Power_Projection.hpp
   - icon: ':heavy_check_mark:'
+    path: fps/FPS_consecutive_linear.hpp
+    title: fps/FPS_consecutive_linear.hpp
+  - icon: ':heavy_check_mark:'
     path: fps/FPS_division.hpp
     title: fps/FPS_division.hpp
   - icon: ':heavy_check_mark:'
@@ -33,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/fps/comp_inverse.test.cpp
     title: test/fps/comp_inverse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/fps/consecutive_linear.test.cpp
+    title: test/fps/consecutive_linear.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/fps/division.test.cpp
     title: test/fps/division.test.cpp
@@ -105,6 +111,7 @@ data:
   - fps/FPS_pow.hpp
   - fps/FPS_division.hpp
   - fps/Polynomial_Interpolation.hpp
+  - fps/FPS_consecutive_linear.hpp
   - fps/FPS_sum_of_power.hpp
   - fps/FPS_Power_Projection.hpp
   - fps/Multipoint_Evaluation.hpp
@@ -116,6 +123,7 @@ data:
   - test/fps/inv.test.cpp
   - test/fps/pow.test.cpp
   - test/fps/polynomial_interpolation.test.cpp
+  - test/fps/consecutive_linear.test.cpp
   - test/fps/multpoint_evalution.test.cpp
   - test/fps/comp_inverse.test.cpp
   - test/fps/exp.test.cpp
