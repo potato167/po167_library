@@ -7,6 +7,7 @@
 "test/fps/any_mod.test.cpp": "2024-08-17 09:05:28 +0900",
 "test/fps/comp.test.cpp": "2025-10-10 06:57:18 +0900",
 "test/fps/comp_inverse.test.cpp": "2025-10-10 06:41:52 +0900",
+"test/fps/consecutive_linear.test.cpp": "2025-11-20 14:15:36 +0900",
 "test/fps/count_increasing_sequences.test.cpp": "2025-10-09 01:42:39 +0900",
 "test/fps/division.test.cpp": "2024-11-23 03:09:08 +0900",
 "test/fps/exp.test.cpp": "2024-09-05 20:11:34 +0900",
