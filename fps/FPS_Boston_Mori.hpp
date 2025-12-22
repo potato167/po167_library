@@ -10,38 +10,40 @@ namespace po167{
 template<class T>
 T Boston_Mori(long long k, std::vector<T> P, std::vector<T> Q){
     assert(!Q.empty() && Q[0] != 0);
-    int z = 1;
-    while (z < (int)std::max(P.size(), Q.size())) z *= 2;
-    P.resize(z * 2, 0);
-    Q.resize(z * 2, 0);
-    atcoder::internal::butterfly(P);
-    atcoder::internal::butterfly(Q);
 
     // fast
-    while (k){
-        // Q(-x)
-        std::vector<T> Q_n(z * 2);
-        for (int i = 0; i < z; i++){
-            Q_n[i * 2] = Q[i * 2 + 1];
-            Q_n[i * 2 + 1] = Q[i * 2];
-        }
-        for (int i = 0; i < z * 2; i++){
-            P[i] *= Q_n[i];
-            Q[i] *= Q_n[i];
-        }
-        FPS_pick_even_odd(P, k & 1);
-        FPS_pick_even_odd(Q, 0);
-        k /= 2;
-        if (k == 0) break;
-        FPS_extend(P);
-        FPS_extend(Q);
-    }
-    T SP = 0, SQ = 0;
-    for (int i = 0; i < z; i++) SP += P[i], SQ += Q[i];
-    return SP / SQ;
+    if ((int)Q.size() > 60){
+        int z = 1;
+        while (z < (int)std::max(P.size(), Q.size())) z *= 2;
+        P.resize(z * 2, 0);
+        Q.resize(z * 2, 0);
+        atcoder::internal::butterfly(P);
+        atcoder::internal::butterfly(Q);
 
+        while (k){
+            // Q(-x)
+            std::vector<T> Q_n(z * 2);
+            for (int i = 0; i < z; i++){
+                Q_n[i * 2] = Q[i * 2 + 1];
+                Q_n[i * 2 + 1] = Q[i * 2];
+            }
+            for (int i = 0; i < z * 2; i++){
+                P[i] *= Q_n[i];
+                Q[i] *= Q_n[i];
+            }
+            FPS_pick_even_odd(P, k & 1);
+            FPS_pick_even_odd(Q, 0);
+            k /= 2;
+            if (k == 0) break;
+            FPS_extend(P);
+            FPS_extend(Q);
+        }
+        T SP = 0, SQ = 0;
+        for (int i = 0; i < z; i++) SP += P[i], SQ += Q[i];
+        return SP / SQ;
+    }
+    
     // simple
-    /*
     while (k){
         auto n_Q = Q;
         for (int i = 0; i < int(Q.size()); i++){
@@ -59,7 +61,7 @@ T Boston_Mori(long long k, std::vector<T> P, std::vector<T> Q){
         k >>= 1;
     }
     return P[0] / Q[0];
-    */
+    
 }
 
 template<class T>
