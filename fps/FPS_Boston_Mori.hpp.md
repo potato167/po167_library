@@ -39,25 +39,27 @@ data:
     \ v[i * 2 + 1]) * es[i];\n        }\n        v.resize(z);\n    }\n}\n}\n#line\
     \ 7 \"fps/FPS_Boston_Mori.hpp\"\n\nnamespace po167{\n// return [x^k] P(x) / Q(x)\n\
     template<class T>\nT Boston_Mori(long long k, std::vector<T> P, std::vector<T>\
-    \ Q){\n    assert(!Q.empty() && Q[0] != 0);\n    int z = 1;\n    while (z < (int)std::max(P.size(),\
-    \ Q.size())) z *= 2;\n    P.resize(z * 2, 0);\n    Q.resize(z * 2, 0);\n    atcoder::internal::butterfly(P);\n\
-    \    atcoder::internal::butterfly(Q);\n\n    // fast\n    while (k){\n       \
-    \ // Q(-x)\n        std::vector<T> Q_n(z * 2);\n        for (int i = 0; i < z;\
-    \ i++){\n            Q_n[i * 2] = Q[i * 2 + 1];\n            Q_n[i * 2 + 1] =\
-    \ Q[i * 2];\n        }\n        for (int i = 0; i < z * 2; i++){\n           \
-    \ P[i] *= Q_n[i];\n            Q[i] *= Q_n[i];\n        }\n        FPS_pick_even_odd(P,\
-    \ k & 1);\n        FPS_pick_even_odd(Q, 0);\n        k /= 2;\n        if (k ==\
-    \ 0) break;\n        FPS_extend(P);\n        FPS_extend(Q);\n    }\n    T SP =\
-    \ 0, SQ = 0;\n    for (int i = 0; i < z; i++) SP += P[i], SQ += Q[i];\n    return\
-    \ SP / SQ;\n\n    // simple\n    /*\n    while (k){\n        auto n_Q = Q;\n \
-    \       for (int i = 0; i < int(Q.size()); i++){\n            if (i & 1) n_Q[i]\
-    \ *= -1;\n        }\n        auto n_P = atcoder::convolution(P, n_Q);\n      \
-    \  n_Q = atcoder::convolution(Q, n_Q);\n        for (int i = 0; i < int(Q.size());\
-    \ i++){\n            Q[i] = n_Q[i * 2];\n        }\n        P.clear();\n     \
-    \   for (int i = (k & 1); i < int(n_P.size()); i += 2){\n            P.push_back(n_P[i]);\n\
-    \        }\n        k >>= 1;\n    }\n    return P[0] / Q[0];\n    */\n}\n\ntemplate<class\
-    \ T>\n// 0 = a[i] * c[0] + a[i - 1] * c[1] + a[i - 2] * c[2] + ... + a[i - d]\
-    \ * c[d]\n// a.size() + 1 == c.size()\n// c[0] = - 1 ?\n// return a[k]\nT Kth_Linear(long\
+    \ Q){\n    assert(!Q.empty() && Q[0] != 0);\n\n    // fast\n    if ((int)Q.size()\
+    \ > 60){\n        int z = 1;\n        while (z < (int)std::max(P.size(), Q.size()))\
+    \ z *= 2;\n        P.resize(z * 2, 0);\n        Q.resize(z * 2, 0);\n        atcoder::internal::butterfly(P);\n\
+    \        atcoder::internal::butterfly(Q);\n\n        while (k){\n            //\
+    \ Q(-x)\n            std::vector<T> Q_n(z * 2);\n            for (int i = 0; i\
+    \ < z; i++){\n                Q_n[i * 2] = Q[i * 2 + 1];\n                Q_n[i\
+    \ * 2 + 1] = Q[i * 2];\n            }\n            for (int i = 0; i < z * 2;\
+    \ i++){\n                P[i] *= Q_n[i];\n                Q[i] *= Q_n[i];\n  \
+    \          }\n            FPS_pick_even_odd(P, k & 1);\n            FPS_pick_even_odd(Q,\
+    \ 0);\n            k /= 2;\n            if (k == 0) break;\n            FPS_extend(P);\n\
+    \            FPS_extend(Q);\n        }\n        T SP = 0, SQ = 0;\n        for\
+    \ (int i = 0; i < z; i++) SP += P[i], SQ += Q[i];\n        return SP / SQ;\n \
+    \   }\n    \n    // simple\n    while (k){\n        auto n_Q = Q;\n        for\
+    \ (int i = 0; i < int(Q.size()); i++){\n            if (i & 1) n_Q[i] *= -1;\n\
+    \        }\n        auto n_P = atcoder::convolution(P, n_Q);\n        n_Q = atcoder::convolution(Q,\
+    \ n_Q);\n        for (int i = 0; i < int(Q.size()); i++){\n            Q[i] =\
+    \ n_Q[i * 2];\n        }\n        P.clear();\n        for (int i = (k & 1); i\
+    \ < int(n_P.size()); i += 2){\n            P.push_back(n_P[i]);\n        }\n \
+    \       k >>= 1;\n    }\n    return P[0] / Q[0];\n    \n}\n\ntemplate<class T>\n\
+    // 0 = a[i] * c[0] + a[i - 1] * c[1] + a[i - 2] * c[2] + ... + a[i - d] * c[d]\n\
+    // a.size() + 1 == c.size()\n// c[0] = - 1 ?\n// return a[k]\nT Kth_Linear(long\
     \ long k, std::vector<T> a, std::vector<T> c){\n    int d = a.size();\n    assert(d\
     \ + 1 == int(c.size()));\n    std::vector<T> P = atcoder::convolution(a, c);\n\
     \    P.resize(d);\n    return Boston_Mori(k, P, c);\n}\n};\n"
@@ -65,25 +67,27 @@ data:
     \ <cassert>\n#include \"FPS_extend.hpp\"\n#include \"FPS_pick_even_odd.hpp\"\n\
     \nnamespace po167{\n// return [x^k] P(x) / Q(x)\ntemplate<class T>\nT Boston_Mori(long\
     \ long k, std::vector<T> P, std::vector<T> Q){\n    assert(!Q.empty() && Q[0]\
-    \ != 0);\n    int z = 1;\n    while (z < (int)std::max(P.size(), Q.size())) z\
-    \ *= 2;\n    P.resize(z * 2, 0);\n    Q.resize(z * 2, 0);\n    atcoder::internal::butterfly(P);\n\
-    \    atcoder::internal::butterfly(Q);\n\n    // fast\n    while (k){\n       \
-    \ // Q(-x)\n        std::vector<T> Q_n(z * 2);\n        for (int i = 0; i < z;\
-    \ i++){\n            Q_n[i * 2] = Q[i * 2 + 1];\n            Q_n[i * 2 + 1] =\
-    \ Q[i * 2];\n        }\n        for (int i = 0; i < z * 2; i++){\n           \
-    \ P[i] *= Q_n[i];\n            Q[i] *= Q_n[i];\n        }\n        FPS_pick_even_odd(P,\
-    \ k & 1);\n        FPS_pick_even_odd(Q, 0);\n        k /= 2;\n        if (k ==\
-    \ 0) break;\n        FPS_extend(P);\n        FPS_extend(Q);\n    }\n    T SP =\
-    \ 0, SQ = 0;\n    for (int i = 0; i < z; i++) SP += P[i], SQ += Q[i];\n    return\
-    \ SP / SQ;\n\n    // simple\n    /*\n    while (k){\n        auto n_Q = Q;\n \
-    \       for (int i = 0; i < int(Q.size()); i++){\n            if (i & 1) n_Q[i]\
-    \ *= -1;\n        }\n        auto n_P = atcoder::convolution(P, n_Q);\n      \
-    \  n_Q = atcoder::convolution(Q, n_Q);\n        for (int i = 0; i < int(Q.size());\
-    \ i++){\n            Q[i] = n_Q[i * 2];\n        }\n        P.clear();\n     \
-    \   for (int i = (k & 1); i < int(n_P.size()); i += 2){\n            P.push_back(n_P[i]);\n\
-    \        }\n        k >>= 1;\n    }\n    return P[0] / Q[0];\n    */\n}\n\ntemplate<class\
-    \ T>\n// 0 = a[i] * c[0] + a[i - 1] * c[1] + a[i - 2] * c[2] + ... + a[i - d]\
-    \ * c[d]\n// a.size() + 1 == c.size()\n// c[0] = - 1 ?\n// return a[k]\nT Kth_Linear(long\
+    \ != 0);\n\n    // fast\n    if ((int)Q.size() > 60){\n        int z = 1;\n  \
+    \      while (z < (int)std::max(P.size(), Q.size())) z *= 2;\n        P.resize(z\
+    \ * 2, 0);\n        Q.resize(z * 2, 0);\n        atcoder::internal::butterfly(P);\n\
+    \        atcoder::internal::butterfly(Q);\n\n        while (k){\n            //\
+    \ Q(-x)\n            std::vector<T> Q_n(z * 2);\n            for (int i = 0; i\
+    \ < z; i++){\n                Q_n[i * 2] = Q[i * 2 + 1];\n                Q_n[i\
+    \ * 2 + 1] = Q[i * 2];\n            }\n            for (int i = 0; i < z * 2;\
+    \ i++){\n                P[i] *= Q_n[i];\n                Q[i] *= Q_n[i];\n  \
+    \          }\n            FPS_pick_even_odd(P, k & 1);\n            FPS_pick_even_odd(Q,\
+    \ 0);\n            k /= 2;\n            if (k == 0) break;\n            FPS_extend(P);\n\
+    \            FPS_extend(Q);\n        }\n        T SP = 0, SQ = 0;\n        for\
+    \ (int i = 0; i < z; i++) SP += P[i], SQ += Q[i];\n        return SP / SQ;\n \
+    \   }\n    \n    // simple\n    while (k){\n        auto n_Q = Q;\n        for\
+    \ (int i = 0; i < int(Q.size()); i++){\n            if (i & 1) n_Q[i] *= -1;\n\
+    \        }\n        auto n_P = atcoder::convolution(P, n_Q);\n        n_Q = atcoder::convolution(Q,\
+    \ n_Q);\n        for (int i = 0; i < int(Q.size()); i++){\n            Q[i] =\
+    \ n_Q[i * 2];\n        }\n        P.clear();\n        for (int i = (k & 1); i\
+    \ < int(n_P.size()); i += 2){\n            P.push_back(n_P[i]);\n        }\n \
+    \       k >>= 1;\n    }\n    return P[0] / Q[0];\n    \n}\n\ntemplate<class T>\n\
+    // 0 = a[i] * c[0] + a[i - 1] * c[1] + a[i - 2] * c[2] + ... + a[i - d] * c[d]\n\
+    // a.size() + 1 == c.size()\n// c[0] = - 1 ?\n// return a[k]\nT Kth_Linear(long\
     \ long k, std::vector<T> a, std::vector<T> c){\n    int d = a.size();\n    assert(d\
     \ + 1 == int(c.size()));\n    std::vector<T> P = atcoder::convolution(a, c);\n\
     \    P.resize(d);\n    return Boston_Mori(k, P, c);\n}\n};"
@@ -93,7 +97,7 @@ data:
   isVerificationFile: false
   path: fps/FPS_Boston_Mori.hpp
   requiredBy: []
-  timestamp: '2024-06-19 15:49:30+09:00'
+  timestamp: '2025-12-22 17:13:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/linear_kth.test.cpp
