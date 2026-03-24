@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/eulerian_trail_undirected"
 
-#include "graph/Eulerian_trail.hpp"
-// #include "../../../graph/Eulerian_trail.hpp"
+// #include "graph/Eulerian_trail.hpp"
+#include "../../../graph/Eulerian_trail.hpp"
 #include <iostream>
 void solve();
 int main() {
