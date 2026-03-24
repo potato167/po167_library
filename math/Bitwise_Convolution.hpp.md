@@ -87,8 +87,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/xor_convolution.test.cpp
-  - test/math/and_convolution.test.cpp
   - test/math/or_convolution.test.cpp
+  - test/math/and_convolution.test.cpp
 documentation_of: math/Bitwise_Convolution.hpp
 layout: document
 redirect_from:

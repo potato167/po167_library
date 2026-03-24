@@ -47,14 +47,14 @@ data:
   path: fps/FPS_Product_Sequence.hpp
   requiredBy:
   - fps/Polynomial_Interpolation.hpp
-  - fps/FPS_sum_of_power.hpp
   - fps/Multipoint_Evaluation.hpp
+  - fps/FPS_sum_of_power.hpp
   timestamp: '2024-06-19 18:48:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/sum_of_power.test.cpp
-  - test/fps/polynomial_interpolation.test.cpp
   - test/fps/product_sequence.test.cpp
+  - test/fps/polynomial_interpolation.test.cpp
   - test/fps/multpoint_evalution.test.cpp
 documentation_of: fps/FPS_Product_Sequence.hpp
 layout: document
