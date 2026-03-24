@@ -108,7 +108,7 @@ data:
       title: fps/count_increasing_sequences.hpp
   - name: graph
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/Eulerian_trail.hpp
       title: graph/Eulerian_trail.hpp
   - name: graph/tree
@@ -238,10 +238,10 @@ data:
       title: test/fps/taylor_shift.test.cpp
   - name: test/graph
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/graph/eulerian_trail_dir.test.cpp
       title: test/graph/eulerian_trail_dir.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/graph/eulerian_trail_undir.test.cpp
       title: test/graph/eulerian_trail_undir.test.cpp
   - name: test/graph/tree
