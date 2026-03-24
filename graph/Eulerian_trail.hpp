@@ -7,6 +7,7 @@
 namespace po167{
 /*
  * グラフを与える。
+ * 辺は pair<int, int> で、{行き先、辺の index}
  * オイラーウォークが存在するなら、
  * 頂点番号の列と辺番号の列をどちらも返す
  * 入力 : vector<vector<pair<int, int>>> グラフ, 辺の数, start
