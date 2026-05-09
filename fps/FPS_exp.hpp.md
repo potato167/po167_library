@@ -106,8 +106,8 @@ data:
   isVerificationFile: false
   path: fps/FPS_exp.hpp
   requiredBy:
-  - fps/FPS_inverse.hpp
   - fps/FPS_pow.hpp
+  - fps/FPS_inverse.hpp
   timestamp: '2024-09-05 20:11:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

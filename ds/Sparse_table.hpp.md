@@ -51,8 +51,8 @@ data:
   isVerificationFile: false
   path: ds/Sparse_table.hpp
   requiredBy:
-  - graph/tree/Auxiliary_Tree.hpp
   - graph/tree/LCA.hpp
+  - graph/tree/Auxiliary_Tree.hpp
   timestamp: '2025-01-11 23:26:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
