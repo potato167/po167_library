@@ -34,7 +34,7 @@ T garner(const std::vector<T>& a, std::vector<T> p, const T mod){
     std::vector<T> kp(sz + 1, 0), rmult(sz + 1, 1);
     p.push_back(mod);
     for(unsigned int i = 0; i < sz; ++i){
-        T x = mod_mul(a[i] - kp[i], mod_inv(rmult[i], p[i]), p[i]);
+        T x = mod_mul(a[i] - kp[i], (i ? mod_inv(rmult[i], p[i]) : 1), p[i]);
         x = (x < 0) ? (x + p[i]) : x;
         for(unsigned int j = i + 1; j < sz + 1; ++j){
             kp[j] = mod_add(kp[j], rmult[j] * x, p[j]);
