@@ -3,9 +3,18 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: algorithm/monge_k_edge_shortest_path.hpp
+    title: algorithm/monge_k_edge_shortest_path.hpp
+  - icon: ':heavy_check_mark:'
     path: algorithm/sum_max_convolution.hpp
     title: algorithm/sum_max_convolution.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/algorithm/monge_1.test.cpp
+    title: test/algorithm/monge_1.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/algorithm/monge_2.test.cpp
+    title: test/algorithm/monge_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/algorithm/sum_min_conv.test.cpp
     title: test/algorithm/sum_min_conv.test.cpp
@@ -69,11 +78,14 @@ data:
   isVerificationFile: false
   path: algorithm/smawk.hpp
   requiredBy:
+  - algorithm/monge_k_edge_shortest_path.hpp
   - algorithm/sum_max_convolution.hpp
   timestamp: '2024-07-15 01:01:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/algorithm/sum_min_conv.test.cpp
+  - test/algorithm/monge_2.test.cpp
+  - test/algorithm/monge_1.test.cpp
 documentation_of: algorithm/smawk.hpp
 layout: document
 redirect_from:

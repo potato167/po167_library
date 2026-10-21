@@ -4,6 +4,18 @@ data:
   - name: algorithm
     pages:
     - icon: ':heavy_check_mark:'
+      path: algorithm/larsch.hpp
+      title: algorithm/larsch.hpp
+    - icon: ':heavy_check_mark:'
+      path: algorithm/monge_d_edge_shortest_path.hpp
+      title: algorithm/monge_d_edge_shortest_path.hpp
+    - icon: ':heavy_check_mark:'
+      path: algorithm/monge_k_edge_shortest_path.hpp
+      title: algorithm/monge_k_edge_shortest_path.hpp
+    - icon: ':heavy_check_mark:'
+      path: algorithm/monge_shortest_path.hpp
+      title: algorithm/monge_shortest_path.hpp
+    - icon: ':heavy_check_mark:'
       path: algorithm/smawk.hpp
       title: algorithm/smawk.hpp
     - icon: ':heavy_check_mark:'
@@ -207,6 +219,15 @@ data:
   verificationCategories:
   - name: test/algorithm
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/algorithm/monge_1.test.cpp
+      title: test/algorithm/monge_1.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/algorithm/monge_2.test.cpp
+      title: test/algorithm/monge_2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/algorithm/monge_3.test.cpp
+      title: test/algorithm/monge_3.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/algorithm/sum_min_conv.test.cpp
       title: test/algorithm/sum_min_conv.test.cpp
