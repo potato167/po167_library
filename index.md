@@ -26,6 +26,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/Swag.hpp
       title: ds/Swag.hpp
+    - icon: ':heavy_check_mark:'
+      path: ds/WaveletMatrix.hpp
+      title: ds/WaveletMatrix.hpp
   - name: fps
     pages:
     - icon: ':heavy_check_mark:'
@@ -218,6 +221,18 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/ds/swag.test.cpp
       title: test/ds/swag.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/ds/waveletmatrix_1.test.cpp
+      title: test/ds/waveletmatrix_1.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/ds/waveletmatrix_2.test.cpp
+      title: test/ds/waveletmatrix_2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/ds/waveletmatrix_3.test.cpp
+      title: test/ds/waveletmatrix_3.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/ds/waveletmatrix_4.test.cpp
+      title: test/ds/waveletmatrix_4.test.cpp
   - name: test/fps
     pages:
     - icon: ':heavy_check_mark:'
