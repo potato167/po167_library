@@ -9,18 +9,10 @@ using namespace std;
 const int INF = 2100000000;
 template<class T> bool chmin(T &a, T b){return (a > b ? a = b, 1 : 0);}
 
-void solve();
-// POP'N ROLL MUSIC / TOMOO
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int t = 1;
-    // cin >> t;
-    rep(i, 0, t) solve();
-}
-
-void solve(){
     int H, W, M;
     cin >> H >> W >> M;
     vector<string> S(H);
