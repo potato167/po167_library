@@ -146,6 +146,9 @@ data:
       path: math/Bitwise_Convolution.hpp
       title: math/Bitwise_Convolution.hpp
     - icon: ':heavy_check_mark:'
+      path: math/multiplicative_prefix_sum.hpp
+      title: "\u4E57\u6CD5\u7684\u95A2\u6570\u306E\u7D2F\u7A4D\u548C"
+    - icon: ':heavy_check_mark:'
       path: math/q_Binomial.hpp
       title: math/q_Binomial.hpp
   - name: modint
@@ -361,6 +364,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/math/sampleproblem.test.cpp
       title: test/math/sampleproblem.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/math/sum_of_multiplicative_function.test.cpp
+      title: test/math/sum_of_multiplicative_function.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/math/sum_of_multiplicative_function_large.test.cpp
+      title: test/math/sum_of_multiplicative_function_large.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/math/sum_of_totient_function.test.cpp
+      title: test/math/sum_of_totient_function.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/math/xor_convolution.test.cpp
       title: test/math/xor_convolution.test.cpp
