@@ -3,9 +3,6 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: fps/FPS_Power_Projection.hpp
-    title: fps/FPS_Power_Projection.hpp
-  - icon: ':heavy_check_mark:'
     path: fps/FPS_consecutive_linear.hpp
     title: fps/FPS_consecutive_linear.hpp
   - icon: ':heavy_check_mark:'
@@ -105,28 +102,27 @@ data:
   isVerificationFile: false
   path: fps/FPS_inv.hpp
   requiredBy:
-  - fps/FPS_division.hpp
   - fps/FPS_pow.hpp
-  - fps/FPS_sum_of_power.hpp
   - fps/Multipoint_Evaluation.hpp
-  - fps/FPS_log.hpp
-  - fps/FPS_inverse.hpp
-  - fps/FPS_Power_Projection.hpp
+  - fps/FPS_division.hpp
+  - fps/FPS_sum_of_power.hpp
   - fps/FPS_consecutive_linear.hpp
-  - fps/FPS_exp.hpp
+  - fps/FPS_log.hpp
   - fps/Polynomial_Interpolation.hpp
+  - fps/FPS_inverse.hpp
+  - fps/FPS_exp.hpp
   timestamp: '2024-06-19 00:51:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/fps/comp_inverse.test.cpp
-  - test/fps/polynomial_interpolation.test.cpp
+  - test/fps/inv.test.cpp
   - test/fps/pow.test.cpp
+  - test/fps/comp_inverse.test.cpp
+  - test/fps/division.test.cpp
+  - test/fps/multpoint_evalution.test.cpp
   - test/fps/consecutive_linear.test.cpp
   - test/fps/sum_of_power.test.cpp
-  - test/fps/inv.test.cpp
-  - test/fps/multpoint_evalution.test.cpp
+  - test/fps/polynomial_interpolation.test.cpp
   - test/fps/exp.test.cpp
-  - test/fps/division.test.cpp
 documentation_of: fps/FPS_inv.hpp
 layout: document
 redirect_from:
