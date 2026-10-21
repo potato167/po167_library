@@ -1,30 +1,30 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/MinCostPerfectMatching.hpp
     title: graph/MinCostPerfectMatching.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/eulerian_trail_directed
+    PROBLEM: https://judge.yosupo.jp/problem/assignment
     links:
-    - https://judge.yosupo.jp/problem/eulerian_trail_directed
+    - https://judge.yosupo.jp/problem/assignment
   bundledCode: "#line 1 \"test/graph/min_cost_perfect_matching.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/eulerian_trail_directed\"\n\n#line\
-    \ 2 \"graph/MinCostPerfectMatching.hpp\"\n#include <algorithm>\n#include <limits>\n\
-    #include <utility>\n#include <vector>\n\nnamespace po167{\n// Input:  n x n cost\
-    \ matrix a\n// Output: {min_{p in S_n} sum_i a[i][p[i]], p}\ntemplate <class T>\n\
-    std::pair<long long, std::vector<int>> min_cost_perfect_matching(\n    const std::vector<std::vector<T>>&\
-    \ a\n) {\n    const long long INF = std::numeric_limits<long long>::max() / 4;\n\
-    \    int n = (int)a.size();\n    if (n == 0) return {0, {}};\n    if (n == 1)\
-    \ return {(long long)a[0][0], {0}};\n\n    std::vector<const T*> c(n);\n    for\
-    \ (int i = 0; i < n; i++) c[i] = a[i].data();\n    std::vector<int> match(n, -1),\
-    \ inv(n, -1), cnt(n);\n    std::vector<long long> v(n);\n\n    // Column reduction\n\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/assignment\"\n\n#line 2 \"graph/MinCostPerfectMatching.hpp\"\
+    \n#include <algorithm>\n#include <limits>\n#include <utility>\n#include <vector>\n\
+    \nnamespace po167{\n// Input:  n x n cost matrix a\n// Output: {min_{p in S_n}\
+    \ sum_i a[i][p[i]], p}\ntemplate <class T>\nstd::pair<long long, std::vector<int>>\
+    \ min_cost_perfect_matching(\n    const std::vector<std::vector<T>>& a\n) {\n\
+    \    const long long INF = std::numeric_limits<long long>::max() / 4;\n    int\
+    \ n = (int)a.size();\n    if (n == 0) return {0, {}};\n    if (n == 1) return\
+    \ {(long long)a[0][0], {0}};\n\n    std::vector<const T*> c(n);\n    for (int\
+    \ i = 0; i < n; i++) c[i] = a[i].data();\n    std::vector<int> match(n, -1), inv(n,\
+    \ -1), cnt(n);\n    std::vector<long long> v(n);\n\n    // Column reduction\n\
     \    std::vector<int> bestrow(n);\n    for (int j = 0; j < n; j++) v[j] = c[0][j];\n\
     \    for (int i = 1; i < n; i++) {\n        const T* row = c[i];\n        for\
     \ (int j = 0; j < n; j++) {\n            if ((long long)row[j] < v[j]) {\n   \
@@ -85,12 +85,12 @@ data:
     \  auto ans = po167::min_cost_perfect_matching(a);\n    std::cout << ans.first\
     \ << \"\\n\";\n    for (int i = 0; i < n; i++){\n        std::cout << ans.second[i]\
     \ << (i + 1 == n ? \"\\n\" : \" \");\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/eulerian_trail_directed\"\
-    \n\n#include \"graph/MinCostPerfectMatching.hpp\"\n\n#include<iostream>\n\nint\
-    \ main(){\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
-    \    int n;\n    std::cin >> n;\n    std::vector a(n, std::vector<long long>(n));\n\
-    \    for (int i = 0; i < n; i++){\n        for (int j = 0; j < n; j++){\n    \
-    \        std::cin >> a[i][j];\n        }\n    }\n    auto ans = po167::min_cost_perfect_matching(a);\n\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/assignment\"\n\n#include\
+    \ \"graph/MinCostPerfectMatching.hpp\"\n\n#include<iostream>\n\nint main(){\n\
+    \    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n    int n;\n\
+    \    std::cin >> n;\n    std::vector a(n, std::vector<long long>(n));\n    for\
+    \ (int i = 0; i < n; i++){\n        for (int j = 0; j < n; j++){\n           \
+    \ std::cin >> a[i][j];\n        }\n    }\n    auto ans = po167::min_cost_perfect_matching(a);\n\
     \    std::cout << ans.first << \"\\n\";\n    for (int i = 0; i < n; i++){\n  \
     \      std::cout << ans.second[i] << (i + 1 == n ? \"\\n\" : \" \");\n    }\n}"
   dependsOn:
@@ -98,8 +98,8 @@ data:
   isVerificationFile: true
   path: test/graph/min_cost_perfect_matching.test.cpp
   requiredBy: []
-  timestamp: '2026-10-21 22:06:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-10-21 22:10:15+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/graph/min_cost_perfect_matching.test.cpp
 layout: document

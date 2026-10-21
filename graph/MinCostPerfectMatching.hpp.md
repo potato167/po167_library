@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/graph/min_cost_perfect_matching.test.cpp
     title: test/graph/min_cost_perfect_matching.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/MinCostPerfectMatching.hpp\"\n#include <algorithm>\n\
@@ -140,7 +140,7 @@ data:
   path: graph/MinCostPerfectMatching.hpp
   requiredBy: []
   timestamp: '2026-10-21 22:06:17+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/graph/min_cost_perfect_matching.test.cpp
 documentation_of: graph/MinCostPerfectMatching.hpp

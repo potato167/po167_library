@@ -114,7 +114,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/Eulerian_trail.hpp
       title: graph/Eulerian_trail.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/MinCostPerfectMatching.hpp
       title: graph/MinCostPerfectMatching.hpp
   - name: graph/tree
@@ -309,7 +309,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/graph/eulerian_trail_undir.test.cpp
       title: test/graph/eulerian_trail_undir.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/graph/min_cost_perfect_matching.test.cpp
       title: test/graph/min_cost_perfect_matching.test.cpp
   - name: test/graph/tree

@@ -51,13 +51,13 @@ data:
   isVerificationFile: false
   path: ds/Sparse_table.hpp
   requiredBy:
-  - graph/tree/LCA.hpp
   - graph/tree/Auxiliary_Tree.hpp
+  - graph/tree/LCA.hpp
   timestamp: '2025-01-11 23:26:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/graph/tree/jump_tree.test.cpp
   - test/graph/tree/lca_1.test.cpp
+  - test/graph/tree/jump_tree.test.cpp
   - test/ds/sparse_table.test.cpp
 documentation_of: ds/Sparse_table.hpp
 layout: document

@@ -180,9 +180,9 @@ data:
   timestamp: '2026-10-21 21:31:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/ds/waveletmatrix_1.test.cpp
-  - test/ds/waveletmatrix_3.test.cpp
   - test/ds/waveletmatrix_4.test.cpp
+  - test/ds/waveletmatrix_3.test.cpp
+  - test/ds/waveletmatrix_1.test.cpp
   - test/ds/waveletmatrix_2.test.cpp
 documentation_of: ds/WaveletMatrix.hpp
 layout: document
