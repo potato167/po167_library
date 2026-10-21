@@ -67,8 +67,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/comp_inverse.test.cpp
-  - test/fps/consecutive_linear.test.cpp
   - test/fps/linear_kth.test.cpp
+  - test/fps/consecutive_linear.test.cpp
 documentation_of: fps/FPS_pick_even_odd.hpp
 layout: document
 redirect_from:

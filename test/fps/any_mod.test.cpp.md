@@ -27,16 +27,16 @@ data:
     \ T>\nT garner(const std::vector<T>& a, std::vector<T> p, const T mod){\n    const\
     \ unsigned int sz = a.size();\n    std::vector<T> kp(sz + 1, 0), rmult(sz + 1,\
     \ 1);\n    p.push_back(mod);\n    for(unsigned int i = 0; i < sz; ++i){\n    \
-    \    T x = mod_mul(a[i] - kp[i], mod_inv(rmult[i], p[i]), p[i]);\n        x =\
-    \ (x < 0) ? (x + p[i]) : x;\n        for(unsigned int j = i + 1; j < sz + 1; ++j){\n\
-    \            kp[j] = mod_add(kp[j], rmult[j] * x, p[j]);\n            rmult[j]\
-    \ = mod_mul(rmult[j], p[i], p[j]);\n        }\n    }\n    return kp[sz];\n}\n\n\
-    const long long _mod0=754974721;\nconst long long _mod1=167772161;\nconst long\
-    \ long _mod2=469762049;\nstd::vector<long long> _MOD={_mod0,_mod1,_mod2};\nstd::vector<long\
-    \ long> convolution_any_mod(std::vector<long long> a,std::vector<long long> b,long\
-    \ long pmod){\n\tfor(auto &x:a) x = (x % pmod + pmod) % pmod;\n\tfor(auto &x:b)\
-    \ x = (x % pmod + pmod) % pmod;\n\tstd::vector<std::vector<long long>> res(3);\n\
-    \tres[0] = atcoder::convolution<_mod0>(a,b);\n\tres[1] = atcoder::convolution<_mod1>(a,b);\n\
+    \    T x = mod_mul(a[i] - kp[i], (i ? mod_inv(rmult[i], p[i]) : 1), p[i]);\n \
+    \       x = (x < 0) ? (x + p[i]) : x;\n        for(unsigned int j = i + 1; j <\
+    \ sz + 1; ++j){\n            kp[j] = mod_add(kp[j], rmult[j] * x, p[j]);\n   \
+    \         rmult[j] = mod_mul(rmult[j], p[i], p[j]);\n        }\n    }\n    return\
+    \ kp[sz];\n}\n\nconst long long _mod0=754974721;\nconst long long _mod1=167772161;\n\
+    const long long _mod2=469762049;\nstd::vector<long long> _MOD={_mod0,_mod1,_mod2};\n\
+    std::vector<long long> convolution_any_mod(std::vector<long long> a,std::vector<long\
+    \ long> b,long long pmod){\n\tfor(auto &x:a) x = (x % pmod + pmod) % pmod;\n\t\
+    for(auto &x:b) x = (x % pmod + pmod) % pmod;\n\tstd::vector<std::vector<long long>>\
+    \ res(3);\n\tres[0] = atcoder::convolution<_mod0>(a,b);\n\tres[1] = atcoder::convolution<_mod1>(a,b);\n\
     \tres[2] = atcoder::convolution<_mod2>(a,b);\n\tfor(int i=0;i<(int)res[0].size();i++){\n\
     \t\tstd::vector<long long> q(3);\n\t\tfor(int j=0;j<3;j++) q[j] = res[j][i];\n\
     \t\tres[0][i] = garner(q, _MOD, pmod);\n\t}\n\treturn res[0];\n}\ntemplate<typename\
@@ -67,7 +67,7 @@ data:
   isVerificationFile: true
   path: test/fps/any_mod.test.cpp
   requiredBy: []
-  timestamp: '2024-08-17 09:05:28+09:00'
+  timestamp: '2026-10-21 21:17:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fps/any_mod.test.cpp

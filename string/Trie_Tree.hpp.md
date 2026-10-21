@@ -104,8 +104,8 @@ data:
   timestamp: '2025-09-16 02:00:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/string/aho.test.cpp
   - test/string/trie_tree.test.cpp
+  - test/string/aho.test.cpp
 documentation_of: string/Trie_Tree.hpp
 layout: document
 redirect_from:
