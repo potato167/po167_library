@@ -127,6 +127,9 @@ data:
       path: graph/Eulerian_trail.hpp
       title: graph/Eulerian_trail.hpp
     - icon: ':heavy_check_mark:'
+      path: graph/KValueMinCut.hpp
+      title: "k \u5024\u71C3\u3084\u3059\u57CB\u3081\u308B"
+    - icon: ':heavy_check_mark:'
       path: graph/MinCostPerfectMatching.hpp
       title: graph/MinCostPerfectMatching.hpp
   - name: graph/tree
@@ -219,6 +222,11 @@ data:
     - icon: ':warning:'
       path: test/ds/segtree.cpp
       title: test/ds/segtree.cpp
+  - name: test/graph
+    pages:
+    - icon: ':warning:'
+      path: test/graph/k_value_min_cut_unit.cpp
+      title: test/graph/k_value_min_cut_unit.cpp
   verificationCategories:
   - name: test/algorithm
     pages:
@@ -333,6 +341,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/graph/eulerian_trail_undir.test.cpp
       title: test/graph/eulerian_trail_undir.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/graph/k_value_min_cut_aoj_board.test.cpp
+      title: test/graph/k_value_min_cut_aoj_board.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/graph/k_value_min_cut_yukicoder.test.cpp
+      title: test/graph/k_value_min_cut_yukicoder.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/graph/min_cost_perfect_matching.test.cpp
       title: test/graph/min_cost_perfect_matching.test.cpp

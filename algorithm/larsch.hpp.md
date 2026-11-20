@@ -97,8 +97,8 @@ data:
   timestamp: '2026-10-21 23:29:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/algorithm/monge_3.test.cpp
   - test/algorithm/monge_1.test.cpp
+  - test/algorithm/monge_3.test.cpp
 documentation_of: algorithm/larsch.hpp
 layout: document
 redirect_from:
