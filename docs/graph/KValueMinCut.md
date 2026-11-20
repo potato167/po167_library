@@ -41,6 +41,7 @@ int u = cut.node(i, a);
 $x(i,a)$ に対応する頂点番号を返す。
 `a == 0` なら始点 `cut.s`、`a == R[i]` なら終点 `cut.t`、それ以外なら通常の頂点になる。
 主に `add_edge` の引数を作るために使う。
+複数条件のコストを追加して補助頂点が増えても、`node` の返り値と `cut.s`, `cut.t` の番号は変わらない。
 
 ### `add_linear(i, a, c)`
 
@@ -100,6 +101,32 @@ cut.add_ge_ge(i, a, j, b, c);
 $-c[v_i\ge a\land v_j\ge b]$ を追加する。$c\ge0$ が必要。
 2 つの条件を同時に満たすときに利益 $c$ を得る。
 
+### `add_lt_lt(conditions, c)`
+
+```cpp
+void add_lt_lt(const std::vector<std::pair<int, int>>& conditions, T c);
+```
+
+`conditions` の各要素 `(i, a)` を条件 $v_i<a$ として、すべての条件を満たすときにだけ $-c$ を追加する。
+$c\ge0$ が必要。各要素の添字としきい値には、2 条件版と同じ範囲を指定する。
+
+空のリストでは条件が常に成立するため、定数 $-c$ を追加する。
+条件の重複、同じ変数に対する複数の条件、端のしきい値も指定できる。
+リストが空でなく $c>0$ なら、内部で補助頂点を 1 個追加する。
+
+### `add_ge_ge(conditions, c)`
+
+```cpp
+void add_ge_ge(const std::vector<std::pair<int, int>>& conditions, T c);
+```
+
+`conditions` の各要素 `(i, a)` を条件 $v_i\ge a$ として、すべての条件を満たすときにだけ $-c$ を追加する。
+$c\ge0$ が必要。各要素の添字としきい値には、2 条件版と同じ範囲を指定する。
+
+空のリストでは定数 $-c$ を追加する。
+条件の重複、同じ変数に対する複数の条件、端のしきい値も指定できる。
+リストが空でなく $c>0$ なら、内部で補助頂点を 1 個追加する。
+
 ### `add_diff(i, a, j, b, c)`
 
 ```cpp
@@ -120,6 +147,7 @@ auto [minimum_cost, values] = cut.run();
 追加したコストの総和を最小化し、`std::pair<T, std::vector<int>>` を返す。
 `minimum_cost` は定数項を含む最小値、`values[i]` はそれを達成する $v_i$。
 最適解が複数ある場合は、そのうちの 1 つを返す。
+`values` の要素数は元の変数の数 `R.size()` で、補助頂点の値は含まない。
 
 `run()` はオブジェクトを変更しないため、繰り返し呼べる。
 コストを追加してから再実行することもできるが、毎回グラフを作り直して最大流を計算する。
@@ -158,26 +186,17 @@ int main() {
 
 利益の最大化では、利益を負のコストとして追加し、`-cost` を答えにする。
 
-## 検証
+3 個以上の条件をまとめる場合は、条件のリストを渡す。
 
-| 問題 | テスト | 帰着 |
-|---|---|---|
-| [yukicoder No.119 旅行のツアーの問題](https://yukicoder.me/problems/no/119) | `test/graph/k_value_min_cut_yukicoder.test.cpp` | 旅行のみ・旅行しない・ツアー参加の3値。満足度を `add_eq`、禁止される組を `add_lt_ge` で表す |
-| [AOJ 2903 Board](https://onlinejudge.u-aizu.ac.jp/problems/2903) | `test/graph/k_value_min_cut_aoj_board.test.cpp` | 穴を覆う向きの2値。同じ向きの隣接マスをつなぐ利益を `add_lt_lt` と `add_ge_ge` で表す |
-
-禁止条件に大きな罰金を使う場合は、条件を満たす解が存在し、罰金が他のコストの改善幅を上回るようにする。
-yukicoder のテストでは、満足度の上限 $\sum_i\max(B_i,C_i)$ より1大きい値を使う。
-
-[yosupo judge の公式問題一覧](https://judge.yosupo.jp/)も調査したが、この API と制約に合う検証問題は見つからなかった。
-
-`test/graph/k_value_min_cut_unit.cpp` は入力不要の回帰テスト。
-全 API を含むランダムな小規模問題を全探索と比較し、最小値・復元した値・再実行を確認する。
-空の変数列、1値の変数、端のしきい値、大きな容量も確認する。
-リポジトリのルートで、ACL のインクルードパスを設定して実行する。
-
-```sh
-g++ -std=c++17 -Wall -Wextra -O2 -I . test/graph/k_value_min_cut_unit.cpp -o /tmp/k_value_min_cut_unit
-/tmp/k_value_min_cut_unit
+```cpp
+po167::KValueMinCut<> cut({3, 4, 2});
+// v[0] < 2, v[1] < 3, v[2] < 1 がすべて成立すると利益 7。
+cut.add_lt_lt({{0, 2}, {1, 3}, {2, 1}}, 7);
+// v[0] >= 1, v[1] >= 2, v[2] >= 1 がすべて成立すると利益 5。
+cut.add_ge_ge({{0, 1}, {1, 2}, {2, 1}}, 5);
+// 空の条件リストは常に成立するので、定数 -2 を追加。
+cut.add_lt_lt({}, 2);
+auto [cost, values] = cut.run(); // cost = -9、values は 3 要素。
 ```
 
 ## 整数の範囲
@@ -185,16 +204,18 @@ g++ -std=c++17 -Wall -Wextra -O2 -I . test/graph/k_value_min_cut_unit.cpp -o /tm
 すべてのコストの加減算・蓄積と答えが `T` に収まるようにする。
 特に `add_eq` は `-c` を計算するため、`c` に `std::numeric_limits<T>::min()` を渡せない。
 
-`run()` は、保存した辺の容量の和と、各通常頂点に蓄積した線形係数の絶対値の和を `sum` として、
+`run()` は、保存した辺の容量の和と、始点・終点を除く各頂点（補助頂点を含む）に蓄積した線形係数の絶対値の和を `sum` として、
 単調性 $x(i,a+1)\le x(i,a)$ を強制する辺に容量 `sum + 1` を設定する。
 したがって `sum < std::numeric_limits<T>::max()` が必要であり、各線形係数の絶対値も `T` に収まる必要がある。
 定数項や、負の線形係数を答えに加える途中の値についても、別途オーバーフローしないことが必要。
 
 ## 計算量
 
-$L=\sum_i(R_i-1)$、保存した辺の数を $M$ とする。
-構築は時間・空間ともに $O(n+L)$。`node` は $O(1)$、コスト追加関数はいずれも償却 $O(1)$。
+$L=\sum_i(R_i-1)$、補助頂点の数を $A$、保存した辺の数を $M$ とする。
+構築は時間・空間ともに $O(n+L)$。`node` は $O(1)$。
+`conditions` を取る 2 つの関数は、リストの要素数 $k>0$ に対して償却 $O(k)$、空なら $O(1)$。
+それ以外のコスト追加関数は償却 $O(1)$。
 
-`run()` が作るグラフの頂点数は $V=L+2$、辺数は $E=O(M+L)$。
+`run()` が作るグラフの頂点数は $V=L+A+2$、辺数は $E=O(M+L+A)$。
 一般の整数容量に対する最大流の計算量に従い、時間 $O(V^2E+V+n)$、追加空間 $O(V+E+n)$。
 値域が大きいと、変数の数だけでなく $L$ に比例してグラフが大きくなる。

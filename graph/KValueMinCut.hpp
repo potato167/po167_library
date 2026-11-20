@@ -74,11 +74,39 @@ struct KValueMinCut {
         add_lt_ge(i, a, j, b, c);
     }
 
+    // -c if v[i] < a for every (i, a) in conditions
+    void add_lt_lt(const std::vector<std::pair<int, int>>& conditions, T c) {
+        assert(c >= 0);
+        if (c == 0) return;
+        constant -= c;
+        if (conditions.empty()) return;
+        int u = int(linear.size());
+        linear.push_back(c);
+        for (auto [i, a] : conditions) {
+            add_edge(node(i, a), u, c);
+        }
+    }
+
     // -c if v[i] >= a && v[j] >= b
     void add_ge_ge(int i, int a, int j, int b, T c) {
         assert(c >= 0);
         add_linear(i, a, -c);
         add_edge(node(i, a), node(j, b), c);
+    }
+
+    // -c if v[i] >= a for every (i, a) in conditions
+    void add_ge_ge(const std::vector<std::pair<int, int>>& conditions, T c) {
+        assert(c >= 0);
+        if (c == 0) return;
+        if (conditions.empty()) {
+            constant -= c;
+            return;
+        }
+        int u = int(linear.size());
+        linear.push_back(-c);
+        for (auto [i, a] : conditions) {
+            add_edge(u, node(i, a), c);
+        }
     }
 
     // +c if [v[i] >= a] != [v[j] >= b]
@@ -89,6 +117,7 @@ struct KValueMinCut {
 
     // return {minimum cost, optimal v}
     std::pair<T, std::vector<int>> run() const {
+        int vertices = int(linear.size());
         T sum = 0;
         auto add_sum = [&](T c) {
             assert(c >= 0 && c < std::numeric_limits<T>::max() - sum);
@@ -96,16 +125,18 @@ struct KValueMinCut {
         };
 
         for (auto [u, v, c] : edges) add_sum(c);
-        for (int u = 0; u < s; u++) {
+        for (int u = 0; u < vertices; u++) {
+            if (u == s || u == t) continue;
             assert(linear[u] != std::numeric_limits<T>::min());
             add_sum(linear[u] < 0 ? -linear[u] : linear[u]);
         }
 
-        atcoder::mf_graph<T> graph(t + 1);
+        atcoder::mf_graph<T> graph(vertices);
         for (auto [u, v, c] : edges) graph.add_edge(u, v, c);
 
         T ans = constant + linear[s];
-        for (int u = 0; u < s; u++) {
+        for (int u = 0; u < vertices; u++) {
+            if (u == s || u == t) continue;
             if (linear[u] > 0) {
                 graph.add_edge(u, t, linear[u]);
             } else if (linear[u] < 0) {

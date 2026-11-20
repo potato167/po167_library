@@ -50,7 +50,8 @@ void test_random() {
             int i = rng() % n, j = rng() % n;
             int a = rng() % (r[i] + 1), b = rng() % (r[j] + 1);
             T c = rng() % 11;
-            switch (rng() % 7) {
+            int kind = rng() % 9;
+            switch (kind) {
             case 0:
                 c -= 5;
                 cut.add_linear(i, a, c);
@@ -83,6 +84,24 @@ void test_random() {
                 cut.add_edge(cut.node(i, a), cut.node(j, b), c);
                 terms.emplace_back([=](const auto& v) { return c * (v[i] >= a && v[j] < b); });
                 break;
+            case 7:
+            case 8: {
+                bool ge = kind == 8;
+                std::vector<std::pair<int, int>> conditions(rng() % 8);
+                for (auto& [index, threshold] : conditions) {
+                    index = rng() % n;
+                    threshold = rng() % (r[index] + 1);
+                }
+                if (ge) cut.add_ge_ge(conditions, c);
+                else cut.add_lt_lt(conditions, c);
+                terms.emplace_back([=](const auto& v) {
+                    for (auto [index, threshold] : conditions) {
+                        if (ge ? v[index] < threshold : v[index] >= threshold) return T(0);
+                    }
+                    return -c;
+                });
+                break;
+            }
             }
             // Also check adding terms after a previous run.
             if (step == 19 || step == 39) check();
@@ -94,6 +113,11 @@ template<class T>
 void test_boundaries() {
     po167::KValueMinCut<T> empty({});
     assert(empty.run() == std::make_pair(T(0), std::vector<int>{}));
+    empty.add_lt_lt({}, T(7));
+    assert(empty.run() == std::make_pair(T(-7), std::vector<int>{}));
+    empty.add_ge_ge({}, T(11));
+    assert(empty.run() == std::make_pair(T(-18), std::vector<int>{}));
+    assert(empty.run() == std::make_pair(T(-18), std::vector<int>{}));
 
     po167::KValueMinCut<T> fixed({1, 1});
     assert(fixed.node(0, 0) == fixed.s);
@@ -107,6 +131,39 @@ void test_boundaries() {
     fixed.add_ge_ge(0, 0, 1, 0, 5);
     fixed.add_diff(0, 0, 1, 1, 6);
     assert(fixed.run() == std::make_pair(T(-5), std::vector<int>{0, 0}));
+
+    fixed.add_ge_ge({{0, 0}, {1, 0}, {0, 0}}, T(9));
+    fixed.add_lt_lt({{0, 1}, {1, 1}, {1, 1}}, T(8));
+    fixed.add_ge_ge({{0, 0}, {0, 1}}, T(100));
+    fixed.add_lt_lt({{1, 1}, {1, 0}}, T(100));
+    assert(fixed.run() == std::make_pair(T(-22), std::vector<int>{0, 0}));
+
+    po167::KValueMinCut<T> unary({4});
+    const int original_s = unary.s, original_t = unary.t;
+    std::vector<int> original_nodes;
+    for (int a = 0; a <= 4; a++) original_nodes.push_back(unary.node(0, a));
+    const auto original_size = unary.linear.size();
+    unary.add_ge_ge({{0, 2}}, T(9));
+    assert(unary.linear.size() == original_size + 1);
+    assert(unary.run() == std::make_pair(T(-9), std::vector<int>{2}));
+    // This positive auxiliary linear term must be included in the min-cut.
+    unary.add_lt_lt({{0, 2}}, T(6));
+    assert(unary.linear.size() == original_size + 2);
+    assert(unary.run() == std::make_pair(T(-9), std::vector<int>{2}));
+    unary.add_ge_ge({{0, 1}, {0, 3}, {0, 1}}, T(5));
+    assert(unary.run() == std::make_pair(T(-14), std::vector<int>{3}));
+    // Threshold R makes an all-ge term impossible even with duplicate variables.
+    unary.add_ge_ge({{0, 2}, {0, 4}, {0, 2}}, T(100));
+    unary.add_lt_lt({{0, 0}, {0, 3}}, T(100));
+    unary.add_linear(0, 3, T(-4));
+    assert(unary.run() == std::make_pair(T(-18), std::vector<int>{3}));
+    assert(unary.s == original_s && unary.t == original_t);
+    for (int a = 0; a <= 4; a++) assert(unary.node(0, a) == original_nodes[a]);
+    const auto size_before_zero = unary.linear.size();
+    unary.add_ge_ge({{0, 3}}, T(0));
+    unary.add_lt_lt({{0, 4}}, T(0));
+    assert(unary.linear.size() == size_before_zero);
+    assert(unary.run() == std::make_pair(T(-18), std::vector<int>{3}));
 
     // The generated ordering capacity can equal T's maximum value.
     po167::KValueMinCut<T> large({3});
