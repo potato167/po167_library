@@ -40,30 +40,43 @@ data:
     \    }\n\n    // -c if v[i] < a && v[j] < b\n    void add_lt_lt(int i, int a,\
     \ int j, int b, T c) {\n        assert(c >= 0);\n        constant -= c;\n    \
     \    add_linear(i, a, c);\n        add_lt_ge(i, a, j, b, c);\n    }\n\n    //\
-    \ -c if v[i] >= a && v[j] >= b\n    void add_ge_ge(int i, int a, int j, int b,\
-    \ T c) {\n        assert(c >= 0);\n        add_linear(i, a, -c);\n        add_edge(node(i,\
-    \ a), node(j, b), c);\n    }\n\n    // +c if [v[i] >= a] != [v[j] >= b]\n    void\
-    \ add_diff(int i, int a, int j, int b, T c) {\n        add_lt_ge(i, a, j, b, c);\n\
-    \        add_lt_ge(j, b, i, a, c);\n    }\n\n    // return {minimum cost, optimal\
-    \ v}\n    std::pair<T, std::vector<int>> run() const {\n        T sum = 0;\n \
-    \       auto add_sum = [&](T c) {\n            assert(c >= 0 && c < std::numeric_limits<T>::max()\
-    \ - sum);\n            sum += c;\n        };\n\n        for (auto [u, v, c] :\
-    \ edges) add_sum(c);\n        for (int u = 0; u < s; u++) {\n            assert(linear[u]\
-    \ != std::numeric_limits<T>::min());\n            add_sum(linear[u] < 0 ? -linear[u]\
-    \ : linear[u]);\n        }\n\n        atcoder::mf_graph<T> graph(t + 1);\n   \
-    \     for (auto [u, v, c] : edges) graph.add_edge(u, v, c);\n\n        T ans =\
-    \ constant + linear[s];\n        for (int u = 0; u < s; u++) {\n            if\
-    \ (linear[u] > 0) {\n                graph.add_edge(u, t, linear[u]);\n      \
-    \      } else if (linear[u] < 0) {\n                graph.add_edge(s, u, -linear[u]);\n\
-    \                ans += linear[u];\n            }\n        }\n\n        T inf\
-    \ = sum + 1;\n        for (int i = 0; i < n; i++) {\n            for (int a =\
-    \ 1; a + 1 < R[i]; a++) {\n                graph.add_edge(node(i, a + 1), node(i,\
-    \ a), inf);\n            }\n        }\n\n        ans += graph.flow(s, t);\n  \
-    \      auto side = graph.min_cut(s);\n\n        std::vector<int> v(n);\n     \
-    \   for (int i = 0; i < n; i++) {\n            for (int a = 1; a < R[i]; a++)\
-    \ {\n                if (side[node(i, a)]) v[i] = a;\n            }\n        }\n\
-    \        return {ans, v};\n    }\n};\n\n}\n#line 4 \"test/graph/k_value_min_cut_yukicoder.test.cpp\"\
-    \n\n#include <algorithm>\n#include <iostream>\n#line 8 \"test/graph/k_value_min_cut_yukicoder.test.cpp\"\
+    \ -c if v[i] < a for every (i, a) in conditions\n    void add_lt_lt(const std::vector<std::pair<int,\
+    \ int>>& conditions, T c) {\n        assert(c >= 0);\n        if (c == 0) return;\n\
+    \        constant -= c;\n        if (conditions.empty()) return;\n        int\
+    \ u = int(linear.size());\n        linear.push_back(c);\n        for (auto [i,\
+    \ a] : conditions) {\n            add_edge(node(i, a), u, c);\n        }\n   \
+    \ }\n\n    // -c if v[i] >= a && v[j] >= b\n    void add_ge_ge(int i, int a, int\
+    \ j, int b, T c) {\n        assert(c >= 0);\n        add_linear(i, a, -c);\n \
+    \       add_edge(node(i, a), node(j, b), c);\n    }\n\n    // -c if v[i] >= a\
+    \ for every (i, a) in conditions\n    void add_ge_ge(const std::vector<std::pair<int,\
+    \ int>>& conditions, T c) {\n        assert(c >= 0);\n        if (c == 0) return;\n\
+    \        if (conditions.empty()) {\n            constant -= c;\n            return;\n\
+    \        }\n        int u = int(linear.size());\n        linear.push_back(-c);\n\
+    \        for (auto [i, a] : conditions) {\n            add_edge(u, node(i, a),\
+    \ c);\n        }\n    }\n\n    // +c if [v[i] >= a] != [v[j] >= b]\n    void add_diff(int\
+    \ i, int a, int j, int b, T c) {\n        add_lt_ge(i, a, j, b, c);\n        add_lt_ge(j,\
+    \ b, i, a, c);\n    }\n\n    // return {minimum cost, optimal v}\n    std::pair<T,\
+    \ std::vector<int>> run() const {\n        int vertices = int(linear.size());\n\
+    \        T sum = 0;\n        auto add_sum = [&](T c) {\n            assert(c >=\
+    \ 0 && c < std::numeric_limits<T>::max() - sum);\n            sum += c;\n    \
+    \    };\n\n        for (auto [u, v, c] : edges) add_sum(c);\n        for (int\
+    \ u = 0; u < vertices; u++) {\n            if (u == s || u == t) continue;\n \
+    \           assert(linear[u] != std::numeric_limits<T>::min());\n            add_sum(linear[u]\
+    \ < 0 ? -linear[u] : linear[u]);\n        }\n\n        atcoder::mf_graph<T> graph(vertices);\n\
+    \        for (auto [u, v, c] : edges) graph.add_edge(u, v, c);\n\n        T ans\
+    \ = constant + linear[s];\n        for (int u = 0; u < vertices; u++) {\n    \
+    \        if (u == s || u == t) continue;\n            if (linear[u] > 0) {\n \
+    \               graph.add_edge(u, t, linear[u]);\n            } else if (linear[u]\
+    \ < 0) {\n                graph.add_edge(s, u, -linear[u]);\n                ans\
+    \ += linear[u];\n            }\n        }\n\n        T inf = sum + 1;\n      \
+    \  for (int i = 0; i < n; i++) {\n            for (int a = 1; a + 1 < R[i]; a++)\
+    \ {\n                graph.add_edge(node(i, a + 1), node(i, a), inf);\n      \
+    \      }\n        }\n\n        ans += graph.flow(s, t);\n        auto side = graph.min_cut(s);\n\
+    \n        std::vector<int> v(n);\n        for (int i = 0; i < n; i++) {\n    \
+    \        for (int a = 1; a < R[i]; a++) {\n                if (side[node(i, a)])\
+    \ v[i] = a;\n            }\n        }\n        return {ans, v};\n    }\n};\n\n\
+    }\n#line 4 \"test/graph/k_value_min_cut_yukicoder.test.cpp\"\n\n#include <algorithm>\n\
+    #include <iostream>\n#line 8 \"test/graph/k_value_min_cut_yukicoder.test.cpp\"\
     \n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
     \n    int n;\n    std::cin >> n;\n    po167::KValueMinCut<long long> cut(std::vector<int>(n,\
     \ 3));\n    long long inf = 1;\n    for (int i = 0; i < n; i++) {\n        long\
@@ -91,7 +104,7 @@ data:
   isVerificationFile: true
   path: test/graph/k_value_min_cut_yukicoder.test.cpp
   requiredBy: []
-  timestamp: '2026-11-20 21:17:59+09:00'
+  timestamp: '2026-11-21 02:09:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/graph/k_value_min_cut_yukicoder.test.cpp

@@ -37,60 +37,73 @@ data:
     \    }\n\n    // -c if v[i] < a && v[j] < b\n    void add_lt_lt(int i, int a,\
     \ int j, int b, T c) {\n        assert(c >= 0);\n        constant -= c;\n    \
     \    add_linear(i, a, c);\n        add_lt_ge(i, a, j, b, c);\n    }\n\n    //\
-    \ -c if v[i] >= a && v[j] >= b\n    void add_ge_ge(int i, int a, int j, int b,\
-    \ T c) {\n        assert(c >= 0);\n        add_linear(i, a, -c);\n        add_edge(node(i,\
-    \ a), node(j, b), c);\n    }\n\n    // +c if [v[i] >= a] != [v[j] >= b]\n    void\
-    \ add_diff(int i, int a, int j, int b, T c) {\n        add_lt_ge(i, a, j, b, c);\n\
-    \        add_lt_ge(j, b, i, a, c);\n    }\n\n    // return {minimum cost, optimal\
-    \ v}\n    std::pair<T, std::vector<int>> run() const {\n        T sum = 0;\n \
-    \       auto add_sum = [&](T c) {\n            assert(c >= 0 && c < std::numeric_limits<T>::max()\
-    \ - sum);\n            sum += c;\n        };\n\n        for (auto [u, v, c] :\
-    \ edges) add_sum(c);\n        for (int u = 0; u < s; u++) {\n            assert(linear[u]\
-    \ != std::numeric_limits<T>::min());\n            add_sum(linear[u] < 0 ? -linear[u]\
-    \ : linear[u]);\n        }\n\n        atcoder::mf_graph<T> graph(t + 1);\n   \
-    \     for (auto [u, v, c] : edges) graph.add_edge(u, v, c);\n\n        T ans =\
-    \ constant + linear[s];\n        for (int u = 0; u < s; u++) {\n            if\
-    \ (linear[u] > 0) {\n                graph.add_edge(u, t, linear[u]);\n      \
-    \      } else if (linear[u] < 0) {\n                graph.add_edge(s, u, -linear[u]);\n\
-    \                ans += linear[u];\n            }\n        }\n\n        T inf\
-    \ = sum + 1;\n        for (int i = 0; i < n; i++) {\n            for (int a =\
-    \ 1; a + 1 < R[i]; a++) {\n                graph.add_edge(node(i, a + 1), node(i,\
-    \ a), inf);\n            }\n        }\n\n        ans += graph.flow(s, t);\n  \
-    \      auto side = graph.min_cut(s);\n\n        std::vector<int> v(n);\n     \
-    \   for (int i = 0; i < n; i++) {\n            for (int a = 1; a < R[i]; a++)\
-    \ {\n                if (side[node(i, a)]) v[i] = a;\n            }\n        }\n\
-    \        return {ans, v};\n    }\n};\n\n}\n#line 3 \"test/graph/k_value_min_cut_unit.cpp\"\
-    \n\n#include <algorithm>\n#line 6 \"test/graph/k_value_min_cut_unit.cpp\"\n#include\
-    \ <functional>\n#include <iostream>\n#line 9 \"test/graph/k_value_min_cut_unit.cpp\"\
-    \n#include <random>\n#line 11 \"test/graph/k_value_min_cut_unit.cpp\"\n\ntemplate<class\
-    \ T>\nvoid test_random() {\n    std::mt19937 rng(167);\n    for (int iteration\
-    \ = 0; iteration < 1500; iteration++) {\n        int n = 1 + rng() % 5;\n    \
-    \    std::vector<int> r(n);\n        for (int& x : r) x = 1 + rng() % 4;\n   \
-    \     po167::KValueMinCut<T> cut(r);\n        using Cost = std::function<T(const\
-    \ std::vector<int>&)>;\n        std::vector<Cost> terms;\n\n        auto check\
-    \ = [&]() {\n            auto evaluate = [&](const std::vector<int>& v) {\n  \
-    \              T result = 0;\n                for (const auto& term : terms) result\
-    \ += term(v);\n                return result;\n            };\n            T expected\
-    \ = std::numeric_limits<T>::max();\n            std::vector<int> v(n);\n     \
-    \       auto enumerate = [&](auto&& self, int i) -> void {\n                if\
-    \ (i == n) {\n                    expected = std::min(expected, evaluate(v));\n\
-    \                    return;\n                }\n                for (v[i] = 0;\
-    \ v[i] < r[i]; v[i]++) self(self, i + 1);\n            };\n            enumerate(enumerate,\
-    \ 0);\n            const auto result = cut.run();\n            assert(result.first\
-    \ == expected);\n            assert(int(result.second.size()) == n);\n       \
-    \     for (int i = 0; i < n; i++) {\n                assert(0 <= result.second[i]\
-    \ && result.second[i] < r[i]);\n            }\n            assert(evaluate(result.second)\
-    \ == expected);\n            assert(cut.run() == result);\n        };\n\n    \
-    \    for (int step = 0; step < 40; step++) {\n            int i = rng() % n, j\
-    \ = rng() % n;\n            int a = rng() % (r[i] + 1), b = rng() % (r[j] + 1);\n\
-    \            T c = rng() % 11;\n            switch (rng() % 7) {\n           \
-    \ case 0:\n                c -= 5;\n                cut.add_linear(i, a, c);\n\
-    \                terms.emplace_back([=](const auto& v) { return c * (v[i] >= a);\
-    \ });\n                break;\n            case 1: {\n                int k =\
-    \ rng() % r[i];\n                c -= 5;\n                cut.add_eq(i, k, c);\n\
-    \                terms.emplace_back([=](const auto& v) { return c * (v[i] == k);\
-    \ });\n                break;\n            }\n            case 2:\n          \
-    \      cut.add_lt_ge(i, a, j, b, c);\n                terms.emplace_back([=](const\
+    \ -c if v[i] < a for every (i, a) in conditions\n    void add_lt_lt(const std::vector<std::pair<int,\
+    \ int>>& conditions, T c) {\n        assert(c >= 0);\n        if (c == 0) return;\n\
+    \        constant -= c;\n        if (conditions.empty()) return;\n        int\
+    \ u = int(linear.size());\n        linear.push_back(c);\n        for (auto [i,\
+    \ a] : conditions) {\n            add_edge(node(i, a), u, c);\n        }\n   \
+    \ }\n\n    // -c if v[i] >= a && v[j] >= b\n    void add_ge_ge(int i, int a, int\
+    \ j, int b, T c) {\n        assert(c >= 0);\n        add_linear(i, a, -c);\n \
+    \       add_edge(node(i, a), node(j, b), c);\n    }\n\n    // -c if v[i] >= a\
+    \ for every (i, a) in conditions\n    void add_ge_ge(const std::vector<std::pair<int,\
+    \ int>>& conditions, T c) {\n        assert(c >= 0);\n        if (c == 0) return;\n\
+    \        if (conditions.empty()) {\n            constant -= c;\n            return;\n\
+    \        }\n        int u = int(linear.size());\n        linear.push_back(-c);\n\
+    \        for (auto [i, a] : conditions) {\n            add_edge(u, node(i, a),\
+    \ c);\n        }\n    }\n\n    // +c if [v[i] >= a] != [v[j] >= b]\n    void add_diff(int\
+    \ i, int a, int j, int b, T c) {\n        add_lt_ge(i, a, j, b, c);\n        add_lt_ge(j,\
+    \ b, i, a, c);\n    }\n\n    // return {minimum cost, optimal v}\n    std::pair<T,\
+    \ std::vector<int>> run() const {\n        int vertices = int(linear.size());\n\
+    \        T sum = 0;\n        auto add_sum = [&](T c) {\n            assert(c >=\
+    \ 0 && c < std::numeric_limits<T>::max() - sum);\n            sum += c;\n    \
+    \    };\n\n        for (auto [u, v, c] : edges) add_sum(c);\n        for (int\
+    \ u = 0; u < vertices; u++) {\n            if (u == s || u == t) continue;\n \
+    \           assert(linear[u] != std::numeric_limits<T>::min());\n            add_sum(linear[u]\
+    \ < 0 ? -linear[u] : linear[u]);\n        }\n\n        atcoder::mf_graph<T> graph(vertices);\n\
+    \        for (auto [u, v, c] : edges) graph.add_edge(u, v, c);\n\n        T ans\
+    \ = constant + linear[s];\n        for (int u = 0; u < vertices; u++) {\n    \
+    \        if (u == s || u == t) continue;\n            if (linear[u] > 0) {\n \
+    \               graph.add_edge(u, t, linear[u]);\n            } else if (linear[u]\
+    \ < 0) {\n                graph.add_edge(s, u, -linear[u]);\n                ans\
+    \ += linear[u];\n            }\n        }\n\n        T inf = sum + 1;\n      \
+    \  for (int i = 0; i < n; i++) {\n            for (int a = 1; a + 1 < R[i]; a++)\
+    \ {\n                graph.add_edge(node(i, a + 1), node(i, a), inf);\n      \
+    \      }\n        }\n\n        ans += graph.flow(s, t);\n        auto side = graph.min_cut(s);\n\
+    \n        std::vector<int> v(n);\n        for (int i = 0; i < n; i++) {\n    \
+    \        for (int a = 1; a < R[i]; a++) {\n                if (side[node(i, a)])\
+    \ v[i] = a;\n            }\n        }\n        return {ans, v};\n    }\n};\n\n\
+    }\n#line 3 \"test/graph/k_value_min_cut_unit.cpp\"\n\n#include <algorithm>\n#line\
+    \ 6 \"test/graph/k_value_min_cut_unit.cpp\"\n#include <functional>\n#include <iostream>\n\
+    #line 9 \"test/graph/k_value_min_cut_unit.cpp\"\n#include <random>\n#line 11 \"\
+    test/graph/k_value_min_cut_unit.cpp\"\n\ntemplate<class T>\nvoid test_random()\
+    \ {\n    std::mt19937 rng(167);\n    for (int iteration = 0; iteration < 1500;\
+    \ iteration++) {\n        int n = 1 + rng() % 5;\n        std::vector<int> r(n);\n\
+    \        for (int& x : r) x = 1 + rng() % 4;\n        po167::KValueMinCut<T> cut(r);\n\
+    \        using Cost = std::function<T(const std::vector<int>&)>;\n        std::vector<Cost>\
+    \ terms;\n\n        auto check = [&]() {\n            auto evaluate = [&](const\
+    \ std::vector<int>& v) {\n                T result = 0;\n                for (const\
+    \ auto& term : terms) result += term(v);\n                return result;\n   \
+    \         };\n            T expected = std::numeric_limits<T>::max();\n      \
+    \      std::vector<int> v(n);\n            auto enumerate = [&](auto&& self, int\
+    \ i) -> void {\n                if (i == n) {\n                    expected =\
+    \ std::min(expected, evaluate(v));\n                    return;\n            \
+    \    }\n                for (v[i] = 0; v[i] < r[i]; v[i]++) self(self, i + 1);\n\
+    \            };\n            enumerate(enumerate, 0);\n            const auto\
+    \ result = cut.run();\n            assert(result.first == expected);\n       \
+    \     assert(int(result.second.size()) == n);\n            for (int i = 0; i <\
+    \ n; i++) {\n                assert(0 <= result.second[i] && result.second[i]\
+    \ < r[i]);\n            }\n            assert(evaluate(result.second) == expected);\n\
+    \            assert(cut.run() == result);\n        };\n\n        for (int step\
+    \ = 0; step < 40; step++) {\n            int i = rng() % n, j = rng() % n;\n \
+    \           int a = rng() % (r[i] + 1), b = rng() % (r[j] + 1);\n            T\
+    \ c = rng() % 11;\n            int kind = rng() % 9;\n            switch (kind)\
+    \ {\n            case 0:\n                c -= 5;\n                cut.add_linear(i,\
+    \ a, c);\n                terms.emplace_back([=](const auto& v) { return c * (v[i]\
+    \ >= a); });\n                break;\n            case 1: {\n                int\
+    \ k = rng() % r[i];\n                c -= 5;\n                cut.add_eq(i, k,\
+    \ c);\n                terms.emplace_back([=](const auto& v) { return c * (v[i]\
+    \ == k); });\n                break;\n            }\n            case 2:\n   \
+    \             cut.add_lt_ge(i, a, j, b, c);\n                terms.emplace_back([=](const\
     \ auto& v) { return c * (v[i] < a && v[j] >= b); });\n                break;\n\
     \            case 3:\n                cut.add_lt_lt(i, a, j, b, c);\n        \
     \        terms.emplace_back([=](const auto& v) { return -c * (v[i] < a && v[j]\
@@ -101,22 +114,57 @@ data:
     \ auto& v) { return c * ((v[i] >= a) != (v[j] >= b)); });\n                break;\n\
     \            case 6:\n                cut.add_edge(cut.node(i, a), cut.node(j,\
     \ b), c);\n                terms.emplace_back([=](const auto& v) { return c *\
-    \ (v[i] >= a && v[j] < b); });\n                break;\n            }\n      \
-    \      // Also check adding terms after a previous run.\n            if (step\
-    \ == 19 || step == 39) check();\n        }\n    }\n}\n\ntemplate<class T>\nvoid\
-    \ test_boundaries() {\n    po167::KValueMinCut<T> empty({});\n    assert(empty.run()\
-    \ == std::make_pair(T(0), std::vector<int>{}));\n\n    po167::KValueMinCut<T>\
+    \ (v[i] >= a && v[j] < b); });\n                break;\n            case 7:\n\
+    \            case 8: {\n                bool ge = kind == 8;\n               \
+    \ std::vector<std::pair<int, int>> conditions(rng() % 8);\n                for\
+    \ (auto& [index, threshold] : conditions) {\n                    index = rng()\
+    \ % n;\n                    threshold = rng() % (r[index] + 1);\n            \
+    \    }\n                if (ge) cut.add_ge_ge(conditions, c);\n              \
+    \  else cut.add_lt_lt(conditions, c);\n                terms.emplace_back([=](const\
+    \ auto& v) {\n                    for (auto [index, threshold] : conditions) {\n\
+    \                        if (ge ? v[index] < threshold : v[index] >= threshold)\
+    \ return T(0);\n                    }\n                    return -c;\n      \
+    \          });\n                break;\n            }\n            }\n       \
+    \     // Also check adding terms after a previous run.\n            if (step ==\
+    \ 19 || step == 39) check();\n        }\n    }\n}\n\ntemplate<class T>\nvoid test_boundaries()\
+    \ {\n    po167::KValueMinCut<T> empty({});\n    assert(empty.run() == std::make_pair(T(0),\
+    \ std::vector<int>{}));\n    empty.add_lt_lt({}, T(7));\n    assert(empty.run()\
+    \ == std::make_pair(T(-7), std::vector<int>{}));\n    empty.add_ge_ge({}, T(11));\n\
+    \    assert(empty.run() == std::make_pair(T(-18), std::vector<int>{}));\n    assert(empty.run()\
+    \ == std::make_pair(T(-18), std::vector<int>{}));\n\n    po167::KValueMinCut<T>\
     \ fixed({1, 1});\n    assert(fixed.node(0, 0) == fixed.s);\n    assert(fixed.node(0,\
     \ 1) == fixed.t);\n    fixed.add_eq(0, 0, -7);\n    fixed.add_linear(1, 0, 2);\n\
     \    fixed.add_linear(1, 1, 100);\n    fixed.add_edge(fixed.s, fixed.t, 3);\n\
     \    fixed.add_edge(fixed.t, fixed.s, 100);\n    fixed.add_lt_lt(0, 1, 1, 1, 4);\n\
     \    fixed.add_ge_ge(0, 0, 1, 0, 5);\n    fixed.add_diff(0, 0, 1, 1, 6);\n   \
     \ assert(fixed.run() == std::make_pair(T(-5), std::vector<int>{0, 0}));\n\n  \
-    \  // The generated ordering capacity can equal T's maximum value.\n    po167::KValueMinCut<T>\
-    \ large({3});\n    T c = std::numeric_limits<T>::max() - 1;\n    large.add_linear(0,\
-    \ 2, -c);\n    assert(large.run() == std::make_pair(-c, std::vector<int>{2}));\n\
-    }\n\nint main() {\n    test_boundaries<int>();\n    test_boundaries<long long>();\n\
-    \    test_random<int>();\n    test_random<long long>();\n    std::cout << \"KValueMinCut:\
+    \  fixed.add_ge_ge({{0, 0}, {1, 0}, {0, 0}}, T(9));\n    fixed.add_lt_lt({{0,\
+    \ 1}, {1, 1}, {1, 1}}, T(8));\n    fixed.add_ge_ge({{0, 0}, {0, 1}}, T(100));\n\
+    \    fixed.add_lt_lt({{1, 1}, {1, 0}}, T(100));\n    assert(fixed.run() == std::make_pair(T(-22),\
+    \ std::vector<int>{0, 0}));\n\n    po167::KValueMinCut<T> unary({4});\n    const\
+    \ int original_s = unary.s, original_t = unary.t;\n    std::vector<int> original_nodes;\n\
+    \    for (int a = 0; a <= 4; a++) original_nodes.push_back(unary.node(0, a));\n\
+    \    const auto original_size = unary.linear.size();\n    unary.add_ge_ge({{0,\
+    \ 2}}, T(9));\n    assert(unary.linear.size() == original_size + 1);\n    assert(unary.run()\
+    \ == std::make_pair(T(-9), std::vector<int>{2}));\n    // This positive auxiliary\
+    \ linear term must be included in the min-cut.\n    unary.add_lt_lt({{0, 2}},\
+    \ T(6));\n    assert(unary.linear.size() == original_size + 2);\n    assert(unary.run()\
+    \ == std::make_pair(T(-9), std::vector<int>{2}));\n    unary.add_ge_ge({{0, 1},\
+    \ {0, 3}, {0, 1}}, T(5));\n    assert(unary.run() == std::make_pair(T(-14), std::vector<int>{3}));\n\
+    \    // Threshold R makes an all-ge term impossible even with duplicate variables.\n\
+    \    unary.add_ge_ge({{0, 2}, {0, 4}, {0, 2}}, T(100));\n    unary.add_lt_lt({{0,\
+    \ 0}, {0, 3}}, T(100));\n    unary.add_linear(0, 3, T(-4));\n    assert(unary.run()\
+    \ == std::make_pair(T(-18), std::vector<int>{3}));\n    assert(unary.s == original_s\
+    \ && unary.t == original_t);\n    for (int a = 0; a <= 4; a++) assert(unary.node(0,\
+    \ a) == original_nodes[a]);\n    const auto size_before_zero = unary.linear.size();\n\
+    \    unary.add_ge_ge({{0, 3}}, T(0));\n    unary.add_lt_lt({{0, 4}}, T(0));\n\
+    \    assert(unary.linear.size() == size_before_zero);\n    assert(unary.run()\
+    \ == std::make_pair(T(-18), std::vector<int>{3}));\n\n    // The generated ordering\
+    \ capacity can equal T's maximum value.\n    po167::KValueMinCut<T> large({3});\n\
+    \    T c = std::numeric_limits<T>::max() - 1;\n    large.add_linear(0, 2, -c);\n\
+    \    assert(large.run() == std::make_pair(-c, std::vector<int>{2}));\n}\n\nint\
+    \ main() {\n    test_boundaries<int>();\n    test_boundaries<long long>();\n \
+    \   test_random<int>();\n    test_random<long long>();\n    std::cout << \"KValueMinCut:\
     \ all tests passed\\n\";\n}\n"
   code: "// Standalone regression test; run without judge input.\n#include \"graph/KValueMinCut.hpp\"\
     \n\n#include <algorithm>\n#include <cassert>\n#include <functional>\n#include\
@@ -141,47 +189,82 @@ data:
     \ == expected);\n            assert(cut.run() == result);\n        };\n\n    \
     \    for (int step = 0; step < 40; step++) {\n            int i = rng() % n, j\
     \ = rng() % n;\n            int a = rng() % (r[i] + 1), b = rng() % (r[j] + 1);\n\
-    \            T c = rng() % 11;\n            switch (rng() % 7) {\n           \
-    \ case 0:\n                c -= 5;\n                cut.add_linear(i, a, c);\n\
-    \                terms.emplace_back([=](const auto& v) { return c * (v[i] >= a);\
-    \ });\n                break;\n            case 1: {\n                int k =\
-    \ rng() % r[i];\n                c -= 5;\n                cut.add_eq(i, k, c);\n\
-    \                terms.emplace_back([=](const auto& v) { return c * (v[i] == k);\
-    \ });\n                break;\n            }\n            case 2:\n          \
-    \      cut.add_lt_ge(i, a, j, b, c);\n                terms.emplace_back([=](const\
-    \ auto& v) { return c * (v[i] < a && v[j] >= b); });\n                break;\n\
-    \            case 3:\n                cut.add_lt_lt(i, a, j, b, c);\n        \
-    \        terms.emplace_back([=](const auto& v) { return -c * (v[i] < a && v[j]\
-    \ < b); });\n                break;\n            case 4:\n                cut.add_ge_ge(i,\
+    \            T c = rng() % 11;\n            int kind = rng() % 9;\n          \
+    \  switch (kind) {\n            case 0:\n                c -= 5;\n           \
+    \     cut.add_linear(i, a, c);\n                terms.emplace_back([=](const auto&\
+    \ v) { return c * (v[i] >= a); });\n                break;\n            case 1:\
+    \ {\n                int k = rng() % r[i];\n                c -= 5;\n        \
+    \        cut.add_eq(i, k, c);\n                terms.emplace_back([=](const auto&\
+    \ v) { return c * (v[i] == k); });\n                break;\n            }\n  \
+    \          case 2:\n                cut.add_lt_ge(i, a, j, b, c);\n          \
+    \      terms.emplace_back([=](const auto& v) { return c * (v[i] < a && v[j] >=\
+    \ b); });\n                break;\n            case 3:\n                cut.add_lt_lt(i,\
     \ a, j, b, c);\n                terms.emplace_back([=](const auto& v) { return\
-    \ -c * (v[i] >= a && v[j] >= b); });\n                break;\n            case\
-    \ 5:\n                cut.add_diff(i, a, j, b, c);\n                terms.emplace_back([=](const\
-    \ auto& v) { return c * ((v[i] >= a) != (v[j] >= b)); });\n                break;\n\
-    \            case 6:\n                cut.add_edge(cut.node(i, a), cut.node(j,\
-    \ b), c);\n                terms.emplace_back([=](const auto& v) { return c *\
-    \ (v[i] >= a && v[j] < b); });\n                break;\n            }\n      \
-    \      // Also check adding terms after a previous run.\n            if (step\
-    \ == 19 || step == 39) check();\n        }\n    }\n}\n\ntemplate<class T>\nvoid\
-    \ test_boundaries() {\n    po167::KValueMinCut<T> empty({});\n    assert(empty.run()\
-    \ == std::make_pair(T(0), std::vector<int>{}));\n\n    po167::KValueMinCut<T>\
+    \ -c * (v[i] < a && v[j] < b); });\n                break;\n            case 4:\n\
+    \                cut.add_ge_ge(i, a, j, b, c);\n                terms.emplace_back([=](const\
+    \ auto& v) { return -c * (v[i] >= a && v[j] >= b); });\n                break;\n\
+    \            case 5:\n                cut.add_diff(i, a, j, b, c);\n         \
+    \       terms.emplace_back([=](const auto& v) { return c * ((v[i] >= a) != (v[j]\
+    \ >= b)); });\n                break;\n            case 6:\n                cut.add_edge(cut.node(i,\
+    \ a), cut.node(j, b), c);\n                terms.emplace_back([=](const auto&\
+    \ v) { return c * (v[i] >= a && v[j] < b); });\n                break;\n     \
+    \       case 7:\n            case 8: {\n                bool ge = kind == 8;\n\
+    \                std::vector<std::pair<int, int>> conditions(rng() % 8);\n   \
+    \             for (auto& [index, threshold] : conditions) {\n                \
+    \    index = rng() % n;\n                    threshold = rng() % (r[index] + 1);\n\
+    \                }\n                if (ge) cut.add_ge_ge(conditions, c);\n  \
+    \              else cut.add_lt_lt(conditions, c);\n                terms.emplace_back([=](const\
+    \ auto& v) {\n                    for (auto [index, threshold] : conditions) {\n\
+    \                        if (ge ? v[index] < threshold : v[index] >= threshold)\
+    \ return T(0);\n                    }\n                    return -c;\n      \
+    \          });\n                break;\n            }\n            }\n       \
+    \     // Also check adding terms after a previous run.\n            if (step ==\
+    \ 19 || step == 39) check();\n        }\n    }\n}\n\ntemplate<class T>\nvoid test_boundaries()\
+    \ {\n    po167::KValueMinCut<T> empty({});\n    assert(empty.run() == std::make_pair(T(0),\
+    \ std::vector<int>{}));\n    empty.add_lt_lt({}, T(7));\n    assert(empty.run()\
+    \ == std::make_pair(T(-7), std::vector<int>{}));\n    empty.add_ge_ge({}, T(11));\n\
+    \    assert(empty.run() == std::make_pair(T(-18), std::vector<int>{}));\n    assert(empty.run()\
+    \ == std::make_pair(T(-18), std::vector<int>{}));\n\n    po167::KValueMinCut<T>\
     \ fixed({1, 1});\n    assert(fixed.node(0, 0) == fixed.s);\n    assert(fixed.node(0,\
     \ 1) == fixed.t);\n    fixed.add_eq(0, 0, -7);\n    fixed.add_linear(1, 0, 2);\n\
     \    fixed.add_linear(1, 1, 100);\n    fixed.add_edge(fixed.s, fixed.t, 3);\n\
     \    fixed.add_edge(fixed.t, fixed.s, 100);\n    fixed.add_lt_lt(0, 1, 1, 1, 4);\n\
     \    fixed.add_ge_ge(0, 0, 1, 0, 5);\n    fixed.add_diff(0, 0, 1, 1, 6);\n   \
     \ assert(fixed.run() == std::make_pair(T(-5), std::vector<int>{0, 0}));\n\n  \
-    \  // The generated ordering capacity can equal T's maximum value.\n    po167::KValueMinCut<T>\
-    \ large({3});\n    T c = std::numeric_limits<T>::max() - 1;\n    large.add_linear(0,\
-    \ 2, -c);\n    assert(large.run() == std::make_pair(-c, std::vector<int>{2}));\n\
-    }\n\nint main() {\n    test_boundaries<int>();\n    test_boundaries<long long>();\n\
-    \    test_random<int>();\n    test_random<long long>();\n    std::cout << \"KValueMinCut:\
+    \  fixed.add_ge_ge({{0, 0}, {1, 0}, {0, 0}}, T(9));\n    fixed.add_lt_lt({{0,\
+    \ 1}, {1, 1}, {1, 1}}, T(8));\n    fixed.add_ge_ge({{0, 0}, {0, 1}}, T(100));\n\
+    \    fixed.add_lt_lt({{1, 1}, {1, 0}}, T(100));\n    assert(fixed.run() == std::make_pair(T(-22),\
+    \ std::vector<int>{0, 0}));\n\n    po167::KValueMinCut<T> unary({4});\n    const\
+    \ int original_s = unary.s, original_t = unary.t;\n    std::vector<int> original_nodes;\n\
+    \    for (int a = 0; a <= 4; a++) original_nodes.push_back(unary.node(0, a));\n\
+    \    const auto original_size = unary.linear.size();\n    unary.add_ge_ge({{0,\
+    \ 2}}, T(9));\n    assert(unary.linear.size() == original_size + 1);\n    assert(unary.run()\
+    \ == std::make_pair(T(-9), std::vector<int>{2}));\n    // This positive auxiliary\
+    \ linear term must be included in the min-cut.\n    unary.add_lt_lt({{0, 2}},\
+    \ T(6));\n    assert(unary.linear.size() == original_size + 2);\n    assert(unary.run()\
+    \ == std::make_pair(T(-9), std::vector<int>{2}));\n    unary.add_ge_ge({{0, 1},\
+    \ {0, 3}, {0, 1}}, T(5));\n    assert(unary.run() == std::make_pair(T(-14), std::vector<int>{3}));\n\
+    \    // Threshold R makes an all-ge term impossible even with duplicate variables.\n\
+    \    unary.add_ge_ge({{0, 2}, {0, 4}, {0, 2}}, T(100));\n    unary.add_lt_lt({{0,\
+    \ 0}, {0, 3}}, T(100));\n    unary.add_linear(0, 3, T(-4));\n    assert(unary.run()\
+    \ == std::make_pair(T(-18), std::vector<int>{3}));\n    assert(unary.s == original_s\
+    \ && unary.t == original_t);\n    for (int a = 0; a <= 4; a++) assert(unary.node(0,\
+    \ a) == original_nodes[a]);\n    const auto size_before_zero = unary.linear.size();\n\
+    \    unary.add_ge_ge({{0, 3}}, T(0));\n    unary.add_lt_lt({{0, 4}}, T(0));\n\
+    \    assert(unary.linear.size() == size_before_zero);\n    assert(unary.run()\
+    \ == std::make_pair(T(-18), std::vector<int>{3}));\n\n    // The generated ordering\
+    \ capacity can equal T's maximum value.\n    po167::KValueMinCut<T> large({3});\n\
+    \    T c = std::numeric_limits<T>::max() - 1;\n    large.add_linear(0, 2, -c);\n\
+    \    assert(large.run() == std::make_pair(-c, std::vector<int>{2}));\n}\n\nint\
+    \ main() {\n    test_boundaries<int>();\n    test_boundaries<long long>();\n \
+    \   test_random<int>();\n    test_random<long long>();\n    std::cout << \"KValueMinCut:\
     \ all tests passed\\n\";\n}\n"
   dependsOn:
   - graph/KValueMinCut.hpp
   isVerificationFile: false
   path: test/graph/k_value_min_cut_unit.cpp
   requiredBy: []
-  timestamp: '2026-11-20 21:17:59+09:00'
+  timestamp: '2026-11-21 02:09:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: test/graph/k_value_min_cut_unit.cpp
