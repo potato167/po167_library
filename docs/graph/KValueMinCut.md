@@ -1,0 +1,200 @@
+---
+title: k 値燃やす埋める
+documentation_of: //graph/KValueMinCut.hpp
+---
+
+## 概要
+
+整数変数 $v_i\in\{0,1,\ldots,R_i-1\}$ に対するコストの和を、最小カットに帰着して最小化する。
+変数ごとに値の種類数 $R_i$ を変えられ、すべて $R_i=2$ とすれば通常の二値の燃やす埋めるとして使える。
+
+以下では $[P]$ を、条件 $P$ が真なら $1$、偽なら $0$ とする。
+各関数で追加したコストは加算される。負のコストは利益を表す。
+内部では $x(i,a)=[v_i\ge a]$ をカットの頂点で表し、$x(i,a)=1$ を S 側、$0$ を T 側に対応させる。
+
+`<atcoder/maxflow>` が必要。C++17 以降で使用する。
+
+## 構築
+
+```cpp
+po167::KValueMinCut<long long> cut(R);
+```
+
+`R` は `std::vector<int>`。`R.size()` 個の変数を用意し、すべての $R_i\ge1$ が必要。
+変数の添字は $0$ 始まり。$R_i=1$ の変数は常に $0$ になる。
+
+テンプレート引数 `T` は符号付き整数型で、既定値は `long long`。
+頂点番号と頂点数は `int` に収まる必要がある。
+
+## 関数
+
+以下の `i`, `j` は存在する変数の添字、しきい値 `a`, `b` はそれぞれ
+$0\le a\le R_i$, $0\le b\le R_j$ とする。
+特に $x(i,0)=1$、$x(i,R_i)=0$ なので、端のしきい値を使って定数項や単項コストも表現できる。
+
+### `node(i, a)`
+
+```cpp
+int u = cut.node(i, a);
+```
+
+$x(i,a)$ に対応する頂点番号を返す。
+`a == 0` なら始点 `cut.s`、`a == R[i]` なら終点 `cut.t`、それ以外なら通常の頂点になる。
+主に `add_edge` の引数を作るために使う。
+
+### `add_linear(i, a, c)`
+
+```cpp
+cut.add_linear(i, a, c);
+```
+
+$c[v_i\ge a]$ を追加する。`c` は負でもよい。
+`a == 0` なら定数 $c$ を追加し、`a == R[i]` ならコストに影響しない。
+
+### `add_edge(u, v, c)`
+
+```cpp
+cut.add_edge(cut.node(i, a), cut.node(j, b), c);
+```
+
+頂点 `u` が S 側、`v` が T 側のときだけ $c$ を追加する。$c\ge0$ が必要。
+上の例では $c[v_i\ge a\land v_j<b]$ になる。
+`u`, `v` には `node` の返り値、`cut.s`、`cut.t` を渡す。
+
+`u == cut.s && v == cut.t` なら定数項になる。
+`c == 0`、`u == v`、`u == cut.t`、`v == cut.s` のいずれかなら何も追加しない。
+
+### `add_eq(i, k, c)`
+
+```cpp
+cut.add_eq(i, k, c);
+```
+
+$c[v_i=k]$ を追加する。$0\le k<R_i$ が必要。`c` は負でもよい。
+各 $k$ に対して呼ぶことで、任意の単項コスト $f_i(v_i)$ を追加できる。
+
+### `add_lt_ge(i, a, j, b, c)`
+
+```cpp
+cut.add_lt_ge(i, a, j, b, c);
+```
+
+$c[v_i<a\land v_j\ge b]$ を追加する。$c\ge0$ が必要。
+2 つの条件を同時に満たすときの罰金を表す。
+
+### `add_lt_lt(i, a, j, b, c)`
+
+```cpp
+cut.add_lt_lt(i, a, j, b, c);
+```
+
+$-c[v_i<a\land v_j<b]$ を追加する。$c\ge0$ が必要。
+2 つの条件を同時に満たすときに利益 $c$ を得る。
+
+### `add_ge_ge(i, a, j, b, c)`
+
+```cpp
+cut.add_ge_ge(i, a, j, b, c);
+```
+
+$-c[v_i\ge a\land v_j\ge b]$ を追加する。$c\ge0$ が必要。
+2 つの条件を同時に満たすときに利益 $c$ を得る。
+
+### `add_diff(i, a, j, b, c)`
+
+```cpp
+cut.add_diff(i, a, j, b, c);
+```
+
+$c\bigl[[v_i\ge a]\ne[v_j\ge b]\bigr]$ を追加する。$c\ge0$ が必要。
+2 つのしきい値判定が異なるときの罰金を表す。
+同じ値域の変数では、すべての $a=1,\ldots,R_i-1$ に対して
+`add_diff(i, a, j, a, c)` を呼ぶと $c|v_i-v_j|$ を追加できる。
+
+### `run()`
+
+```cpp
+auto [minimum_cost, values] = cut.run();
+```
+
+追加したコストの総和を最小化し、`std::pair<T, std::vector<int>>` を返す。
+`minimum_cost` は定数項を含む最小値、`values[i]` はそれを達成する $v_i$。
+最適解が複数ある場合は、そのうちの 1 つを返す。
+
+`run()` はオブジェクトを変更しないため、繰り返し呼べる。
+コストを追加してから再実行することもできるが、毎回グラフを作り直して最大流を計算する。
+
+## 使用例
+
+2 変数 $u,v\in\{0,1,2\}$ について、
+
+$$
+f(u)+g(v)+2|u-v|,
+\qquad f=(5,1,0),\quad g=(0,4,8)
+$$
+
+を最小化する。
+
+```cpp
+#include "graph/KValueMinCut.hpp"
+#include <iostream>
+
+int main() {
+    po167::KValueMinCut<> cut({3, 3});
+    const long long f[] = {5, 1, 0};
+    const long long g[] = {0, 4, 8};
+    for (int k = 0; k < 3; k++) {
+        cut.add_eq(0, k, f[k]);
+        cut.add_eq(1, k, g[k]);
+    }
+    for (int a = 1; a < 3; a++) {
+        cut.add_diff(0, a, 1, a, 2);
+    }
+    auto [cost, values] = cut.run();
+    std::cout << cost << '\n';                       // 3
+    std::cout << values[0] << ' ' << values[1] << '\n'; // 1 0
+}
+```
+
+利益の最大化では、利益を負のコストとして追加し、`-cost` を答えにする。
+
+## 検証
+
+| 問題 | テスト | 帰着 |
+|---|---|---|
+| [yukicoder No.119 旅行のツアーの問題](https://yukicoder.me/problems/no/119) | `test/graph/k_value_min_cut_yukicoder.test.cpp` | 旅行のみ・旅行しない・ツアー参加の3値。満足度を `add_eq`、禁止される組を `add_lt_ge` で表す |
+| [AOJ 2903 Board](https://onlinejudge.u-aizu.ac.jp/problems/2903) | `test/graph/k_value_min_cut_aoj_board.test.cpp` | 穴を覆う向きの2値。同じ向きの隣接マスをつなぐ利益を `add_lt_lt` と `add_ge_ge` で表す |
+
+禁止条件に大きな罰金を使う場合は、条件を満たす解が存在し、罰金が他のコストの改善幅を上回るようにする。
+yukicoder のテストでは、満足度の上限 $\sum_i\max(B_i,C_i)$ より1大きい値を使う。
+
+[yosupo judge の公式問題一覧](https://judge.yosupo.jp/)も調査したが、この API と制約に合う検証問題は見つからなかった。
+
+`test/graph/k_value_min_cut_unit.cpp` は入力不要の回帰テスト。
+全 API を含むランダムな小規模問題を全探索と比較し、最小値・復元した値・再実行を確認する。
+空の変数列、1値の変数、端のしきい値、大きな容量も確認する。
+リポジトリのルートで、ACL のインクルードパスを設定して実行する。
+
+```sh
+g++ -std=c++17 -Wall -Wextra -O2 -I . test/graph/k_value_min_cut_unit.cpp -o /tmp/k_value_min_cut_unit
+/tmp/k_value_min_cut_unit
+```
+
+## 整数の範囲
+
+すべてのコストの加減算・蓄積と答えが `T` に収まるようにする。
+特に `add_eq` は `-c` を計算するため、`c` に `std::numeric_limits<T>::min()` を渡せない。
+
+`run()` は、保存した辺の容量の和と、各通常頂点に蓄積した線形係数の絶対値の和を `sum` として、
+単調性 $x(i,a+1)\le x(i,a)$ を強制する辺に容量 `sum + 1` を設定する。
+したがって `sum < std::numeric_limits<T>::max()` が必要であり、各線形係数の絶対値も `T` に収まる必要がある。
+定数項や、負の線形係数を答えに加える途中の値についても、別途オーバーフローしないことが必要。
+
+## 計算量
+
+$L=\sum_i(R_i-1)$、保存した辺の数を $M$ とする。
+構築は時間・空間ともに $O(n+L)$。`node` は $O(1)$、コスト追加関数はいずれも償却 $O(1)$。
+
+`run()` が作るグラフの頂点数は $V=L+2$、辺数は $E=O(M+L)$。
+一般の整数容量に対する最大流の計算量に従い、時間 $O(V^2E+V+n)$、追加空間 $O(V+E+n)$。
+値域が大きいと、変数の数だけでなく $L$ に比例してグラフが大きくなる。
