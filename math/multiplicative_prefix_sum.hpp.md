@@ -228,8 +228,8 @@ data:
   timestamp: '2026-10-22 04:47:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/math/sum_of_multiplicative_function.test.cpp
   - test/math/sum_of_totient_function.test.cpp
+  - test/math/sum_of_multiplicative_function.test.cpp
   - test/math/sum_of_multiplicative_function_large.test.cpp
 documentation_of: math/multiplicative_prefix_sum.hpp
 layout: document

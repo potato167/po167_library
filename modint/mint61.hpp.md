@@ -76,8 +76,8 @@ data:
   timestamp: '2026-10-21 21:17:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/string/rolling_hash_2.test.cpp
   - test/string/rolling_hash_1.test.cpp
+  - test/string/rolling_hash_2.test.cpp
 documentation_of: modint/mint61.hpp
 layout: document
 redirect_from:

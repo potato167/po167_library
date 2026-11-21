@@ -124,6 +124,9 @@ data:
   - name: graph
     pages:
     - icon: ':heavy_check_mark:'
+      path: graph/DynamicConnectivity.hpp
+      title: "\u30AA\u30F3\u30E9\u30A4\u30F3\u52D5\u7684\u9023\u7D50\u6027"
+    - icon: ':heavy_check_mark:'
       path: graph/Eulerian_trail.hpp
       title: graph/Eulerian_trail.hpp
     - icon: ':heavy_check_mark:'
@@ -137,6 +140,9 @@ data:
     - icon: ':warning:'
       path: graph/tree/Auxiliary_Tree.hpp
       title: graph/tree/Auxiliary_Tree.hpp
+    - icon: ':heavy_check_mark:'
+      path: graph/tree/EulerTourTree.hpp
+      title: graph/tree/EulerTourTree.hpp
     - icon: ':heavy_check_mark:'
       path: graph/tree/LCA.hpp
       title: graph/tree/LCA.hpp
@@ -335,6 +341,15 @@ data:
       title: test/fps/taylor_shift.test.cpp
   - name: test/graph
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/graph/dynamic_connectivity_aoj.test.cpp
+      title: test/graph/dynamic_connectivity_aoj.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/graph/dynamic_connectivity_yosupo.test.cpp
+      title: test/graph/dynamic_connectivity_yosupo.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/graph/dynamic_connectivity_yukicoder.test.cpp
+      title: test/graph/dynamic_connectivity_yukicoder.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/graph/eulerian_trail_dir.test.cpp
       title: test/graph/eulerian_trail_dir.test.cpp

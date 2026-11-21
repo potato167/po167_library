@@ -146,8 +146,8 @@ data:
   timestamp: '2026-11-21 02:09:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/graph/k_value_min_cut_aoj_board.test.cpp
   - test/graph/k_value_min_cut_yukicoder.test.cpp
+  - test/graph/k_value_min_cut_aoj_board.test.cpp
 documentation_of: graph/KValueMinCut.hpp
 layout: document
 title: "k \u5024\u71C3\u3084\u3059\u57CB\u3081\u308B"

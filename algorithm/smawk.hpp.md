@@ -78,14 +78,14 @@ data:
   isVerificationFile: false
   path: algorithm/smawk.hpp
   requiredBy:
-  - algorithm/monge_k_edge_shortest_path.hpp
   - algorithm/sum_max_convolution.hpp
+  - algorithm/monge_k_edge_shortest_path.hpp
   timestamp: '2024-07-15 01:01:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/algorithm/sum_min_conv.test.cpp
   - test/algorithm/monge_2.test.cpp
   - test/algorithm/monge_1.test.cpp
+  - test/algorithm/sum_min_conv.test.cpp
 documentation_of: algorithm/smawk.hpp
 layout: document
 redirect_from:
